@@ -1,6 +1,6 @@
 # AIC-ADT Baramati Foundation — Digital Platform
 
-Official repository for the next-generation digital platform and enterprise web architecture of the **AIC-ADT Baramati Foundation** (Atal Incubation Centre, supported by AIM, NITI Aayog; hosted by Agricultural Development Trust, Baramati).
+Official repository for the next-generation digital platform, enterprise web architecture, and infrastructure readiness specifications for the **AIC-ADT Baramati Foundation** (Atal Incubation Centre, supported by AIM, NITI Aayog; hosted by Agricultural Development Trust, Baramati).
 
 ---
 
@@ -16,23 +16,30 @@ AIC-ADT/
     │   ├── content-verification-register.md   # Baseline register of 20 public claims & approvals
     │   └── ux-and-accessibility-findings.md   # UX heuristic and WCAG 2.1 accessibility findings
     │
-    └── requirements/                         # Phase 1, Tasks 2 & 3: Requirements & Architecture
-        ├── product-requirements-document.md   # Executive vision, problem statement, architecture
-        ├── functional-requirements.md         # Detailed functional specs (FR-PUB, FR-APP, etc.)
-        ├── non-functional-requirements.md     # Performance, security, WCAG, and DC requirements
-        ├── user-journeys.md                   # Workflows for all 9 platform user groups
-        ├── roles-and-permissions.md           # Granular RBAC permissions matrix & SoD rules
-        ├── acceptance-criteria.md             # Verifiable assertions and Given-When-Then criteria
-        ├── out-of-scope.md                    # Explicit boundary exclusions & change controls
-        ├── sitemap.md                         # Phase 1, Task 3: Canonical sitemap & Marathi routes
-        ├── navigation-specification.md        # Header, mega-menu, drawer, footer & bilingual toggle
-        ├── user-flow-specification.md         # Step-by-step traversal & Mermaid interaction flows
-        └── route-access-matrix.md             # Route security zones, allowed roles & rate limits
+    ├── requirements/                         # Phase 1, Tasks 2 & 3: Requirements & Navigation
+    │   ├── product-requirements-document.md   # Executive vision, problem statement, architecture
+    │   ├── functional-requirements.md         # Detailed functional specs (FR-PUB, FR-APP, etc.)
+    │   ├── non-functional-requirements.md     # Performance, security, WCAG, and DC requirements
+    │   ├── user-journeys.md                   # Workflows for all 9 platform user groups
+    │   ├── roles-and-permissions.md           # Granular RBAC permissions matrix & SoD rules
+    │   ├── acceptance-criteria.md             # Verifiable assertions and Given-When-Then criteria
+    │   ├── out-of-scope.md                    # Explicit boundary exclusions & change controls
+    │   ├── sitemap.md                         # Canonical sitemap & Marathi routes
+    │   ├── navigation-specification.md        # Header, mega-menu, drawer, footer & bilingual toggle
+    │   ├── user-flow-specification.md         # Step-by-step traversal & Mermaid interaction flows
+    │   └── route-access-matrix.md             # Route security zones, allowed roles & rate limits
+    │
+    └── architecture/                         # Phase 1, Task 4: Data-Center Readiness & RFI
+        ├── data-center-readiness-checklist.md # 47-point RFI assessment across 12 operational domains
+        ├── deployment-requirements.md         # Container topology, VM sizing, volumes & non-root security
+        ├── network-and-security-requirements.md# DMZ VLAN, firewall ingress, SSH & dataset isolation
+        ├── backup-and-recovery-requirements.md# Automated pg_dump, AES-256, RPO/RTO & DR execution
+        └── infrastructure-open-questions.md   # Prioritized RFI questions & mandatory deliverables
 ```
 
 ---
 
-## Discovery & Architecture Highlights
+## Discovery, Specifications & Architecture Highlights
 
 ### Phase 1, Task 1: Baseline Audit & Content Inventory
 - **[Existing Website Audit](docs/audit/existing-website-audit.md)**: Documents severe commercial theme pollution, active dummy WooCommerce retail store, broken routing (CSR to `/careers/`, Events to `/demo/`), and brand errors ("AIC-DBT Baramati").
@@ -40,17 +47,18 @@ AIC-ADT/
 - **[Content Verification Register](docs/audit/content-verification-register.md)**: Flags conflicting metrics requiring executive approval (69+ mentors vs. 23 listed, hardcoded `0` counters).
 - **[UX and Accessibility Findings](docs/audit/ux-and-accessibility-findings.md)**: Documents missing `<label for="...">` form bindings, absent top-level `<h1>` headings, and insecure mixed-content links (`http://test.aic-sku.com/...`).
 
-### Phase 1, Task 2: Product Requirements & Scope Definition
+### Phase 1, Tasks 2 & 3: Product Requirements, Sitemap & User Journeys
 - **[Product Requirements Document (PRD)](docs/requirements/product-requirements-document.md)**: 4-zone data segregation model tailored for on-premise data-center deployment.
 - **[Functional Requirements (FRS)](docs/requirements/functional-requirements.md)**: 12 core subsystems across 30+ structured requirements with unique IDs and priority ratings (P0, P1, P2).
-- **[Non-Functional Requirements (NFRS)](docs/requirements/non-functional-requirements.md)**: Mobile LCP ≤ 2.0s, TLS 1.3 / HSTS, WCAG 2.1 AA, RTO ≤ 4h / RPO ≤ 24h, and On-Premise Data-Center Confirmation Matrix.
-- **[User Journeys](docs/requirements/user-journeys.md)**: End-to-end flows for all 9 stakeholder personas.
-- **[Roles & Permissions (RBAC)](docs/requirements/roles-and-permissions.md)**: Granular permissions matrix enforcing Segregation of Duties (SoD).
-- **[Acceptance Criteria](docs/requirements/acceptance-criteria.md)**: Testable Gherkin acceptance criteria across all workflows.
-- **[Out-of-Scope Specification](docs/requirements/out-of-scope.md)**: Strict boundary exclusions (eCommerce, raw farmer datasets, LIMS databases, automated AI scoring).
-
-### Phase 1, Task 3: Sitemap, Navigation & User Journey Specification
+- **[Non-Functional Requirements (NFRS)](docs/requirements/non-functional-requirements.md)**: Mobile LCP ≤ 2.0s, TLS 1.3 / HSTS, WCAG 2.1 AA, RTO ≤ 4h / RPO ≤ 24h.
 - **[Sitemap Specification](docs/requirements/sitemap.md)**: Canonical public sitemap with 1-to-1 Marathi (`/mr/`) mirroring, removal of 75+ demo templates, and clear segregation of private portal routes.
-- **[Navigation Specification](docs/requirements/navigation-specification.md)**: Desktop mega-menus, mobile slide-out drawer, context-preserving bilingual switching mechanics, breadcrumb JSON-LD schema, and institutional footer.
-- **[User Flow Specification](docs/requirements/user-flow-specification.md)**: 9 comprehensive interaction flows with Mermaid sequence diagrams, validation rules, decision gates, and failure recovery.
-- **[Route Access Matrix](docs/requirements/route-access-matrix.md)**: Complete endpoint mapping across Zone 1 (Public), Zone 2 (Applicant Portal), and Zone 3 (Admin Console) with HTTP methods, allowed roles, session timeouts, and rate limits.
+- **[Navigation Specification](docs/requirements/navigation-specification.md)**: Desktop mega-menus, mobile drawer, context-preserving bilingual switching mechanics, and footer.
+- **[User Flow Specification](docs/requirements/user-flow-specification.md)**: 9 comprehensive interaction flows with Mermaid sequence diagrams, validation rules, and error handling.
+- **[Route Access Matrix](docs/requirements/route-access-matrix.md)**: Complete endpoint mapping across Public, Applicant Portal, and Admin Console with allowed RBAC roles.
+
+### Phase 1, Task 4: Data-Center Readiness Assessment & RFI
+- **[Data-Center Readiness Checklist](docs/architecture/data-center-readiness-checklist.md)**: 47-point RFI checklist evaluating compute, storage, networking, security, databases, power, and facilities.
+- **[Deployment Requirements](docs/architecture/deployment-requirements.md)**: Production sizing for Next.js, NestJS, PostgreSQL 16+, Prisma, Nginx, and Redis multi-container architecture.
+- **[Network & Security Requirements](docs/architecture/network-and-security-requirements.md)**: DMZ VLAN isolation (VLAN 30), 1:1 NAT mapping for ports 80/443, strict firewall barriers preventing lateral movement to internal agricultural IoT and KVK data lakes.
+- **[Backup & Recovery Requirements](docs/architecture/backup-and-recovery-requirements.md)**: Nightly automated `pg_dump` with AES-256 encryption, independent NAS replication, RPO ≤ 24h, RTO ≤ 4h, and quarterly dry-run simulation drills.
+- **[Infrastructure Open Questions](docs/architecture/infrastructure-open-questions.md)**: 21 prioritized technical questions and the definitive checklist of mandatory deliverables the organization must supply before deployment approval.

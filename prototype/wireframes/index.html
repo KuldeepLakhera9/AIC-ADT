@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIC-ADT Baramati Foundation — Responsive Wireframe Prototypes</title>
+  <!-- Google Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="wireframes.css">
+</head>
+<body>
+
+  <!-- Top Metadata Bar -->
+  <div class="wf-meta-bar">
+    <div>
+      <strong>AIC-ADT Baramati Foundation</strong> • Phase 2, Task 3 Wireframe Preview
+    </div>
+    <div>
+      <span class="wf-badge">Status: Neutral Grayscale Wireframe Prototype</span>
+    </div>
+  </div>
+
+  <div class="wf-container">
+    
+    <!-- View Switcher -->
+    <div class="wf-view-tabs" role="tablist">
+      <button class="wf-tab-btn active" id="btn-home" onclick="switchView('home')">1. Homepage Wireframe (Sections A-L)</button>
+      <button class="wf-tab-btn" id="btn-directory" onclick="switchView('directory')">2. Startup Directory Wireframe</button>
+      <button class="wf-tab-btn" id="btn-marathi" onclick="switchLang()">Language: <span id="lang-label">English (Click for मराठी)</span></button>
+    </div>
+
+    <!-- VIEW 1: HOMEPAGE WIREFRAME -->
+    <div id="view-home" class="wf-page-shell">
+      
+      <!-- Section A: Utility Bar -->
+      <div class="wf-section" style="padding: 8px 24px; background: #E0E0E0;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #444;">
+          <span>[A] Supported by Atal Innovation Mission, NITI Aayog • Helpline: +91 2112 255500</span>
+          <span>Language: [ EN | मराठी ]</span>
+        </div>
+      </div>
+
+      <!-- Section B: Main Header -->
+      <div class="wf-section" style="padding: 16px 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-weight: 700; font-size: 1.125rem;">[B] [LOGO: AIC-ADT + AIM NITI Aayog]</div>
+          <div style="display: flex; gap: 16px; font-size: 0.875rem; color: #555;">
+            <span>About ▾</span>
+            <span>Programs ▾</span>
+            <span>Startups ▾</span>
+            <span>Innovation ▾</span>
+            <span>Impact ▾</span>
+            <span>Events ▾</span>
+            <span>Resources ▾</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <span style="font-size: 0.875rem;">🔍</span>
+            <a href="#" class="wf-btn" style="padding: 6px 14px; font-size: 0.8125rem;">Apply for Incubation</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section C: Hero -->
+      <div class="wf-section">
+        <span class="wf-label">[C] Institutional Hero Section</span>
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center;">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: #666; margin-bottom: 8px;">SUPPORTED BY NITI AAYOG • ATAL INNOVATION MISSION</div>
+            <h1 id="hero-title" style="font-size: 2rem; font-weight: 700; margin-bottom: 12px; line-height: 1.2;">Catalyzing the Next Agricultural Revolution Through Deep-Tech Innovation</h1>
+            <p id="hero-body" style="color: #666; font-size: 0.9375rem; margin-bottom: 20px;">AIC-ADT empowers agri-tech startups, progressive farmers, and scientists with seed capital, NABL-accredited analytical laboratories, and field testing grounds in Baramati.</p>
+            <div style="display: flex; gap: 12px;">
+              <a href="#" class="wf-btn">Explore Incubation Programs</a>
+              <a href="#" class="wf-btn wf-btn-outline">Book Analytical Lab Testing</a>
+            </div>
+            <div style="margin-top: 16px; font-size: 0.75rem; color: #777;">
+              ✓ DPIIT Recognized Incubator • ✓ NABL Analytical Lab • ✓ 110-Acre Demonstration Farm
+            </div>
+          </div>
+          <div class="wf-box wf-box-media">
+            [Real Baramati Campus Photo Frame — 5:4 Aspect Ratio]
+          </div>
+        </div>
+      </div>
+
+      <!-- Section D: Introduction & Mission -->
+      <div class="wf-section">
+        <span class="wf-label">[D] Institutional Introduction & Mission</span>
+        <h2 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 8px;">Grounded in Baramati, Scaling Globally</h2>
+        <p style="color: #666; font-size: 0.875rem; margin-bottom: 20px;">Combining the 50-year grassroots agricultural heritage of the Agricultural Development Trust with national venture building mandates.</p>
+        <div class="wf-grid-3">
+          <div class="wf-card">
+            <div class="wf-card-title">1. Lab-to-Land Science</div>
+            <div class="wf-card-body">Direct validation on a 110-acre live demonstration farm and Krishi Vigyan Kendra network.</div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-title">2. Seed Funding Linkages</div>
+            <div class="wf-card-body">Facilitation of SISFS grants (up to ₹20L), MeitY GENESIS, and angel investor syndicates.</div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-title">3. Specialized Facilities</div>
+            <div class="wf-card-body">In-house FabLab (3D printing, CNC, PCB), NABL testing laboratory, and food processing plant.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section E: Programs & Incubation -->
+      <div class="wf-section">
+        <span class="wf-label">[E] Programs & Incubation Opportunities</span>
+        <h2 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 8px;">Incubation Pathways for Every Stage</h2>
+        <p style="color: #666; font-size: 0.875rem; margin-bottom: 20px;">From ideation and proof-of-concept to venture scaling and commercialization.</p>
+        <div class="wf-grid-3">
+          <div class="wf-card">
+            <span class="wf-badge">Stage 1</span>
+            <div class="wf-card-title" style="margin-top: 8px;">Pre-Incubation</div>
+            <div class="wf-card-body">6-Month cohort for concept validation, prototyping support, and business modeling.</div>
+            <a href="#" class="wf-btn wf-btn-outline" style="width: 100%; text-align: center;">View Details</a>
+          </div>
+          <div class="wf-card" style="border: 2px solid #555;">
+            <span class="wf-badge" style="background: #222;">Cohort 4 Active</span>
+            <div class="wf-card-title" style="margin-top: 8px;">Flagship Incubation (SISFS)</div>
+            <div class="wf-card-body">Up to ₹20 Lakhs grant and ₹50 Lakhs convertible debt for pilot deployment.</div>
+            <a href="#" class="wf-btn" style="width: 100%; text-align: center;">Apply Now</a>
+          </div>
+          <div class="wf-card">
+            <span class="wf-badge">Stage 3</span>
+            <div class="wf-card-title" style="margin-top: 8px;">Acceleration</div>
+            <div class="wf-card-body">Series-A growth advisory, corporate pilot procurement, and international market access.</div>
+            <a href="#" class="wf-btn wf-btn-outline" style="width: 100%; text-align: center;">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section F: Innovation Showcase -->
+      <div class="wf-section">
+        <span class="wf-label">[F] Agricultural Innovation Showcase</span>
+        <h2 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 12px;">6 Thematic Innovation Domains</h2>
+        <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+          <span class="wf-badge" style="background: #333;">Agri-Tech</span>
+          <span class="wf-badge">Smart Farming</span>
+          <span class="wf-badge">Biotechnology</span>
+          <span class="wf-badge">Food Processing</span>
+          <span class="wf-badge">Climate Tech</span>
+          <span class="wf-badge">Digital Agri & AI</span>
+        </div>
+        <div class="wf-box" style="text-align: left; padding: 24px;">
+          <div style="font-weight: 700; font-size: 1.125rem; margin-bottom: 4px;">Featured Project: Automated Soil Moisture & Salinity Telemetry Network</div>
+          <div style="color: #666; font-size: 0.875rem; margin-bottom: 12px;">Field tested across 2,400 hectares in Baramati sugarcane belt • 28% reduction in chemical fertilizer application.</div>
+          <a href="#" class="wf-btn wf-btn-outline" style="font-size: 0.8125rem;">Read Technical Case Study →</a>
+        </div>
+      </div>
+
+      <!-- Section G: Startup Stories -->
+      <div class="wf-section">
+        <span class="wf-label">[G] Featured Startup Stories</span>
+        <h2 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 20px;">Innovations Born in Baramati</h2>
+        <div class="wf-grid-3">
+          <div class="wf-card">
+            <span class="wf-badge">Agribusiness</span>
+            <div class="wf-card-title" style="margin-top: 8px;">GramHeet</div>
+            <div class="wf-card-body">Post-harvest decentralized marketplace reaching 35,000+ smallholder farmers.</div>
+            <a href="#" style="font-size: 0.8125rem; font-weight: 600; color: #222;">View Profile →</a>
+          </div>
+          <div class="wf-card">
+            <span class="wf-badge">Precision Agri</span>
+            <div class="wf-card-title" style="margin-top: 8px;">Innosapien Agro Tech</div>
+            <div class="wf-card-body">Sensor-based phenomics station and automated pest forecasting models.</div>
+            <a href="#" style="font-size: 0.8125rem; font-weight: 600; color: #222;">View Profile →</a>
+          </div>
+          <div class="wf-card">
+            <span class="wf-badge">Biotech</span>
+            <div class="wf-card-title" style="margin-top: 8px;">Baramati Agribiotics</div>
+            <div class="wf-card-body">Microbial bio-stimulants for saline soil remediation and high yield.</div>
+            <a href="#" style="font-size: 0.8125rem; font-weight: 600; color: #222;">View Profile →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section H: Verified Impact Metrics -->
+      <div class="wf-section" style="background: #2B2B2B; color: #FFFFFF;">
+        <span class="wf-label" style="background: #444; color: #FFF; border: none;">[H] Verified Impact Metrics • Audited as of FY 2024-25</span>
+        <div class="wf-grid-4" style="margin-top: 16px;">
+          <div style="text-align: center; border: 1px solid #444; padding: 20px; border-radius: 6px;">
+            <div style="font-size: 2.25rem; font-weight: 700;">50+</div>
+            <div style="font-size: 0.8125rem; color: #AAA;">Startups Incubated</div>
+          </div>
+          <div style="text-align: center; border: 1px solid #444; padding: 20px; border-radius: 6px;">
+            <div style="font-size: 2.25rem; font-weight: 700;">42+</div>
+            <div style="font-size: 0.8125rem; color: #AAA;">Patents / IP Filed</div>
+          </div>
+          <div style="text-align: center; border: 1px solid #444; padding: 20px; border-radius: 6px;">
+            <div style="font-size: 2.25rem; font-weight: 700;">₹5.2 Cr+</div>
+            <div style="font-size: 0.8125rem; color: #AAA;">Capital Mobilized</div>
+          </div>
+          <div style="text-align: center; border: 1px solid #444; padding: 20px; border-radius: 6px;">
+            <div style="font-size: 2.25rem; font-weight: 700;">35,000+</div>
+            <div style="font-size: 0.8125rem; color: #AAA;">Farmers Reached</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section I: Upcoming Events -->
+      <div class="wf-section">
+        <span class="wf-label">[I] Upcoming Events & Cohort Deadlines</span>
+        <h2 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 20px;">Technical Bootcamps & Admissions</h2>
+        <div class="wf-box" style="text-align: left; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong>SISFS Cohort 4 Application Deadline</strong>
+            <div style="font-size: 0.8125rem; color: #666;">Date: November 30, 2026 • Mode: Online Application Portal</div>
+          </div>
+          <a href="#" class="wf-btn" style="font-size: 0.8125rem; padding: 6px 14px;">Apply Before Deadline</a>
+        </div>
+        <div class="wf-box" style="text-align: left; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong>Millet Value-Addition & Processing Workshop</strong>
+            <div style="font-size: 0.8125rem; color: #666;">Date: December 08, 2026 • Venue: Food Innovation Pilot Plant</div>
+          </div>
+          <a href="#" class="wf-btn wf-btn-outline" style="font-size: 0.8125rem; padding: 6px 14px;">Register (Seats: 14)</a>
+        </div>
+      </div>
+
+      <!-- Section J: Reports & Publications -->
+      <div class="wf-section">
+        <span class="wf-label">[J] Reports & Publications</span>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="wf-card">
+            <span class="wf-badge">Audited Report</span>
+            <div class="wf-card-title" style="margin-top: 8px;">Annual Progress Report FY 2024-25</div>
+            <div class="wf-card-body">PDF • 4.2 MB • Formally submitted under NITI Aayog filings.</div>
+            <a href="#" class="wf-btn wf-btn-outline" style="font-size: 0.8125rem;">Download Signed PDF</a>
+          </div>
+          <div class="wf-card">
+            <span class="wf-badge">Research Monograph</span>
+            <div class="wf-card-title" style="margin-top: 8px;">Agri-Tech Incubation in Maharashtra</div>
+            <div class="wf-card-body">PDF • 2.8 MB • Policy insights for regional startup development.</div>
+            <a href="#" class="wf-btn wf-btn-outline" style="font-size: 0.8125rem;">Download Whitepaper</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section K: Collaboration CTA -->
+      <div class="wf-section" style="background: #333333; color: #FFFFFF; text-align: center; padding: 48px 24px;">
+        <span class="wf-label" style="background: #555; color: #FFF; border: none;">[K] Collaboration CTA</span>
+        <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px;">Ready to Scale Your Agricultural Innovation?</h2>
+        <p style="color: #AAA; font-size: 0.9375rem; margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">Join our incubation program or partner with us for CSR-backed agricultural development.</p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <a href="#" class="wf-btn" style="background: #FFFFFF; color: #222;">Apply for Incubation</a>
+          <a href="#" class="wf-btn wf-btn-outline" style="border-color: #FFFFFF; color: #FFFFFF;">Contact Partnership Desk</a>
+        </div>
+      </div>
+
+      <!-- Section L: Institutional Footer -->
+      <div class="wf-section" style="background: #1F1F1F; color: #FFFFFF; font-size: 0.8125rem;">
+        <span class="wf-label" style="background: #333; color: #FFF; border: none;">[L] Master Institutional Footer</span>
+        <div class="wf-grid-4" style="margin-top: 16px; margin-bottom: 24px;">
+          <div>
+            <strong>About AIC-ADT</strong>
+            <p style="color: #888; margin-top: 8px;">Hosted by Agricultural Development Trust, Baramati. Supported by AIM, NITI Aayog.</p>
+          </div>
+          <div>
+            <strong>Programs</strong>
+            <p style="color: #888; margin-top: 8px;">Pre-Incubation<br>Incubation (SISFS)<br>MeitY GENESIS<br>Acceleration</p>
+          </div>
+          <div>
+            <strong>Infrastructure</strong>
+            <p style="color: #888; margin-top: 8px;">FabLab Prototyping<br>NABL Analytical Lab<br>Food Innovation Lab<br>Co-Working Space</p>
+          </div>
+          <div>
+            <strong>Transparency & RTI</strong>
+            <p style="color: #888; margin-top: 8px;">Annual Filings<br>Whistleblower Policy<br>RTI Contact<br>Privacy Terms</p>
+          </div>
+        </div>
+        <div style="border-top: 1px solid #333; padding-top: 16px; text-align: center; color: #666;">
+          © 2026 AIC-ADT Baramati Foundation. All rights reserved.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- VIEW 2: STARTUP DIRECTORY WIREFRAME -->
+    <div id="view-directory" class="wf-page-shell" style="display: none;">
+      <div class="wf-section">
+        <span class="wf-label">Startup Directory Wireframe (Page 08)</span>
+        <h1 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 12px;">Incubated Startups Directory</h1>
+        <p style="color: #666; font-size: 0.9375rem; margin-bottom: 24px;">Search and explore 70+ ventures creating systemic agricultural and economic impact.</p>
+
+        <!-- Search & Filter Controls -->
+        <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+          <input type="text" placeholder="🔍 Search startups by name, founder, or keyword..." style="flex-grow: 1; padding: 10px 14px; border: 1px solid #CCC; border-radius: 4px; font-size: 0.875rem;">
+          <button class="wf-btn">Filter</button>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+          <span class="wf-badge" style="background: #333;">All (71)</span>
+          <span class="wf-badge">Smart Farming (24)</span>
+          <span class="wf-badge">Biotech (18)</span>
+          <span class="wf-badge">Food Tech (15)</span>
+          <span class="wf-badge">Robotics & IoT (14)</span>
+        </div>
+
+        <!-- Startup Grid -->
+        <div class="wf-grid-3">
+          <div class="wf-card">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="wf-badge">Smart Farming</span>
+              <span style="font-size: 0.75rem; color: #888;">Incubated 2024</span>
+            </div>
+            <div class="wf-card-title" style="margin-top: 12px;">Baramati Agribiotics Pvt Ltd</div>
+            <div class="wf-card-body">Microbial bio-stimulants for soil salinity reclamation and sugarcane yield optimization.</div>
+            <div style="border-top: 1px solid #EEE; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.75rem; color: #888;">Baramati Campus</span>
+              <a href="#" class="wf-btn wf-btn-outline" style="font-size: 0.75rem; padding: 4px 10px;">View Profile →</a>
+            </div>
+          </div>
+          <div class="wf-card">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="wf-badge">Agribusiness</span>
+              <span style="font-size: 0.75rem; color: #888;">Incubated 2022</span>
+            </div>
+            <div class="wf-card-title" style="margin-top: 12px;">GramHeet Solutions Pvt Ltd</div>
+            <div class="wf-card-body">Decentralized post-harvest marketplace and storage reaching 35,000+ farmers across Maharashtra.</div>
+            <div style="border-top: 1px solid #EEE; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.75rem; color: #888;">SISFS Supported</span>
+              <a href="#" class="wf-btn wf-btn-outline" style="font-size: 0.75rem; padding: 4px 10px;">View Profile →</a>
+            </div>
+          </div>
+          <div class="wf-card">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="wf-badge">IoT & AI</span>
+              <span style="font-size: 0.75rem; color: #888;">Incubated 2023</span>
+            </div>
+            <div class="wf-card-title" style="margin-top: 12px;">Innosapien Agro Technologies</div>
+            <div class="wf-card-body">Field phenomics sensor stations and automated vision crop disease forecasting.</div>
+            <div style="border-top: 1px solid #EEE; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.75rem; color: #888;">MeitY GENESIS</span>
+              <a href="#" class="wf-btn wf-btn-outline" style="font-size: 0.75rem; padding: 4px 10px;">View Profile →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function switchView(viewName) {
+      document.getElementById('view-home').style.display = viewName === 'home' ? 'block' : 'none';
+      document.getElementById('view-directory').style.display = viewName === 'directory' ? 'block' : 'none';
+      document.getElementById('btn-home').classList.toggle('active', viewName === 'home');
+      document.getElementById('btn-directory').classList.toggle('active', viewName === 'directory');
+    }
+
+    let isMarathi = false;
+    function switchLang() {
+      isMarathi = !isMarathi;
+      const langLabel = document.getElementById('lang-label');
+      const heroTitle = document.getElementById('hero-title');
+      const heroBody = document.getElementById('hero-body');
+
+      if (isMarathi) {
+        langLabel.innerText = "मराठी (Active) - Click for English";
+        heroTitle.innerText = "कृषी-जैवतंत्रज्ञान आणि नवउद्योगांच्या माध्यमातून आधुनिक कृषी क्रांतीची निर्मिती";
+        heroBody.innerText = "बारामती परिसरातील प्रयोगशाळा, तज्ज्ञ मार्गदर्शन आणि सरकारी योजनांच्या सहकार्याने नाविन्यपूर्ण कृषी तंत्रज्ञानाचा प्रसार करणे हे आमचे ध्येय आहे.";
+        heroTitle.style.fontFamily = "var(--font-devanagari)";
+        heroBody.style.fontFamily = "var(--font-devanagari)";
+      } else {
+        langLabel.innerText = "English (Click for मराठी)";
+        heroTitle.innerText = "Catalyzing the Next Agricultural Revolution Through Deep-Tech Innovation";
+        heroBody.innerText = "AIC-ADT empowers agri-tech startups, progressive farmers, and scientists with seed capital, NABL-accredited analytical laboratories, and field testing grounds in Baramati.";
+        heroTitle.style.fontFamily = "var(--font-family)";
+        heroBody.style.fontFamily = "var(--font-family)";
+      }
+    }
+  </script>
+
+</body>
+</html>

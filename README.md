@@ -41,7 +41,12 @@ AIC-ADT/
     │   ├── visual-direction.md               # Task 1: Palette tokens, type scales, motion & layout
     │   ├── design-principles.md              # Task 1: Usability rules, WCAG 2.1 AA, bilingual parity
     │   ├── design-decisions.md               # Task 1: Approved, proposed & unresolved decisions
-    │   ├── wireframes/                       # Detailed UI wireframes (Desktop & Mobile)
+    │   ├── wireframes/                       # Task 3: Information Architecture & Wireframes
+    │   │   ├── wireframe-specification.md    # IA principles, page coverage matrix & approval gates
+    │   │   ├── homepage-wireframe.md         # Sections A through L wireframe with schematics
+    │   │   ├── public-page-wireframes.md     # Pages 02 through 18 wireframes with schematics
+    │   │   ├── navigation-wireframe.md       # Desktop mega-menus, mobile drawer & wayfinding
+    │   │   └── mobile-wireframes.md          # Mobile layouts, touch targets & table-card transforms
     │   ├── components/                       # Task 2: Component Library & Design System Tokens
     │   │   ├── design-tokens.md              # Multi-tier semantic tokens & CSS custom properties
     │   │   ├── component-inventory.md        # 27 reusable components with states & behaviors
@@ -52,10 +57,13 @@ AIC-ADT/
     ├── phase-1-summary.md                    # Phase 1, Task 5: Master Discovery Summary & Architecture Roadmap
     ├── phase-1-open-decisions.md              # Phase 1, Task 5: 11 Open Governance & Policy Decisions Register
     └── phase-1-sign-off-checklist.md          # Phase 1, Task 5: Quality Checklist & Phase Gate Matrix
-├── prototype/                                # Phase 2, Task 2: Standalone Component Showcase
-│   └── components/
-│       ├── showcase.html                     # Interactive HTML5 component showcase
-│       └── styles.css                        # Pure CSS custom properties & component styles
+├── prototype/                                # Interactive Design Prototypes
+│   ├── components/                           # Task 2: Standalone Component Showcase
+│   │   ├── showcase.html                     # Interactive HTML5 component showcase
+│   │   └── styles.css                        # Pure CSS custom properties & component styles
+│   └── wireframes/                           # Task 3: Grayscale Wireframe Prototypes
+│       ├── index.html                        # Interactive Homepage & Directory wireframe prototype
+│       └── wireframes.css                    # Grayscale wireframe styling
 ```
 
 ---
@@ -101,6 +109,15 @@ AIC-ADT/
 - **[Responsive Layout Guidelines](docs/design/components/responsive-guidelines.md)**: 5-tier responsive screen architecture (320px to 1440px+), fluid typography formulas (`clamp`), navigation collapse mechanics, table card transformations, and Marathi horizontal overflow defenses.
 - **[Accessibility Guidelines](docs/design/components/accessibility-guidelines.md)**: WCAG 2.1 Level AA conformance framework with certified color contrast matrix, keyboard focus architecture, screen reader landmarks, persistent form labels, and `prefers-reduced-motion` overrides.
 - **[Standalone Component Showcase](prototype/components/showcase.html)**: Interactive HTML5/CSS showcase in `prototype/components/` demonstrating representative buttons, typography, cards, form fields, badges, navigation, and color swatches without external dependencies.
+
+### Phase 2, Task 3: Information Architecture & Responsive Wireframes
+- **[Wireframe Master Specification](docs/design/wireframes/wireframe-specification.md)**: 18-page public coverage matrix, IA principles, layout conventions, and stakeholder review checkpoints.
+- **[Homepage Wireframe](docs/design/wireframes/homepage-wireframe.md)**: Exhaustive structural wireframe detailing Sections A through L (Utility bar to Master footer) with purpose, ASCII schematics, and mobile behaviors.
+- **[Public Page Wireframes](docs/design/wireframes/public-page-wireframes.md)**: Complete wireframes for Pages 02 through 18 (About, Programs, Schemes, Instructions, Startups, Innovation, Impact, Events, Resources, Contact, Search, Error 404/500).
+- **[Navigation Wireframe](docs/design/wireframes/navigation-wireframe.md)**: 7 desktop mega-menus, mobile slide-in drawer, search overlay, context-preserving bilingual switching (`EN | मराठी`), and contextual cross-linking matrix.
+- **[Mobile Wireframes](docs/design/wireframes/mobile-wireframes.md)**: Dedicated mobile viewport layouts (320px-480px), touch ergonomics ($\ge 44\text{px}$), table-to-card transformations, and Marathi ligature overflow defenses.
+- **[Interactive Grayscale Wireframe Prototype](prototype/wireframes/index.html)**: Working grayscale wireframe prototype demonstrating the homepage reading flow, startup directory, and real-time English/Marathi text switching.
+
 
 
 

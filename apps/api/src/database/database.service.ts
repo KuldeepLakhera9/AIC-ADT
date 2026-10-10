@@ -1,6 +1,8 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Prisma } from '@prisma/client';
 import { AppLoggerService } from '../common/logger/app-logger.service.js';
+import { PrismaService } from './prisma.service.js';
 
 export interface DatabaseHealthResult {
   status: 'up' | 'down';
@@ -11,9 +13,11 @@ export interface DatabaseHealthResult {
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new AppLoggerService('DatabaseService');
-  private isConnected = false;
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly prismaService: PrismaService,
+  ) {}
 
   async onModuleInit(): Promise<void> {
     const dbUrl = this.configService.get<string>('DATABASE_URL');
@@ -22,35 +26,19 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
         'DATABASE_URL not configured. Running in offline/disconnected database mode.',
         'DatabaseService',
       );
-      this.isConnected = false;
       return;
     }
 
-    try {
-      // In Phase 3 Task 4, we initialize the database foundation abstraction
-      // Real Prisma client connection will be attached in database migration task
-      this.isConnected = true;
-      this.logger.log(
-        'Database abstraction initialized successfully.',
-        'DatabaseService',
-      );
-    } catch (err: unknown) {
-      this.isConnected = false;
-      this.logger.error(
-        `Failed to initialize database connection: ${err instanceof Error ? err.message : 'Unknown error'}`,
-        err instanceof Error ? err.stack : undefined,
-        'DatabaseService',
-      );
-    }
+    this.logger.log('DatabaseService initialized with Prisma.', 'DatabaseService');
   }
 
   async onModuleDestroy(): Promise<void> {
-    if (this.isConnected) {
-      this.logger.log('Database abstraction disconnected.', 'DatabaseService');
-      this.isConnected = false;
-    }
+    this.logger.log('DatabaseService shutdown complete.', 'DatabaseService');
   }
 
+  /**
+   * Health ping executing an active SELECT 1 round-trip against PostgreSQL.
+   */
   async ping(): Promise<DatabaseHealthResult> {
     const startTime = Date.now();
     const dbUrl = this.configService.get<string>('DATABASE_URL');
@@ -64,18 +52,37 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
       };
     }
 
-    // Ping check: returns connectivity status and round-trip latency
-    const latencyMs = Date.now() - startTime;
-    return {
-      status: this.isConnected ? 'up' : 'down',
-      latencyMs,
-      message: this.isConnected
-        ? 'Database connection active'
-        : 'Database disconnected',
-    };
+    try {
+      await this.prismaService.$queryRaw(Prisma.sql`SELECT 1 AS ping;`);
+      const latencyMs = Date.now() - startTime;
+      return {
+        status: 'up',
+        latencyMs,
+        message: 'PostgreSQL connection active',
+      };
+    } catch (err: unknown) {
+      const latencyMs = Date.now() - startTime;
+      const errorMessage =
+        err instanceof Error ? err.message : 'Unknown database ping error';
+      // Sanitize potential connection string / credential leakage in error message
+      const sanitized = errorMessage.replace(/(:\/\/[^:]+:)[^@]+(@)/, '$1***$2');
+      this.logger.warn(
+        `Database health ping failed (${latencyMs}ms): ${sanitized}`,
+        'DatabaseService',
+      );
+      return {
+        status: 'down',
+        latencyMs,
+        message: `Database ping failed: ${sanitized}`,
+      };
+    }
   }
 
   get connected(): boolean {
-    return this.isConnected;
+    return this.prismaService.connected;
+  }
+
+  get prisma(): PrismaService {
+    return this.prismaService;
   }
 }

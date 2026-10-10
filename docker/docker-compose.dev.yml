@@ -1,0 +1,41 @@
+# ==============================================================================
+# AIC-ADT Baramati Foundation — Local Development Docker Compose Environment
+# ==============================================================================
+
+name: aic-adt
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: aic-adt-postgres
+    restart: unless-stopped
+    environment:
+      # Superuser credentials used solely during initial bootstrap and DB creation
+      POSTGRES_USER: ${POSTGRES_ADMIN_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-postgres_local_dev_password}
+      POSTGRES_DB: ${POSTGRES_ADMIN_DB:-postgres}
+      # Dedicated application database and non-superuser role
+      APP_DB_NAME: ${APP_DB_NAME:-aic_adt_db}
+      APP_DB_USER: ${APP_DB_USER:-aic_app}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:-aic_app_dev_password}
+    ports:
+      # CRITICAL: Bound strictly to 127.0.0.1 (loopback) to prevent WAN/LAN exposure
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init-user-db.sh:/docker-entrypoint-initdb.d/01-init-user-db.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_ADMIN_USER:-postgres} -d ${POSTGRES_ADMIN_DB:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aic-network
+
+networks:
+  aic-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    name: aic-adt-postgres-data

@@ -37,8 +37,9 @@ AIC-ADT/
     │   ├── local-development-guide.md         # Phase 3, Task 2: Quickstart, CLI scripts & troubleshooting
     │   ├── dependency-versions.md             # Phase 3, Task 2: Recorded inventory of production dependencies
     │   ├── production-design-system.md        # Phase 3, Task 3: Tokens, palettes, fonts & Tailwind v4 theme
-    │   ├── shared-ui-components.md            # Phase 3, Task 3: Reusable UI component inventory & API spec
     │   ├── backend-foundation.md              # Phase 3, Task 4: NestJS modular monolith, security, logging & probes
+    │   ├── database-foundation.md             # Phase 3, Task 5: PostgreSQL 16+ & Prisma ORM architecture
+    │   ├── database-migration-runbook.md      # Phase 3, Task 5: Migration SOP, deployment & failure recovery
     │   ├── data-center-readiness-checklist.md # Phase 1, Task 4: 47-point RFI assessment across 12 domains
     │   ├── deployment-requirements.md         # Phase 1, Task 4: Container topology, VM sizing & volumes
     │   ├── network-and-security-requirements.md# Phase 1, Task 4: DMZ VLAN, firewall ingress & SSH isolation
@@ -175,4 +176,13 @@ AIC-ADT/
 - **Health Probes (`/api/v1/health`)**: Separate liveness (`/health/liveness`) and readiness (`/health/readiness`) checks for container orchestration and load balancing.
 - **Observability & Request Correlation**: Automated `x-correlation-id` lifecycle, structured single-line JSON logging, and automatic redaction of sensitive credentials, tokens, and database connection strings.
 - **Automated Backend Verification**: Vitest unit test suite (23 passing tests) and Supertest integration e2e test suite (5 passing tests) with 100% pass rate.
+
+### Phase 3, Task 5: PostgreSQL and Prisma Foundation
+- **[Database Foundation Architecture](docs/architecture/database-foundation.md)**: Production specification establishing the PostgreSQL 16+ engine, Prisma ORM 6.4+ integration, strict role separation (least-privilege `aic_app` non-superuser vs cluster bootstrap `postgres`), and loopback-only network isolation (`127.0.0.1:5432:5432`).
+- **[Database Migration Runbook](docs/architecture/database-migration-runbook.md)**: Operational runbook detailing the draft migration generation workflow (`--create-only`), SQL security review checklist, transactional production deployment (`prisma:migrate:deploy`), shadow database configuration, and disaster recovery procedures (`pg_dump` / `pg_restore`).
+- **Initial Foundational Schema (`apps/api/prisma/schema.prisma`)**: Scope strictly limited to foundational models (`User` with RBAC roles, append-only `AuditLog`, and `SystemSetting`). Future domain entities (Startups, Programs, Reviews, Events, Impact) are deferred to their respective feature phases.
+- **NestJS Prisma Lifecycle Integration**: `PrismaService` extending `PrismaClient` with `onModuleInit` connection handling, `onModuleDestroy` connection pool termination, `enableShutdownHooks()`, and safe transaction runner `withTransaction()`.
+- **Database Health Probes**: Active `SELECT 1` ping query integrated into `DatabaseService` and the readiness endpoint (`/api/v1/health/readiness`), with safe error handling and credential redaction.
+- **Development-Only Seeding (`apps/api/prisma/seed.ts`)**: Idempotent upsert seeding for system settings, administrative test accounts, and bootstrap audit logs, protected by a production execution safety guard.
+- **Automated Database Verification**: 100% pass rate across all 36 unit tests and 5 e2e integration tests connecting directly to PostgreSQL.
 

@@ -1,0 +1,95 @@
+// ==============================================================================
+// AIC-ADT Baramati Foundation — Prisma Schema
+// Phase 3 Foundation: PostgreSQL 16+ Relational Core
+// Scope: Foundational Identity (User/Role), Audit Log, and System Settings.
+// Note: Domain models (Startups, Programs, Applications, Events, Impact) are
+// intentionally deferred to their respective feature implementation phases.
+// ==============================================================================
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ------------------------------------------------------------------------------
+// ENUMS
+// ------------------------------------------------------------------------------
+
+enum Role {
+  PUBLIC_APPLICANT
+  REVIEWER
+  PROGRAM_MANAGER
+  CONTENT_EDITOR
+  APPROVER
+  IMPACT_MANAGER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  PENDING_VERIFICATION
+}
+
+// ------------------------------------------------------------------------------
+// MODELS
+// ------------------------------------------------------------------------------
+
+/// System User and Identity Entity for Role-Based Access Control (RBAC)
+model User {
+  id           String     @id @default(uuid()) @db.Uuid
+  email        String     @unique @db.VarChar(255)
+  phone        String?    @db.VarChar(20)
+  fullName     String     @map("full_name") @db.VarChar(150)
+  passwordHash String     @map("password_hash") @db.VarChar(255)
+  role         Role       @default(PUBLIC_APPLICANT)
+  status       UserStatus @default(ACTIVE)
+  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime   @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relationships
+  auditLogs    AuditLog[]
+
+  @@index([role], name: "idx_users_role")
+  @@index([status], name: "idx_users_status")
+  @@map("users")
+}
+
+/// Append-Only Audit Log for Administrative Actions and Security Governance
+model AuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String?  @map("user_id") @db.Uuid
+  action     String   @db.VarChar(100)
+  resource   String   @db.VarChar(100)
+  resourceId String?  @map("resource_id") @db.VarChar(255)
+  ipAddress  String?  @map("ip_address") @db.VarChar(45)
+  userAgent  String?  @map("user_agent") @db.Text
+  metadata   Json?    @db.JsonB
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  // Relationships
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId], name: "idx_audit_logs_user_id")
+  @@index([action], name: "idx_audit_logs_action")
+  @@index([resource, resourceId], name: "idx_audit_logs_resource")
+  @@index([createdAt(sort: Desc)], name: "idx_audit_logs_created_at")
+  @@map("audit_logs")
+}
+
+/// Platform Configuration and Institutional Key-Value Store
+model SystemSetting {
+  key         String   @id @db.VarChar(100)
+  value       Json     @db.JsonB
+  description String?  @db.VarChar(255)
+  isPublic    Boolean  @default(false) @map("is_public")
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("system_settings")
+}

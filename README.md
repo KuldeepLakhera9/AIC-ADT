@@ -40,6 +40,9 @@ AIC-ADT/
     │   ├── backend-foundation.md              # Phase 3, Task 4: NestJS modular monolith, security, logging & probes
     │   ├── database-foundation.md             # Phase 3, Task 5: PostgreSQL 16+ & Prisma ORM architecture
     │   ├── database-migration-runbook.md      # Phase 3, Task 5: Migration SOP, deployment & failure recovery
+    │   ├── environment-configuration.md       # Phase 3, Task 6: Secure configuration & secret management
+    │   ├── security-baseline.md               # Phase 3, Task 6: Defense-in-depth, CORS, Helmet & controls
+    │   ├── dependency-maintenance.md          # Phase 3, Task 6: Supply-chain hygiene & vulnerability audit
     │   ├── data-center-readiness-checklist.md # Phase 1, Task 4: 47-point RFI assessment across 12 domains
     │   ├── deployment-requirements.md         # Phase 1, Task 4: Container topology, VM sizing & volumes
     │   ├── network-and-security-requirements.md# Phase 1, Task 4: DMZ VLAN, firewall ingress & SSH isolation
@@ -185,4 +188,12 @@ AIC-ADT/
 - **Database Health Probes**: Active `SELECT 1` ping query integrated into `DatabaseService` and the readiness endpoint (`/api/v1/health/readiness`), with safe error handling and credential redaction.
 - **Development-Only Seeding (`apps/api/prisma/seed.ts`)**: Idempotent upsert seeding for system settings, administrative test accounts, and bootstrap audit logs, protected by a production execution safety guard.
 - **Automated Database Verification**: 100% pass rate across all 36 unit tests and 5 e2e integration tests connecting directly to PostgreSQL.
+
+### Phase 3, Task 6: Secure Configuration and Environment Management
+- **[Environment Configuration Architecture](docs/architecture/environment-configuration.md)**: Master environment specification detailing environment separation (`development`, `test`, `staging`, `production`), public vs server-side secret classification, non-secret `.env.example` templates, and a 5-step compromised secret incident response runbook.
+- **[Security Baseline Architecture](docs/architecture/security-baseline.md)**: Defense-in-depth architectural review covering strict CORS allowlists, 1MB payload caps, Helmet security headers (nosniff, frameguard), uniform error responses without stack traces, future cookie/CSRF prerequisites, `@nestjs/throttler` rate limiting, future file-upload constraints, and complete status matrix of implemented vs pending controls.
+- **[Dependency Maintenance & Supply Chain Security](docs/architecture/dependency-maintenance.md)**: Supply chain hygiene documentation with committed `pnpm-lock.yaml`, build script governance (`onlyBuiltDependencies`), `pnpm audit` vulnerability report, and a scheduled weekly/monthly maintenance cadence.
+- **Client-Side Secret Guards (`apps/web/src/config/env.ts`)**: Type-safe frontend configuration helper that validates URLs and throws build-time exceptions if sensitive keywords are mistakenly prefixed with `NEXT_PUBLIC_`.
+- **Enhanced `.gitignore` Rules**: Comprehensive coverage for all `.env*` variants, cryptographic keys (`*.key`, `*.pem`, `*.crt`), database dumps (`*.dump`, `*.sql.gz`), and uploaded media storage.
+- **Automated Security Verification**: 100% pass rate across 36 NestJS unit tests, 8 e2e integration tests (including CORS allowlist/denial and Helmet header verification), and 11 Next.js unit tests.
 

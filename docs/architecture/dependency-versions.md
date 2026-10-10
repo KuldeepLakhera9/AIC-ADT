@@ -56,6 +56,9 @@ From `apps/api/package.json`:
 | **`@nestjs/core`** | `^12.0.1` | NestJS application container and dependency injector |
 | **`@nestjs/config`** | `^12.0.1` | Environment variable loader and type-safe configuration provider |
 | **`@nestjs/platform-express`** | `^12.0.1` | HTTP web server adapter |
+| **`@nestjs/throttler`** | `^6.7.1` | Rate limiting guard and throttling middleware |
+| **`@prisma/client`** | `^6.4.1` | Type-safe PostgreSQL client and query builder |
+| **`helmet`** | `^8.3.0` | HTTP security headers middleware (nosniff, frameguard, etc.) |
 | **`class-validator`** | `^0.14.1` | Declarative request payload validation |
 | **`class-transformer`** | `^0.5.1` | Object-to-class transformation and serialization |
 | **`reflect-metadata`** | `^0.2.2` | TypeScript decorator reflection polyfill |
@@ -67,6 +70,8 @@ From `apps/api/package.json`:
 | **`@nestjs/cli`** | `^12.0.0` | CLI tooling for building and scaffolding NestJS modules |
 | **`@nestjs/schematics`**| `^12.0.0` | Code generation templates |
 | **`@nestjs/testing`** | `^12.0.1` | Testing utilities for dependency injection mocking |
+| **`prisma`** | `^6.4.1` | Schema migration engine and client generator CLI |
+| **`tsx`** | `^4.23.15` | High-speed TypeScript execution engine for dev seeding |
 | **`vitest`** | `^4.1.2` | High-speed ESM native unit test runner |
 | **`oxlint`** | `^1.58.0` | High-speed Rust-based linter |
 | **`prettier`** | `^3.4.2` | Code formatting engine |

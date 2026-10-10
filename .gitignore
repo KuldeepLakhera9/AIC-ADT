@@ -17,12 +17,31 @@ coverage/
 
 # Environment files (never commit real credentials)
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-*.env
+.env.*
+!.env.example
 !*.env.example
+*.env
+*.env.local
+
+# Cryptographic keys, certificates & credentials
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+
+# Database dumps, snapshots & backups
+*.dump
+*.sql.gz
+*.backup
+
+# Storage uploads & transient files
+storage/private/*
+!storage/private/.gitkeep
+storage/public/uploads/*
+!storage/public/uploads/.gitkeep
 
 # Logs
 npm-debug.log*

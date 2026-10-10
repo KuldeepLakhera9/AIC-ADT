@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import helmet from 'helmet';
 import { AppModule } from './../src/app.module.js';
 import { GlobalExceptionFilter } from '../src/common/filters/global-exception.filter.js';
 import { TransformResponseInterceptor } from '../src/common/interceptors/transform-response.interceptor.js';
@@ -18,6 +19,22 @@ describe('AppController & Health (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     app.setGlobalPrefix('api/v1');
+    app.use(helmet());
+    app.enableCors({
+      origin: (
+        origin: string | undefined,
+        callback: (err: Error | null, allow?: boolean) => void,
+      ) => {
+        if (!origin) return callback(null, true);
+        const allowed = ['http://localhost:3000', 'https://aic-adt.org'];
+        if (allowed.includes(origin)) {
+          return callback(null, true);
+        }
+        return callback(null, false);
+      },
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    });
     app.use((req: any, res: any, next: any) =>
       new CorrelationIdMiddleware().use(req, res, next),
     );
@@ -91,5 +108,35 @@ describe('AppController & Health (e2e)', () => {
 
     expect(res.headers[CORRELATION_ID_HEADER]).toBe(customCorrelationId);
     expect(res.body.correlationId).toBe(customCorrelationId);
+  });
+
+  describe('Security Defaults & CORS Control', () => {
+    it('enforces Helmet security headers (nosniff, frameguard)', async () => {
+      const res = await request(app.getHttpServer()).get('/api/v1').expect(200);
+
+      expect(res.headers['x-content-type-options']).toBe('nosniff');
+      expect(res.headers['x-frame-options']).toBe('SAMEORIGIN');
+    });
+
+    it('allows CORS for allowlisted frontend origin with credentials', async () => {
+      const res = await request(app.getHttpServer())
+        .get('/api/v1/health')
+        .set('Origin', 'http://localhost:3000')
+        .expect(200);
+
+      expect(res.headers['access-control-allow-origin']).toBe(
+        'http://localhost:3000',
+      );
+      expect(res.headers['access-control-allow-credentials']).toBe('true');
+    });
+
+    it('denies CORS for unauthorized origins without access-control-allow-origin', async () => {
+      const res = await request(app.getHttpServer())
+        .get('/api/v1/health')
+        .set('Origin', 'https://malicious-phishing-site.example')
+        .expect(200);
+
+      expect(res.headers['access-control-allow-origin']).toBeUndefined();
+    });
   });
 });

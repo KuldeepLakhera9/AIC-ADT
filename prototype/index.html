@@ -12,11 +12,14 @@
 </head>
 <body>
 
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- PROTOTYPE CONTROL BAR (Demonstration Wayfinding) -->
   <aside class="proto-control-bar" aria-label="Prototype View Controller">
     <div style="display: flex; align-items: center; gap: 8px;">
       <span style="font-weight: 700; color: #73992A;">AIC-ADT PROTOTYPE</span>
-      <span style="color: #8C9790;">• Phase 2, Task 4 High-Fidelity Review</span>
+      <span style="color: #8C9790;">• Phase 2, Task 5 Interactive Journeys</span>
     </div>
     <div class="proto-pills" role="tablist">
       <button class="proto-btn active" data-view="home">1. Homepage</button>
@@ -37,13 +40,13 @@
     <div class="container">
       <div class="utility-text">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        <span>Supported by Atal Innovation Mission, NITI Aayog, Government of India</span>
+        <span id="utility-aim-text">Supported by Atal Innovation Mission, NITI Aayog, Government of India</span>
       </div>
       <div class="utility-controls">
-        <span>Helpline: +91 2112 255500</span>
+        <span id="utility-helpline">Helpline: +91 2112 255500</span>
         <div class="lang-switch" role="group" aria-label="Language selector">
-          <button class="lang-btn btn-lang-en active" data-lang="en">EN</button>
-          <button class="lang-btn btn-lang-mr" data-lang="mr">मराठी</button>
+          <button class="lang-btn btn-lang-en active" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-btn btn-lang-mr" data-lang="mr" aria-pressed="false">मराठी</button>
         </div>
       </div>
     </div>
@@ -52,11 +55,11 @@
   <!-- [B] MAIN NAVIGATION HEADER -->
   <header class="main-header" role="banner">
     <div class="container">
-      <a href="#" class="logo-lockup" onclick="document.querySelector('[data-view=\'home\']').click(); return false;">
+      <a href="#" class="logo-lockup" onclick="switchProtoView('home'); return false;">
         <div class="logo-symbol">🌱</div>
         <div>
-          <div>AIC-ADT Baramati Foundation</div>
-          <div style="font-size: 0.6875rem; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Atal Incubation Centre</div>
+          <div id="nav-brand-title">AIC-ADT Baramati Foundation</div>
+          <div style="font-size: 0.6875rem; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em;" id="nav-brand-sub">Atal Incubation Centre</div>
         </div>
       </a>
 
@@ -64,58 +67,58 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
           <li class="nav-item">
-            <a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'about\']').click(); return false;">About ▾</a>
+            <a href="#" class="nav-link" id="nav-item-about" onclick="switchProtoView('about'); return false;">About ▾</a>
             <div class="mega-menu">
               <div>
                 <div class="mega-title">Institutional Overview</div>
                 <ul class="mega-list">
-                  <li><a href="#" onclick="document.querySelector('[data-view=\'about\']').click(); return false;">About AIC-ADT & Heritage</a></li>
-                  <li><a href="#">Mission, Vision & SDGs</a></li>
-                  <li><a href="#">Governing Leadership & Team</a></li>
+                  <li><a href="#" onclick="switchProtoView('about'); return false;">About AIC-ADT & Heritage</a></li>
+                  <li><a href="#" onclick="switchProtoView('about'); return false;">Mission, Vision & SDGs</a></li>
+                  <li><a href="#" onclick="switchProtoView('about'); return false;">Governing Leadership & Team</a></li>
                 </ul>
               </div>
               <div>
                 <div class="mega-title">Campus Facilities</div>
                 <ul class="mega-list">
-                  <li><a href="#">110-Acre Demonstration Farm</a></li>
-                  <li><a href="#">NABL Analytical Testing Lab</a></li>
-                  <li><a href="#">FabLab Prototyping Workshop</a></li>
+                  <li><a href="#" onclick="openPlaceholderModal('Campus Facilities: Demonstration Farm', '110-acre live agriculture testbed with IoT sensors, telemetry, and smart irrigation.', 'Phase 3 (Campus Mapping)'); return false;">110-Acre Demonstration Farm</a></li>
+                  <li><a href="#" onclick="openPlaceholderModal('Campus Facilities: NABL Analytical Lab', 'Testing quotas and spectrometer facilities for soil, microbial, and crop testing.', 'Phase 3 (Lab Booking Engine)'); return false;">NABL Analytical Testing Lab</a></li>
+                  <li><a href="#" onclick="openPlaceholderModal('Campus Facilities: FabLab Workshop', 'Prototyping equipment, 3D printers, laser cutters, and hardware fabrication.', 'Phase 3 (MakerSpace Portal)'); return false;">FabLab Prototyping Workshop</a></li>
                 </ul>
               </div>
             </div>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Programs ▾</a>
+            <a href="#" class="nav-link" id="nav-item-programs" onclick="switchProtoView('programs'); return false;">Programs ▾</a>
             <div class="mega-menu">
               <div>
                 <div class="mega-title">Incubation Pathways</div>
                 <ul class="mega-list">
-                  <li><a href="#" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Pre-Incubation (Ideation)</a></li>
-                  <li><a href="#" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Incubation (Seed Stage - SISFS)</a></li>
-                  <li><a href="#">Acceleration (Scale)</a></li>
+                  <li><a href="#" onclick="switchProtoView('programs'); return false;">Pre-Incubation (Ideation)</a></li>
+                  <li><a href="#" onclick="switchProtoView('program-detail'); return false;">Incubation (Seed Stage - SISFS)</a></li>
+                  <li><a href="#" onclick="switchProtoView('programs'); return false;">Acceleration (Scale)</a></li>
                 </ul>
               </div>
               <div>
                 <div class="mega-title">Active Grant Schemes</div>
                 <ul class="mega-list">
-                  <li><a href="#" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Startup India Seed Fund (₹20L)</a></li>
-                  <li><a href="#">MeitY GENESIS (EiR & Pilot)</a></li>
-                  <li><a href="#">Application Instructions & FAQs</a></li>
+                  <li><a href="#" onclick="switchProtoView('program-detail'); return false;">Startup India Seed Fund (₹20L)</a></li>
+                  <li><a href="#" onclick="openPlaceholderModal('MeitY GENESIS Grant Scheme', 'Support for deeptech electronics and IT-driven agricultural innovations with EiR grants.', 'Phase 3 (MeitY Grants API)'); return false;">MeitY GENESIS (EiR & Pilot)</a></li>
+                  <li><a href="#" onclick="openApplyWizard(); return false;">Application Instructions & Wizard</a></li>
                 </ul>
               </div>
             </div>
           </li>
-          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'startups\']').click(); return false;">Startups</a></li>
-          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'innovation\']').click(); return false;">Innovation</a></li>
-          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'impact\']').click(); return false;">Impact</a></li>
-          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'events\']').click(); return false;">Events</a></li>
-          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'reports\']').click(); return false;">Resources</a></li>
-          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'contact\']').click(); return false;">Contact</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" id="nav-item-startups" onclick="switchProtoView('startups'); return false;">Startups</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" id="nav-item-innovation" onclick="switchProtoView('innovation'); return false;">Innovation</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" id="nav-item-impact" onclick="switchProtoView('impact'); return false;">Impact</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" id="nav-item-events" onclick="switchProtoView('events'); return false;">Events</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" id="nav-item-reports" onclick="switchProtoView('reports'); return false;">Resources</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" id="nav-item-contact" onclick="switchProtoView('contact'); return false;">Contact</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a href="#" class="btn btn-primary" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Apply for Incubation</a>
+        <a href="#" class="btn btn-primary" id="nav-btn-apply" onclick="openApplyWizard(); return false;">Apply for Incubation</a>
         <button class="hamburger-btn" aria-label="Open mobile navigation menu">☰</button>
       </div>
     </div>
@@ -126,23 +129,24 @@
   <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 12px;">
       <span style="font-weight: 700; color: var(--color-brand-primary);">AIC-ADT Menu</span>
-      <button class="drawer-close-btn" style="background: transparent; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+      <button class="drawer-close-btn" style="background: transparent; border: none; font-size: 1.5rem; cursor: pointer;" aria-label="Close menu">✕</button>
     </div>
     <div style="display: flex; gap: 8px; margin-bottom: 20px;">
       <button class="btn btn-secondary btn-lang-en" style="flex: 1; min-height: 36px; font-size: 0.8125rem;">English</button>
       <button class="btn btn-secondary btn-lang-mr" style="flex: 1; min-height: 36px; font-size: 0.8125rem;">मराठी</button>
     </div>
     <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'home\']').click(); document.querySelector('.drawer-close-btn').click();">Home</a></li>
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'about\']').click(); document.querySelector('.drawer-close-btn').click();">About AIC-ADT</a></li>
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'programs\']').click(); document.querySelector('.drawer-close-btn').click();">Programs & Grants</a></li>
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'startups\']').click(); document.querySelector('.drawer-close-btn').click();">Startups Directory</a></li>
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'innovation\']').click(); document.querySelector('.drawer-close-btn').click();">Innovation Labs</a></li>
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'impact\']').click(); document.querySelector('.drawer-close-btn').click();">Audited Impact</a></li>
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'events\']').click(); document.querySelector('.drawer-close-btn').click();">Events & Workshops</a></li>
-      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'contact\']').click(); document.querySelector('.drawer-close-btn').click();">Contact & Directions</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('home'); closeMobileDrawer(); return false;">Home</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('about'); closeMobileDrawer(); return false;">About AIC-ADT</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('programs'); closeMobileDrawer(); return false;">Programs & Grants</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('startups'); closeMobileDrawer(); return false;">Startups Directory</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('innovation'); closeMobileDrawer(); return false;">Innovation Labs</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('impact'); closeMobileDrawer(); return false;">Audited Impact</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('events'); closeMobileDrawer(); return false;">Events & Workshops</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('reports'); closeMobileDrawer(); return false;">Resources & Reports</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="switchProtoView('contact'); closeMobileDrawer(); return false;">Contact & Directions</a></li>
     </ul>
-    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="document.querySelector('[data-view=\'program-detail\']').click(); document.querySelector('.drawer-close-btn').click();">Apply for Incubation</a>
+    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="openApplyWizard(); closeMobileDrawer(); return false;">Apply for Incubation</a>
   </aside>
 
   <!-- ========================================================================= -->
@@ -199,7 +203,7 @@
             <p class="card-body">Direct validation on a 110-acre live demonstration farm and Krishi Vigyan Kendra (KVK) network across thousands of progressive farmers.</p>
             <div class="card-footer">
               <span class="badge badge-category">Field Trials</span>
-              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;">Learn More</a>
+              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;" onclick="openPlaceholderModal('Campus Facilities: 110-Acre Farm', 'Live crop validation field equipped with sensors and weather stations.', 'Phase 3 (Farm Telemetry Dashboard)'); return false;">Learn More</a>
             </div>
           </article>
 
@@ -208,7 +212,7 @@
             <p class="card-body">Direct facilitation of Startup India Seed Fund Scheme (SISFS up to ₹20L grant / ₹50L debt), MeitY GENESIS, and active angel investor syndicates.</p>
             <div class="card-footer">
               <span class="badge badge-category">Grant Schemes</span>
-              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;">View Tranches</a>
+              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;" onclick="switchProtoView('program-detail'); return false;">View Tranches</a>
             </div>
           </article>
 
@@ -217,7 +221,7 @@
             <p class="card-body">In-house FabLab (3D printing, CNC, PCB milling), NABL-accredited analytical laboratory for soil/water residue testing, and pilot food processing plant.</p>
             <div class="card-footer">
               <span class="badge badge-category">Infrastructure</span>
-              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;">Explore Labs</a>
+              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;" onclick="openPlaceholderModal('Campus Facilities: NABL Testing Lab', 'Accredited soil, bio-stimulant, and microbial testing laboratory.', 'Phase 3 (Lab Booking Engine)'); return false;">Explore Labs</a>
             </div>
           </article>
         </div>
@@ -478,8 +482,8 @@
             <div class="card-title">Annual Progress Report FY 2024-25</div>
             <p class="card-body">Certified statutory filing submitted under NITI Aayog guidelines covering incubation tranches, incubatee milestones, and audit compliance.</p>
             <div class="card-footer">
-              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 4.2 MB</span>
-              <a href="#" class="btn btn-outline" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;">Download PDF</a>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 858 KB</span>
+              <a href="assets/downloads/AIC-ADT-Annual-Report-FY2024-25-Sample.pdf" download="AIC-ADT-Annual-Report-FY2024-25-Sample.pdf" onclick="showToast('Downloading bundled sample: Annual Progress Report.pdf');" class="btn btn-outline" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;">Download PDF</a>
             </div>
           </div>
 
@@ -488,8 +492,8 @@
             <div class="card-title">Agri-Tech Incubation in Maharashtra</div>
             <p class="card-body">A comprehensive policy study analyzing grassroots venture formation, venture funding bottlenecks, and rural adoption models.</p>
             <div class="card-footer">
-              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 2.8 MB</span>
-              <a href="#" class="btn btn-outline" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;">Download PDF</a>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 846 KB</span>
+              <a href="assets/downloads/AIC-ADT-AgriTech-Whitepaper-Sample.pdf" download="AIC-ADT-AgriTech-Whitepaper-Sample.pdf" onclick="showToast('Downloading bundled sample: AgriTech Whitepaper.pdf');" class="btn btn-outline" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;">Download PDF</a>
             </div>
           </div>
         </div>
@@ -572,7 +576,7 @@
           <p class="card-body">For student founders and early researchers. 6-Month batch focusing on proof-of-concept building, FabLab prototyping, and business viability.</p>
           <div class="card-footer">
             <span style="font-weight: 700; color: var(--color-brand-primary);">Prototype Grant</span>
-            <a href="#" class="btn btn-secondary" style="padding: 6px 14px;">Learn More</a>
+            <a href="#" class="btn btn-secondary" style="padding: 6px 14px;" onclick="openPlaceholderModal('Pre-Incubation Program', 'For student founders and early researchers focusing on lab validation.', 'Phase 3 (Student Incubator)'); return false;">Learn More</a>
           </div>
         </div>
 
@@ -582,7 +586,7 @@
           <p class="card-body">For registered DPIIT startups. Seed grants up to ₹20L for validation and ₹50L debt for commercialization. Lab access, IP filing, and mentorship.</p>
           <div class="card-footer">
             <span style="font-weight: 700; color: var(--color-brand-primary);">Up to ₹20-50 Lakhs</span>
-            <a href="#" class="btn btn-primary" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">View Details</a>
+            <a href="#" class="btn btn-primary" onclick="switchProtoView('program-detail'); return false;">View Details</a>
           </div>
         </div>
 
@@ -592,7 +596,7 @@
           <p class="card-body">For revenue-generating ventures. Scale advisory, supply chain integration, institutional VC networks, and international market access.</p>
           <div class="card-footer">
             <span style="font-weight: 700; color: var(--color-brand-primary);">Series-A Linkages</span>
-            <a href="#" class="btn btn-secondary" style="padding: 6px 14px;">Learn More</a>
+            <a href="#" class="btn btn-secondary" style="padding: 6px 14px;" onclick="openPlaceholderModal('Venture Acceleration Track', 'Scale advisory, corporate supply chain integration, and institutional VC syndicates.', 'Phase 3 (Scale Accelerator)'); return false;">Learn More</a>
           </div>
         </div>
       </div>
@@ -604,7 +608,13 @@
   <!-- ========================================================================= -->
   <section id="view-program-detail" class="prototype-view" style="display: none;">
     <div class="breadcrumbs-bar">
-      <div class="container">Home <span class="breadcrumbs-separator">/</span> Programs <span class="breadcrumbs-separator">/</span> Startup India Seed Fund (SISFS)</div>
+      <div class="container">
+        <a href="#" onclick="switchProtoView('home'); return false;">Home</a>
+        <span class="breadcrumbs-separator">/</span>
+        <a href="#" onclick="switchProtoView('programs'); return false;">Programs</a>
+        <span class="breadcrumbs-separator">/</span>
+        <span>Startup India Seed Fund (SISFS)</span>
+      </div>
     </div>
     <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
       <div style="background: var(--color-brand-institutional); color: #FFF; padding: var(--space-8); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
@@ -625,12 +635,53 @@
             <li><strong>Intellectual Property:</strong> Subsidized patent filing, trademark registration, and legal counsel.</li>
           </ul>
 
-          <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 12px;">Eligibility Criteria Checklist</h2>
-          <div style="background: #FFFFFF; border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 24px;">
-            <p style="font-size: 0.875rem; color: var(--color-text-primary); margin-bottom: 8px;">✓ Recognized startup by DPIIT (incorporated under 2 years at time of application).</p>
-            <p style="font-size: 0.875rem; color: var(--color-text-primary); margin-bottom: 8px;">✓ Must have a viable business concept backed by proprietary technology or agricultural innovation.</p>
-            <p style="font-size: 0.875rem; color: var(--color-text-primary); margin-bottom: 8px;">✓ Shareholding by Indian promoters in the startup must be at least 51%.</p>
-            <p style="font-size: 0.875rem; color: var(--color-text-primary);">✓ Must not have received more than ₹10 Lakhs of monetary support under any other Central/State Govt scheme.</p>
+          <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 12px;">Interactive Eligibility Self-Assessment Tool</h2>
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: 16px;">
+            Verify your startup's readiness against DPIIT statutory norms. Check all 4 criteria below to evaluate eligibility:
+          </p>
+
+          <div class="eligibility-checker-card">
+            <label class="eligibility-check-item" id="label-chk-dpiit">
+              <input type="checkbox" id="chk-dpiit" onchange="updateEligibilityChecker()">
+              <div>
+                <strong style="display: block; font-size: 0.875rem; color: var(--color-text-primary);">1. DPIIT Startup Recognition</strong>
+                <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Incorporated as a Private Limited or LLP within the last 2 years at time of application.</span>
+              </div>
+            </label>
+
+            <label class="eligibility-check-item" id="label-chk-tech">
+              <input type="checkbox" id="chk-tech" onchange="updateEligibilityChecker()">
+              <div>
+                <strong style="display: block; font-size: 0.875rem; color: var(--color-text-primary);">2. Technological or Biological Innovation</strong>
+                <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Must possess a viable product or process in agritech, smart farming, biotechnology, or food processing.</span>
+              </div>
+            </label>
+
+            <label class="eligibility-check-item" id="label-chk-equity">
+              <input type="checkbox" id="chk-equity" onchange="updateEligibilityChecker()">
+              <div>
+                <strong style="display: block; font-size: 0.875rem; color: var(--color-text-primary);">3. Indian Promoter Majority Shareholding</strong>
+                <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Indian citizen promoters must hold at least 51% equity in the registered startup entity.</span>
+              </div>
+            </label>
+
+            <label class="eligibility-check-item" id="label-chk-prior">
+              <input type="checkbox" id="chk-prior" onchange="updateEligibilityChecker()">
+              <div>
+                <strong style="display: block; font-size: 0.875rem; color: var(--color-text-primary);">4. Monetary Grant Cap</strong>
+                <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Must not have received more than ₹10 Lakhs of monetary funding under any other Central/State Govt scheme.</span>
+              </div>
+            </label>
+
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--color-border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <span style="font-size: 0.8125rem; color: var(--color-text-secondary); display: block; margin-bottom: 4px;">Self-Assessment Status:</span>
+                <span id="eligibility-status-pill" class="eligibility-status-pill incomplete">
+                  ⚠️ Incomplete Criteria (0/4 Met) — Review Guidelines
+                </span>
+              </div>
+              <button class="btn btn-secondary" onclick="resetEligibilityChecker()" style="font-size: 0.75rem; padding: 4px 12px; min-height: 32px;">Reset Checklist</button>
+            </div>
           </div>
         </div>
 
@@ -641,8 +692,8 @@
             <p style="font-size: 0.8125rem; color: var(--color-text-secondary); margin-bottom: 20px;">
               Submit your pitch deck and business dossier via the official application portal.
             </p>
-            <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-bottom: 12px;">Launch Application Portal</a>
-            <a href="#" class="btn btn-outline" style="width: 100%; text-align: center; font-size: 0.8125rem;">Download Scheme PDF</a>
+            <button class="btn btn-primary" onclick="openApplyWizard();" style="width: 100%; text-align: center; margin-bottom: 12px;">Launch Application Wizard</button>
+            <a href="assets/downloads/SISFS-Incubation-Scheme-Guidelines-Sample.pdf" download="SISFS-Incubation-Scheme-Guidelines-Sample.pdf" onclick="showToast('Downloading bundled sample: SISFS Guidelines PDF');" class="btn btn-outline" style="width: 100%; text-align: center; font-size: 0.8125rem;">Download Scheme PDF</a>
           </div>
         </div>
       </div>
@@ -654,71 +705,137 @@
   <!-- ========================================================================= -->
   <section id="view-startups" class="prototype-view" style="display: none;">
     <div class="breadcrumbs-bar">
-      <div class="container">Home <span class="breadcrumbs-separator">/</span> Startups <span class="breadcrumbs-separator">/</span> Portfolio Directory</div>
+      <div class="container">
+        <a href="#" onclick="switchProtoView('home'); return false;">Home</a>
+        <span class="breadcrumbs-separator">/</span>
+        <a href="#" onclick="switchProtoView('programs'); return false;">Startups</a>
+        <span class="breadcrumbs-separator">/</span>
+        <span>Portfolio Directory</span>
+      </div>
     </div>
     <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      
+      <!-- Sample Data Disclaimer -->
+      <div class="demo-disclaimer-strip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Demonstration Records — All startup entities, founders, and metrics are sample fictional data created for UI interaction testing.</span>
+      </div>
+
       <div class="section-header section-header-left">
         <div class="section-overline">Portfolio Directory</div>
-        <h1 class="section-heading">Explore 70+ Incubated Startups</h1>
+        <h1 class="section-heading">Explore Incubated AgTech Startups</h1>
         <p class="section-subheading">Discover high-impact ventures creating breakthrough solutions in agritech, biotechnology, and rural empowerment.</p>
       </div>
 
-      <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+      <div style="display: flex; gap: 12px; margin-bottom: 16px;">
         <input type="text" id="startup-search-input" class="form-input" placeholder="🔍 Search startups by name, innovation, or keyword..." style="max-width: 600px;">
       </div>
 
-      <div style="display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;">
-        <button class="badge startup-filter-pill active" data-sector="all" style="cursor: pointer; border: 1px solid var(--color-brand-primary);">All (71)</button>
-        <button class="badge startup-filter-pill" data-sector="agritech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Agri-Tech</button>
-        <button class="badge startup-filter-pill" data-sector="smart-farming" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Smart Farming</button>
-        <button class="badge startup-filter-pill" data-sector="biotech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Biotechnology</button>
-        <button class="badge startup-filter-pill" data-sector="food-tech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Food Processing</button>
+      <div class="startup-filter-bar">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="badge startup-filter-pill active" data-sector="all" style="cursor: pointer; border: 1px solid var(--color-brand-primary);">All (6)</button>
+          <button class="badge startup-filter-pill" data-sector="agritech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Agri-Tech</button>
+          <button class="badge startup-filter-pill" data-sector="smart-farming" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Smart Farming</button>
+          <button class="badge startup-filter-pill" data-sector="biotech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Biotechnology</button>
+          <button class="badge startup-filter-pill" data-sector="food-tech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Food Processing</button>
+          <button class="badge startup-filter-pill" data-sector="climate-tech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Climate Tech</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span id="startup-count-display" class="startup-counter-badge">Showing 6 of 6 demonstration records</span>
+          <button id="startup-clear-filters" class="clear-filter-btn" style="display: none;" onclick="resetStartupFilters()">Clear Filters ✕</button>
+        </div>
       </div>
 
       <div class="grid-3" id="startup-cards-container">
-        <article class="card startup-directory-card" data-name="gramheet" data-sector="agritech">
+        <!-- Startup 1: GramHeet -->
+        <article class="card startup-directory-card" data-id="gramheet" data-name="gramheet solutions" data-sector="agritech">
           <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <span class="badge badge-category">Agribusiness</span>
-            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">2022</span>
+            <span class="badge badge-category">Agri-Tech</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Cohort 2022</span>
           </div>
           <h3 class="card-title">GramHeet Solutions Pvt Ltd</h3>
           <p class="card-body">Village-level post-harvest storage and direct market linkage platform reaching 35,000+ smallholder farmers across Maharashtra.</p>
           <div class="card-footer">
-            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">SISFS Supported</span>
-            <a href="#" class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;">View Profile</a>
+            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">SISFS (₹20L)</span>
+            <button class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;" onclick="openStartupModal('gramheet')">View Profile</button>
           </div>
         </article>
 
-        <article class="card startup-directory-card" data-name="innosapien" data-sector="smart-farming">
+        <!-- Startup 2: Innosapien -->
+        <article class="card startup-directory-card" data-id="innosapien" data-name="innosapien agro" data-sector="smart-farming">
           <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
             <span class="badge badge-category">Smart Farming</span>
-            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">2023</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Cohort 2023</span>
           </div>
           <h3 class="card-title">Innosapien Agro Technologies</h3>
           <p class="card-body">Computer-vision crop phenotyping and automated disease forecast stations with field testing across sugarcane tracts.</p>
           <div class="card-footer">
             <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">MeitY GENESIS</span>
-            <a href="#" class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;">View Profile</a>
+            <button class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;" onclick="openStartupModal('innosapien')">View Profile</button>
           </div>
         </article>
 
-        <article class="card startup-directory-card" data-name="baramati agribiotics" data-sector="biotech">
+        <!-- Startup 3: Baramati Agribiotics -->
+        <article class="card startup-directory-card" data-id="agribiotics" data-name="baramati agribiotics" data-sector="biotech">
           <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
             <span class="badge badge-category">Biotechnology</span>
-            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">2024</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Cohort 2024</span>
           </div>
           <h3 class="card-title">Baramati Agribiotics Pvt Ltd</h3>
           <p class="card-body">Microbial bio-stimulant formulations tackling soil salinity, boosting nutrient uptake and root biomass in cash crops.</p>
           <div class="card-footer">
             <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">Seed Grantee</span>
-            <a href="#" class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;">View Profile</a>
+            <button class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;" onclick="openStartupModal('agribiotics')">View Profile</button>
+          </div>
+        </article>
+
+        <!-- Startup 4: KisanDost Robotics -->
+        <article class="card startup-directory-card" data-id="kisandost" data-name="kisandost robotics" data-sector="agritech">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span class="badge badge-category">Agri-Tech</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Cohort 2023</span>
+          </div>
+          <h3 class="card-title">KisanDost Robotics</h3>
+          <p class="card-body">Electric autonomous inter-row weeding and micro-mulching rovers engineered for smallholder sugarcane and onion farmers.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">SISFS (₹20L)</span>
+            <button class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;" onclick="openStartupModal('kisandost')">View Profile</button>
+          </div>
+        </article>
+
+        <!-- Startup 5: PhytoPure Biofuels -->
+        <article class="card startup-directory-card" data-id="phytopure" data-name="phytopure biofuels" data-sector="climate-tech">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span class="badge badge-category">Climate Tech</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Cohort 2024</span>
+          </div>
+          <h3 class="card-title">PhytoPure Biofuels</h3>
+          <p class="card-body">Agricultural residue pyrolysis converting sugarcane trash into carbon-negative biochar and condensed wood vinegar bio-stimulants.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">Pre-Incubation</span>
+            <button class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;" onclick="openStartupModal('phytopure')">View Profile</button>
+          </div>
+        </article>
+
+        <!-- Startup 6: Krishik ColdChain -->
+        <article class="card startup-directory-card" data-id="krishik" data-name="krishik coldchain" data-sector="food-tech">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span class="badge badge-category">Food Processing</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Cohort 2022</span>
+          </div>
+          <h3 class="card-title">Krishik ColdChain Innovations</h3>
+          <p class="card-body">Decentralized solar-powered micro-cold rooms with phase change thermal material, preventing post-harvest spoilage for fruit growers.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">SISFS (₹20L)</span>
+            <button class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;" onclick="openStartupModal('krishik')">View Profile</button>
           </div>
         </article>
       </div>
 
       <div id="startup-empty-notice" style="display: none; text-align: center; padding: 48px; background: #FFFFFF; border: 1px dashed var(--color-border-default); border-radius: var(--radius-md);">
         <p style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px;">No startups found matching your filter criteria.</p>
-        <p style="font-size: 0.875rem; color: var(--color-text-secondary);">Try resetting your search query or selecting "All" sectors.</p>
+        <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: 16px;">Try resetting your search query or selecting "All" sectors.</p>
+        <button class="btn btn-primary" onclick="resetStartupFilters()">Reset Search & Filters</button>
       </div>
     </div>
   </section>
@@ -767,34 +884,62 @@
   </section>
 
   <!-- ========================================================================= -->
+  <!-- ========================================================================= -->
   <!-- VIEW 7: IMPACT DASHBOARD                                                  -->
   <!-- ========================================================================= -->
   <section id="view-impact" class="prototype-view" style="display: none;">
     <div class="breadcrumbs-bar">
-      <div class="container">Home <span class="breadcrumbs-separator">/</span> Certified Impact Dashboard</div>
+      <div class="container">
+        <a href="#" onclick="switchProtoView('home'); return false;">Home</a>
+        <span class="breadcrumbs-separator">/</span>
+        <span>Certified Impact Dashboard</span>
+      </div>
     </div>
     <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      
+      <!-- Sample Data Indicator -->
+      <div class="demo-disclaimer-strip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Demonstration Interface — Reporting metrics simulate institutional audit synchronization under NITI Aayog filings.</span>
+      </div>
+
       <div style="background: var(--color-brand-institutional); color: #FFF; padding: var(--space-8); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
-        <span class="badge badge-success" style="margin-bottom: 12px;">Audited under AIM NITI Aayog Filings • FY 2024-25</span>
+        <span class="badge badge-success" id="impact-filing-badge" style="margin-bottom: 12px;">Audited under AIM NITI Aayog Filings • FY 2024-25</span>
         <h1 style="font-size: 2.25rem; font-weight: 700; color: #FFF; margin-bottom: 8px;">Certified Ecosystem Impact Metrics</h1>
-        <p style="color: var(--color-brand-pale); font-size: 1.0rem;">All data points are certified via independent financial audits and statutory NITI Aayog filings.</p>
+        <p style="color: var(--color-brand-pale); font-size: 1.0rem;" id="impact-filing-text">All data points are certified via independent financial audits and statutory NITI Aayog filings.</p>
+      </div>
+
+      <!-- Reporting Period Controls -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+        <div>
+          <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-secondary); letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Select Reporting Period:</span>
+          <div class="period-btn-group" role="group" aria-label="Fiscal Period Selector">
+            <button class="period-btn active" data-period="fy25" onclick="setImpactPeriod('fy25')">FY 2024-25 (Current Period)</button>
+            <button class="period-btn" data-period="fy24" onclick="setImpactPeriod('fy24')">FY 2023-24 (Audited)</button>
+            <button class="period-btn" data-period="fy23" onclick="setImpactPeriod('fy23')">FY 2022-23 (Audited)</button>
+            <button class="period-btn" data-period="fy22" onclick="setImpactPeriod('fy22')">FY 2021-22 (Foundation Year)</button>
+          </div>
+        </div>
+        <div style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600; background: var(--color-brand-light); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle);">
+          Status: <span id="impact-period-status">Statutory Audit Verified</span>
+        </div>
       </div>
 
       <div class="grid-4" style="margin-bottom: var(--space-12);">
         <div class="card" style="text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">50+</div>
+          <div id="impact-stat-startups" style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">50+</div>
           <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Startups Incubated</div>
         </div>
         <div class="card" style="text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">42+</div>
+          <div id="impact-stat-ip" style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">42+</div>
           <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Patents / IP Filed</div>
         </div>
         <div class="card" style="text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">₹5.2 Cr+</div>
+          <div id="impact-stat-capital" style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">₹5.2 Cr+</div>
           <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Capital Mobilized</div>
         </div>
         <div class="card" style="text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">35,000+</div>
+          <div id="impact-stat-farmers" style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">35,000+</div>
           <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Farmers Reached</div>
         </div>
       </div>
@@ -804,34 +949,41 @@
         <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem; text-align: left;">
           <thead>
             <tr style="border-bottom: 2px solid var(--color-border-default); color: var(--color-text-secondary);">
-              <th style="padding: 10px 0;">Fiscal Year</th>
-              <th style="padding: 10px 0;">Startups Graduated</th>
-              <th style="padding: 10px 0;">Grants Disbursed</th>
-              <th style="padding: 10px 0;">Patents Registered</th>
-              <th style="padding: 10px 0;">Audit Status</th>
+              <th style="padding: 10px 8px;">Fiscal Year</th>
+              <th style="padding: 10px 8px;">Startups Graduated</th>
+              <th style="padding: 10px 8px;">Grants Disbursed</th>
+              <th style="padding: 10px 8px;">Patents Registered</th>
+              <th style="padding: 10px 8px;">Audit Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--color-border-subtle);">
-              <td style="padding: 12px 0; font-weight: 600;">FY 2024-25</td>
-              <td style="padding: 12px 0;">18 Ventures</td>
-              <td style="padding: 12px 0;">₹1.85 Crores</td>
-              <td style="padding: 12px 0;">14 Filings</td>
-              <td style="padding: 12px 0;"><span class="badge badge-success">Certified</span></td>
+            <tr id="impact-row-fy25" class="table-row-selected" style="border-bottom: 1px solid var(--color-border-subtle);">
+              <td style="padding: 12px 8px; font-weight: 600;">FY 2024-25 (Current)</td>
+              <td style="padding: 12px 8px;">18 Ventures</td>
+              <td style="padding: 12px 8px;">₹1.85 Crores</td>
+              <td style="padding: 12px 8px;">14 Filings</td>
+              <td style="padding: 12px 8px;"><span class="badge badge-success">Certified</span></td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--color-border-subtle);">
-              <td style="padding: 12px 0; font-weight: 600;">FY 2023-24</td>
-              <td style="padding: 12px 0;">15 Ventures</td>
-              <td style="padding: 12px 0;">₹1.50 Crores</td>
-              <td style="padding: 12px 0;">12 Filings</td>
-              <td style="padding: 12px 0;"><span class="badge badge-success">Certified</span></td>
+            <tr id="impact-row-fy24" style="border-bottom: 1px solid var(--color-border-subtle);">
+              <td style="padding: 12px 8px; font-weight: 600;">FY 2023-24</td>
+              <td style="padding: 12px 8px;">15 Ventures</td>
+              <td style="padding: 12px 8px;">₹1.50 Crores</td>
+              <td style="padding: 12px 8px;">12 Filings</td>
+              <td style="padding: 12px 8px;"><span class="badge badge-success">Certified</span></td>
             </tr>
-            <tr>
-              <td style="padding: 12px 0; font-weight: 600;">FY 2022-23</td>
-              <td style="padding: 12px 0;">12 Ventures</td>
-              <td style="padding: 12px 0;">₹1.10 Crores</td>
-              <td style="padding: 12px 0;">9 Filings</td>
-              <td style="padding: 12px 0;"><span class="badge badge-success">Certified</span></td>
+            <tr id="impact-row-fy23" style="border-bottom: 1px solid var(--color-border-subtle);">
+              <td style="padding: 12px 8px; font-weight: 600;">FY 2022-23</td>
+              <td style="padding: 12px 8px;">12 Ventures</td>
+              <td style="padding: 12px 8px;">₹1.10 Crores</td>
+              <td style="padding: 12px 8px;">9 Filings</td>
+              <td style="padding: 12px 8px;"><span class="badge badge-success">Certified</span></td>
+            </tr>
+            <tr id="impact-row-fy22">
+              <td style="padding: 12px 8px; font-weight: 600;">FY 2021-22 (Foundation)</td>
+              <td style="padding: 12px 8px;">5 Ventures</td>
+              <td style="padding: 12px 8px;">₹0.75 Crores</td>
+              <td style="padding: 12px 8px;">7 Filings</td>
+              <td style="padding: 12px 8px;"><span class="badge badge-success">Certified</span></td>
             </tr>
           </tbody>
         </table>
@@ -844,7 +996,11 @@
   <!-- ========================================================================= -->
   <section id="view-events" class="prototype-view" style="display: none;">
     <div class="breadcrumbs-bar">
-      <div class="container">Home <span class="breadcrumbs-separator">/</span> Events Calendar</div>
+      <div class="container">
+        <a href="#" onclick="switchProtoView('home'); return false;">Home</a>
+        <span class="breadcrumbs-separator">/</span>
+        <span>Events Calendar</span>
+      </div>
     </div>
     <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
       <div class="section-header section-header-left">
@@ -853,8 +1009,17 @@
         <p class="section-subheading">Participate in capacity building programs, agtech masterclasses, and pitching demo days.</p>
       </div>
 
-      <div style="max-width: 900px;">
-        <div class="event-row">
+      <!-- Category Filter Pills -->
+      <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
+        <button class="badge event-filter-pill active" data-category="all" onclick="filterEvents('all')" style="cursor: pointer; border: 1px solid var(--color-brand-primary);">All Events (4)</button>
+        <button class="badge event-filter-pill" data-category="admissions" onclick="filterEvents('admissions')" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Admissions & Deadlines</button>
+        <button class="badge event-filter-pill" data-category="workshops" onclick="filterEvents('workshops')" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Hands-On Workshops</button>
+        <button class="badge event-filter-pill" data-category="demoday" onclick="filterEvents('demoday')" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Demo Days</button>
+      </div>
+
+      <div style="max-width: 900px;" id="events-list-container">
+        <!-- Event 1 -->
+        <div class="event-row" data-category="admissions">
           <div style="display: flex; align-items: center; gap: 20px;">
             <div class="event-date-box">
               <div style="font-size: 1.25rem;">30</div>
@@ -863,13 +1028,14 @@
             <div>
               <span class="badge badge-success" style="margin-bottom: 4px;">Admissions Deadline</span>
               <div style="font-weight: 700; font-size: 1.125rem;">Startup India Seed Fund (SISFS) Cohort 4 Applications Close</div>
-              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Grants up to ₹20L • Online Application via Portal</div>
+              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Grants up to ₹20L • Online Application via Portal • 12 Days Remaining</div>
             </div>
           </div>
-          <button class="btn btn-primary" onclick="document.querySelector('[data-view=\'program-detail\']').click();">Apply Now</button>
+          <button class="btn btn-primary" onclick="openApplyWizard();">Apply Now</button>
         </div>
 
-        <div class="event-row">
+        <!-- Event 2 -->
+        <div class="event-row" data-category="workshops">
           <div style="display: flex; align-items: center; gap: 20px;">
             <div class="event-date-box">
               <div style="font-size: 1.25rem;">08</div>
@@ -878,10 +1044,42 @@
             <div>
               <span class="badge badge-category" style="margin-bottom: 4px;">Hands-On Training</span>
               <div style="font-weight: 700; font-size: 1.125rem;">Millet Value-Addition & Advanced Thermal Processing</div>
-              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Venue: Food Innovation Pilot Plant, Baramati Campus • Seats: 25</div>
+              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Venue: Food Innovation Pilot Plant, Baramati Campus • Seats: 25 Available</div>
             </div>
           </div>
-          <button class="btn btn-secondary">RSVP</button>
+          <button class="btn btn-secondary" onclick="openEventModal('millet-processing')">RSVP</button>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="event-row" data-category="workshops">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div class="event-date-box">
+              <div style="font-size: 1.25rem;">15</div>
+              <div style="font-size: 0.75rem;">DEC</div>
+            </div>
+            <div>
+              <span class="badge badge-category" style="margin-bottom: 4px;">Technical Masterclass</span>
+              <div style="font-weight: 700; font-size: 1.125rem;">Precision Soil Sensors & IoT Farm Telemetry Workshop</div>
+              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Venue: 110-Acre Demonstration Farm & FabLab • Seats: 30 Available</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openEventModal('soil-telemetry')">RSVP</button>
+        </div>
+
+        <!-- Event 4 -->
+        <div class="event-row" data-category="demoday">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div class="event-date-box">
+              <div style="font-size: 1.25rem;">10</div>
+              <div style="font-size: 0.75rem;">JAN</div>
+            </div>
+            <div>
+              <span class="badge badge-category" style="margin-bottom: 4px;">Demo Day</span>
+              <div style="font-weight: 700; font-size: 1.125rem;">AIC-ADT Agri-Tech Investor Showcase & Pitch Day 2027</div>
+              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Venue: Main Auditorium, Sharadanagar Baramati • 15 Seed Startups Pitching</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openEventModal('investor-showcase')">RSVP</button>
         </div>
       </div>
     </div>
@@ -892,7 +1090,13 @@
   <!-- ========================================================================= -->
   <section id="view-reports" class="prototype-view" style="display: none;">
     <div class="breadcrumbs-bar">
-      <div class="container">Home <span class="breadcrumbs-separator">/</span> Resources <span class="breadcrumbs-separator">/</span> Reports & Publications</div>
+      <div class="container">
+        <a href="#" onclick="switchProtoView('home'); return false;">Home</a>
+        <span class="breadcrumbs-separator">/</span>
+        <a href="#" onclick="switchProtoView('programs'); return false;">Resources</a>
+        <span class="breadcrumbs-separator">/</span>
+        <span>Reports & Publications</span>
+      </div>
     </div>
     <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
       <div class="section-header section-header-left">
@@ -901,24 +1105,44 @@
         <p class="section-subheading">Download statutory filings, NITI Aayog progress reports, and specialized agritech policy monographs.</p>
       </div>
 
-      <div class="grid-3">
-        <div class="card">
+      <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
+        <button class="badge report-filter-pill active" data-category="all" onclick="filterReports('all')" style="cursor: pointer; border: 1px solid var(--color-brand-primary);">All Reports (3)</button>
+        <button class="badge report-filter-pill" data-category="statutory" onclick="filterReports('statutory')" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Statutory Reports</button>
+        <button class="badge report-filter-pill" data-category="whitepaper" onclick="filterReports('whitepaper')" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Whitepapers</button>
+        <button class="badge report-filter-pill" data-category="guidelines" onclick="filterReports('guidelines')" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Scheme Guidelines</button>
+      </div>
+
+      <div class="grid-3" id="reports-grid-container">
+        <!-- Report 1 -->
+        <div class="card report-card" data-category="statutory">
           <span class="badge badge-category" style="margin-bottom: 8px;">Statutory Report</span>
           <div class="card-title">Annual Progress Report FY 2024-25</div>
           <p class="card-body">Audited progress filing detailing incubation cohort milestones, capital disbursements, and governance disclosures.</p>
           <div class="card-footer">
-            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 4.2 MB</span>
-            <button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8125rem;">Download</button>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 858 KB</span>
+            <a href="assets/downloads/AIC-ADT-Annual-Report-FY2024-25-Sample.pdf" download="AIC-ADT-Annual-Report-FY2024-25-Sample.pdf" onclick="showToast('Downloading bundled sample: Annual Progress Report FY 2024-25.pdf');" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8125rem;">Download</a>
           </div>
         </div>
 
-        <div class="card">
-          <span class="badge badge-category" style="margin-bottom: 8px;">Whitepaper</span>
+        <!-- Report 2 -->
+        <div class="card report-card" data-category="whitepaper">
+          <span class="badge badge-category" style="margin-bottom: 8px;">Policy Whitepaper</span>
           <div class="card-title">Agri-Tech Incubation in Maharashtra</div>
           <p class="card-body">Policy research examining regional startup development, venture bottlenecks, and farmer adoption pathways.</p>
           <div class="card-footer">
-            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 2.8 MB</span>
-            <button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8125rem;">Download</button>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 846 KB</span>
+            <a href="assets/downloads/AIC-ADT-AgriTech-Whitepaper-Sample.pdf" download="AIC-ADT-AgriTech-Whitepaper-Sample.pdf" onclick="showToast('Downloading bundled sample: AgriTech Whitepaper.pdf');" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8125rem;">Download</a>
+          </div>
+        </div>
+
+        <!-- Report 3 -->
+        <div class="card report-card" data-category="guidelines">
+          <span class="badge badge-category" style="margin-bottom: 8px;">Scheme Guidelines</span>
+          <div class="card-title">Startup India Seed Fund Scheme Manual</div>
+          <p class="card-body">Official operational rules, grant tranches, incubation agreements, and intellectual property provisions.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 857 KB</span>
+            <a href="assets/downloads/SISFS-Incubation-Scheme-Guidelines-Sample.pdf" download="SISFS-Incubation-Scheme-Guidelines-Sample.pdf" onclick="showToast('Downloading bundled sample: SISFS Guidelines.pdf');" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8125rem;">Download</a>
           </div>
         </div>
       </div>
@@ -930,7 +1154,11 @@
   <!-- ========================================================================= -->
   <section id="view-contact" class="prototype-view" style="display: none;">
     <div class="breadcrumbs-bar">
-      <div class="container">Home <span class="breadcrumbs-separator">/</span> Contact & Directions</div>
+      <div class="container">
+        <a href="#" onclick="switchProtoView('home'); return false;">Home</a>
+        <span class="breadcrumbs-separator">/</span>
+        <span>Contact & Directions</span>
+      </div>
     </div>
     <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
       <div class="section-header section-header-left">
@@ -964,29 +1192,38 @@
 
         <div style="background: #FFFFFF; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: 24px;">
           <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 16px;">Send an Institutional Inquiry</h3>
-          <form onsubmit="event.preventDefault(); alert('Inquiry submitted successfully (Prototype Simulation).');">
-            <div style="margin-bottom: 12px;">
-              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Full Name *</label>
-              <input type="text" class="form-input" required placeholder="Dr. / Mr. / Ms. Your Name">
+          
+          <div id="contact-success-notice" style="display: none; background: #DCFCE7; border: 1px solid #86EFAC; padding: 16px; border-radius: var(--radius-sm); margin-bottom: 16px; color: #166534;">
+            <strong>✓ Inquiry Received (Prototype Simulation)</strong>
+            <p style="font-size: 0.8125rem; margin-top: 4px;">Thank you. Your message has been logged for incubation desk follow-up. Ref: AIC-INQ-2026-3021.</p>
+          </div>
+
+          <form id="contact-inquiry-form" onsubmit="handleContactSubmit(event)">
+            <div class="form-group" id="group-contact-name">
+              <label for="contact-name">Full Name *</label>
+              <input type="text" id="contact-name" class="form-input" required placeholder="Dr. / Mr. / Ms. Your Name">
+              <div class="form-error-msg">Please enter your full name.</div>
             </div>
-            <div style="margin-bottom: 12px;">
-              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Email Address *</label>
-              <input type="email" class="form-input" required placeholder="name@domain.com">
+            <div class="form-group" id="group-contact-email">
+              <label for="contact-email">Email Address *</label>
+              <input type="email" id="contact-email" class="form-input" required placeholder="name@domain.com">
+              <div class="form-error-msg">Please provide a valid email address.</div>
             </div>
-            <div style="margin-bottom: 12px;">
-              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Inquiry Department *</label>
-              <select class="form-input">
+            <div class="form-group">
+              <label for="contact-dept">Inquiry Department *</label>
+              <select id="contact-dept" class="form-input">
                 <option>Incubation Programs (SISFS / MeitY)</option>
                 <option>Analytical Lab & Soil Testing Booking</option>
                 <option>Corporate CSR Agriculture Partnership</option>
                 <option>Media & Right to Information (RTI)</option>
               </select>
             </div>
-            <div style="margin-bottom: 16px;">
-              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Message *</label>
-              <textarea class="form-input" rows="3" required placeholder="Describe your inquiry or venture profile..."></textarea>
+            <div class="form-group" id="group-contact-msg">
+              <label for="contact-msg">Message *</label>
+              <textarea id="contact-msg" class="form-input" rows="3" required placeholder="Describe your inquiry or venture profile..."></textarea>
+              <div class="form-error-msg">Please enter your inquiry details.</div>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
           </form>
         </div>
       </div>
@@ -1010,33 +1247,33 @@
         <div>
           <div class="footer-col-title">Programs & Grants</div>
           <ul class="footer-links">
-            <li><a href="#" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Pre-Incubation (Ideation)</a></li>
-            <li><a href="#" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Startup India Seed Fund (SISFS)</a></li>
-            <li><a href="#">MeitY GENESIS Cohort</a></li>
-            <li><a href="#">Venture Acceleration</a></li>
-            <li><a href="#">How to Apply & Checklist</a></li>
+            <li><a href="#" onclick="switchProtoView('programs'); return false;">Pre-Incubation (Ideation)</a></li>
+            <li><a href="#" onclick="switchProtoView('program-detail'); return false;">Startup India Seed Fund (SISFS)</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('MeitY GENESIS Cohort', 'Digital agriculture and electronics incubator program under MeitY.', 'Phase 3 (MeitY Grants API)'); return false;">MeitY GENESIS Cohort</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Venture Acceleration', 'Growth-stage venture expansion and commercialization accelerator.', 'Phase 3 (Accelerator Module)'); return false;">Venture Acceleration</a></li>
+            <li><a href="#" onclick="openApplyWizard(); return false;">How to Apply & Checklist</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer-col-title">Infrastructure & Labs</div>
           <ul class="footer-links">
-            <li><a href="#">NABL Analytical Testing Lab</a></li>
-            <li><a href="#">FabLab Prototyping Workshop</a></li>
-            <li><a href="#">Food Innovation Pilot Plant</a></li>
-            <li><a href="#">110-Acre Demonstration Farm</a></li>
-            <li><a href="#">Agri-Media Studio & Co-Working</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Campus Facilities: NABL Testing Lab', 'Accredited soil, bio-stimulant, and microbial testing laboratory.', 'Phase 3 (Lab Booking Engine)'); return false;">NABL Analytical Testing Lab</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Campus Facilities: FabLab Workshop', 'Prototyping facilities, 3D printers, laser cutters, CNC machines.', 'Phase 3 (MakerSpace Portal)'); return false;">FabLab Prototyping Workshop</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Food Innovation Pilot Plant', 'Post-harvest processing, retort packing, extrusion machinery in Baramati.', 'Phase 3 (Pilot Plant Booking)'); return false;">Food Innovation Pilot Plant</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('110-Acre Demonstration Farm', 'Live crop validation field equipped with sensors and weather stations.', 'Phase 3 (Farm Telemetry Dashboard)'); return false;">110-Acre Demonstration Farm</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Agri-Media Studio & Co-Working', 'Professional broadcasting equipment, community podcast studio, co-working desks.', 'Phase 3 (Studio Scheduling)'); return false;">Agri-Media Studio & Co-Working</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer-col-title">Statutory & Governance</div>
           <ul class="footer-links">
-            <li><a href="#" onclick="document.querySelector('[data-view=\'reports\']').click(); return false;">Annual Progress Reports</a></li>
-            <li><a href="#" onclick="document.querySelector('[data-view=\'impact\']').click(); return false;">Certified Impact Filings</a></li>
-            <li><a href="#">Right to Information (RTI)</a></li>
-            <li><a href="#">Whistleblower & Grievance Policy</a></li>
-            <li><a href="#">Privacy Policy & Terms</a></li>
+            <li><a href="#" onclick="switchProtoView('reports'); return false;">Annual Progress Reports</a></li>
+            <li><a href="#" onclick="switchProtoView('impact'); return false;">Certified Impact Filings</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Right to Information (RTI)', 'Statutory disclosures, appellate authority details, and public PIO directory.', 'Phase 3 (RTI Compliance Portal)'); return false;">Right to Information (RTI)</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Whistleblower & Grievance Policy', 'Institutional grievance redressal framework for founders and stakeholders.', 'Phase 3 (Governance Portal)'); return false;">Whistleblower & Grievance Policy</a></li>
+            <li><a href="#" onclick="openPlaceholderModal('Privacy Policy & Terms', 'Data protection and institutional confidentiality standards.', 'Phase 3 (Statutory Documentation)'); return false;">Privacy Policy & Terms</a></li>
           </ul>
         </div>
       </div>
@@ -1047,6 +1284,314 @@
       </div>
     </div>
   </footer>
+
+  <!-- ========================================================================= -->
+  <!-- INTERACTIVE PROTOTYPE MODALS (DEMONSTRATION USER JOURNEYS)                 -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. STARTUP PROFILE DETAIL MODAL -->
+  <div class="proto-modal-backdrop" id="startup-modal" role="dialog" aria-modal="true" aria-labelledby="modal-startup-title">
+    <div class="proto-modal-dialog modal-lg">
+      <div class="proto-modal-header">
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
+            <span class="badge badge-category" id="modal-startup-sector">Agri-Tech</span>
+            <span class="badge badge-success" id="modal-startup-cohort">Cohort 2022</span>
+            <span class="badge" style="background: #F3F4F6; color: #374151;" id="modal-startup-scheme">SISFS (₹20L)</span>
+          </div>
+          <h2 class="proto-modal-title" id="modal-startup-title">GramHeet Solutions Pvt Ltd</h2>
+          <div class="proto-modal-subtitle" id="modal-startup-founders">Founders: Pankaj Mahalle & Shweta Thakare • Location: Baramati / Yavatmal</div>
+        </div>
+        <button class="proto-modal-close" onclick="closeAllModals()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="proto-modal-body">
+        
+        <div class="demo-disclaimer-strip" style="margin-bottom: 16px;">
+          <span>Demonstration Venture Record — Profile facts and metrics are simulated for prototyping validation.</span>
+        </div>
+
+        <h3 style="font-size: 1.125rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">Innovation & Product Overview</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 20px;" id="modal-startup-overview">
+          Village-level post-harvest storage and direct market linkage platform providing customized decentralized warehousing, quality assaying, and distress-sale avoidance finance for smallholder farmers.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+          <div style="background: var(--color-brand-light); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle);">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700;">Farmer Reach</div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-top: 4px;" id="modal-startup-reach">35,000+ Farmers</div>
+          </div>
+          <div style="background: var(--color-brand-light); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle);">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700;">Lab Facilities Used</div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-top: 4px;" id="modal-startup-labs">Food Pilot Plant</div>
+          </div>
+          <div style="background: var(--color-brand-light); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle);">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700;">TRL Readiness</div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-top: 4px;" id="modal-startup-trl">TRL 8 (Commercial)</div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.125rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">AIC-ADT Incubation Value-Add</h3>
+        <ul style="margin-left: 20px; color: var(--color-text-secondary); line-height: 1.6;" id="modal-startup-milestones">
+          <li>Seed capital facilitation under DPIIT Startup India Seed Fund Scheme (SISFS).</li>
+          <li>Cold storage testing at Agricultural Development Trust's Krishi Vigyan Kendra demonstration unit.</li>
+          <li>Farmer Producer Company (FPO) partnership linkages facilitated across Western Maharashtra.</li>
+        </ul>
+      </div>
+      <div class="proto-modal-footer">
+        <button class="btn btn-secondary" onclick="closeAllModals()">Return to Directory</button>
+        <button class="btn btn-primary" onclick="showToast('Sample action: External link to venture profile simulated.');">Visit Venture Website ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. EVENT RSVP & REGISTRATION MODAL -->
+  <div class="proto-modal-backdrop" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-event-title">
+    <div class="proto-modal-dialog">
+      <div class="proto-modal-header">
+        <div>
+          <span class="badge badge-category" id="modal-event-badge" style="margin-bottom: 6px;">Hands-On Training</span>
+          <h2 class="proto-modal-title" id="modal-event-title">Millet Value-Addition & Advanced Processing</h2>
+          <div class="proto-modal-subtitle" id="modal-event-date">December 08, 2026 • 10:00 AM - 4:00 PM • Baramati Campus</div>
+        </div>
+        <button class="proto-modal-close" onclick="closeAllModals()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="proto-modal-body">
+        
+        <div id="event-form-section">
+          <div class="demo-disclaimer-strip" style="margin-bottom: 16px;">
+            <span>Demonstration Registration — No personal data is stored or transmitted.</span>
+          </div>
+
+          <form id="event-rsvp-form" onsubmit="handleEventRsvpSubmit(event)">
+            <div class="form-group" id="grp-rsvp-name">
+              <label for="rsvp-name">Full Name *</label>
+              <input type="text" id="rsvp-name" class="form-input" required placeholder="Your full name">
+              <div class="form-error-msg">Please enter your name (minimum 3 characters).</div>
+            </div>
+
+            <div class="form-group" id="grp-rsvp-email">
+              <label for="rsvp-email">Email Address *</label>
+              <input type="email" id="rsvp-email" class="form-input" required placeholder="founder@agritech.com">
+              <div class="form-error-msg">Please enter a valid email address.</div>
+            </div>
+
+            <div class="form-group" id="grp-rsvp-phone">
+              <label for="rsvp-phone">Mobile Number *</label>
+              <input type="tel" id="rsvp-phone" class="form-input" required placeholder="10-digit mobile (e.g. 9822012345)">
+              <div class="form-error-msg">Please enter a valid 10-digit mobile number.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-role">Participant Category *</label>
+              <select id="rsvp-role" class="form-input">
+                <option value="founder">Startup Founder / Entrepreneur</option>
+                <option value="farmer">Progressive Farmer / FPO Representative</option>
+                <option value="student">Student / Researcher</option>
+                <option value="mentor">Investor / Mentor</option>
+              </select>
+            </div>
+
+            <div style="margin-top: 20px;">
+              <button type="submit" id="rsvp-submit-btn" class="btn btn-primary" style="width: 100%;">Confirm RSVP Registration</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Success Confirmation View -->
+        <div id="event-success-section" style="display: none; text-align: center; padding: 20px 0;">
+          <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+          <h3 style="font-size: 1.375rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">Registration Confirmed!</h3>
+          <p style="color: var(--color-text-secondary); margin-bottom: 16px;">
+            Your demonstration RSVP has been validated and recorded for this workshop.
+          </p>
+          <div style="background: var(--color-brand-light); border: 1px solid var(--color-border-subtle); padding: 12px; border-radius: var(--radius-sm); margin-bottom: 24px; font-family: monospace; font-size: 1.0rem; color: var(--color-brand-primary); font-weight: 700;">
+            PASS: <span id="event-ref-code">AIC-EVT-2026-8941</span>
+          </div>
+          <button class="btn btn-secondary" onclick="closeAllModals()">Close & Return to Calendar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. INCUBATION APPLICATION WIZARD MODAL (SAMPLE APPLICATION JOURNEY) -->
+  <div class="proto-modal-backdrop" id="apply-modal" role="dialog" aria-modal="true" aria-labelledby="modal-apply-title">
+    <div class="proto-modal-dialog modal-lg">
+      <div class="proto-modal-header">
+        <div>
+          <span class="badge badge-success" style="margin-bottom: 4px;">Prototype Demonstration Flow</span>
+          <h2 class="proto-modal-title" id="modal-apply-title">Startup India Seed Fund (SISFS) Application</h2>
+          <div class="proto-modal-subtitle">Cohort 4 • DPIIT Fast-Track Incubation Evaluation</div>
+        </div>
+        <button class="proto-modal-close" onclick="closeAllModals()" aria-label="Close modal">✕</button>
+      </div>
+
+      <!-- Multi-Step Wizard Tabs -->
+      <div class="wizard-steps-nav">
+        <button class="wizard-step-tab active" id="wizard-tab-1">
+          <span class="step-num">1</span> Venture Identity
+        </button>
+        <button class="wizard-step-tab" id="wizard-tab-2">
+          <span class="step-num">2</span> Innovation & Labs
+        </button>
+        <button class="wizard-step-tab" id="wizard-tab-3">
+          <span class="step-num">3</span> Grant & Review
+        </button>
+      </div>
+
+      <div class="proto-modal-body">
+        
+        <div class="demo-disclaimer-strip">
+          <span>⚠️ PROTOTYPE DEMONSTRATION ONLY — Do NOT enter proprietary business IP or confidential credentials.</span>
+        </div>
+
+        <!-- Step 1: Venture & Founder -->
+        <div class="wizard-step-pane active" id="wizard-pane-1">
+          <div class="form-group" id="grp-app-entity">
+            <label for="app-entity">Registered Startup Name *</label>
+            <input type="text" id="app-entity" class="form-input" placeholder="e.g. KrishiAI BioTech Solutions Pvt Ltd">
+            <div class="form-error-msg">Startup name is required.</div>
+          </div>
+          <div class="form-group" id="grp-app-dpiit">
+            <label for="app-dpiit">DPIIT Recognition Number *</label>
+            <input type="text" id="app-dpiit" class="form-input" placeholder="e.g. DIPP123456">
+            <div class="form-error-msg">DPIIT number is required (format: DIPP followed by digits).</div>
+          </div>
+          <div class="form-group">
+            <label for="app-sector">Primary AgTech Sector *</label>
+            <select id="app-sector" class="form-input">
+              <option>Agri-Tech & Mechanization</option>
+              <option>Smart Farming & IoT Telemetry</option>
+              <option>Biotechnology & Soil Nutrition</option>
+              <option>Food Processing & Cold Chain</option>
+              <option>Climate Tech & Carbon Sequestration</option>
+            </select>
+          </div>
+          <div class="form-group" id="grp-app-email">
+            <label for="app-email">Lead Founder Email *</label>
+            <input type="email" id="app-email" class="form-input" placeholder="founder@startup.in">
+            <div class="form-error-msg">Please provide a valid founder email.</div>
+          </div>
+        </div>
+
+        <!-- Step 2: Innovation & Labs -->
+        <div class="wizard-step-pane" id="wizard-pane-2">
+          <div class="form-group">
+            <label for="app-trl">Technology Readiness Level (TRL) *</label>
+            <select id="app-trl" class="form-input">
+              <option>TRL 3 - Proof of Concept Validated in Lab</option>
+              <option>TRL 4 - Component Validated in Laboratory</option>
+              <option>TRL 5 - Prototype Tested in Field Conditions</option>
+              <option>TRL 6 - Prototype Demonstrated in Operational Agro-Climate</option>
+              <option>TRL 7 - Commercial Pre-Launch System Demonstration</option>
+            </select>
+          </div>
+          <div class="form-group" id="grp-app-summary">
+            <label for="app-summary">Core Innovation & Problem Solved (Max 200 words) *</label>
+            <textarea id="app-summary" class="form-input" rows="3" placeholder="Describe the problem for farmers and how your proprietary technology addresses it..."></textarea>
+            <div class="form-error-msg">Please summarize your innovation.</div>
+          </div>
+          <div class="form-group">
+            <label>Required Baramati Campus Infrastructure:</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+              <label style="font-size: 0.8125rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" checked> NABL Analytical Soil Lab
+              </label>
+              <label style="font-size: 0.8125rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" checked> 110-Acre Test Farm
+              </label>
+              <label style="font-size: 0.8125rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox"> FabLab Hardware Workshop
+              </label>
+              <label style="font-size: 0.8125rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox"> Food Pilot Extrusion Plant
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Grant & Declaration -->
+        <div class="wizard-step-pane" id="wizard-pane-3">
+          <div class="form-group">
+            <label for="app-amount">Requested Proof of Concept Grant Amount *</label>
+            <select id="app-amount" class="form-input">
+              <option>₹10,00,000 (Initial Prototype & Lab Testing)</option>
+              <option>₹15,00,000 (Field Validation & Agronomy Trials)</option>
+              <option selected>₹20,00,000 (Maximum Proof of Concept Grant - SISFS)</option>
+            </select>
+          </div>
+          
+          <div style="background: var(--color-brand-light); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle); margin-bottom: 16px;">
+            <strong style="font-size: 0.875rem; color: var(--color-brand-primary); display: block; margin-bottom: 6px;">Statutory Undertaking:</strong>
+            <p style="font-size: 0.75rem; color: var(--color-text-secondary); line-height: 1.5;">
+              I certify on behalf of the applicant entity that Indian citizen shareholding exceeds 51% and total prior monetary support from government sources does not exceed ₹10,00,000.
+            </p>
+          </div>
+
+          <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 0.8125rem; margin-bottom: 12px;" id="label-app-declaration">
+            <input type="checkbox" id="app-declaration" style="margin-top: 3px;" required>
+            <span>I confirm that all provided information is accurate and agree to AIC-ADT incubation review terms.</span>
+          </label>
+          <div class="form-error-msg" id="err-app-declaration" style="display: none;">You must accept the declaration to proceed.</div>
+        </div>
+
+        <!-- Step 4: Submission Confirmation Result -->
+        <div class="wizard-step-pane" id="wizard-pane-success">
+          <div style="text-align: center; padding: 24px 0;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🌱</div>
+            <h3 style="font-size: 1.375rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">Demonstration Dossier Submitted</h3>
+            <p style="color: var(--color-text-secondary); max-width: 500px; margin: 0 auto 20px;">
+              Your simulated grant application has been evaluated and registered under AIC-ADT Cohort 4 demonstration pipeline.
+            </p>
+            <div style="background: var(--color-brand-light); border: 1px solid var(--color-border-subtle); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 24px; font-family: monospace; font-size: 1.125rem; color: var(--color-brand-primary); font-weight: 700;">
+              DOSSIER ID: <span id="app-receipt-id">SISFS-DEMO-2026-4491</span>
+            </div>
+            <button class="btn btn-secondary" onclick="closeAllModals()">Close & Return to Portal</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="proto-modal-footer" id="wizard-footer">
+        <button class="btn btn-secondary" id="wizard-btn-prev" onclick="wizardPrevStep()" style="display: none;">← Previous Step</button>
+        <button class="btn btn-primary" id="wizard-btn-next" onclick="wizardNextStep()">Next: Innovation & Labs →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. GENERIC PROTOTYPE ROUTE PREVIEW MODAL (ZERO DEAD LINKS GUARANTEE) -->
+  <div class="proto-modal-backdrop" id="placeholder-modal" role="dialog" aria-modal="true" aria-labelledby="modal-placeholder-title">
+    <div class="proto-modal-dialog">
+      <div class="proto-modal-header">
+        <div>
+          <span class="badge badge-category" id="placeholder-phase-badge" style="margin-bottom: 6px;">Phase 3 Integration</span>
+          <h2 class="proto-modal-title" id="modal-placeholder-title">Institutional Service Module</h2>
+          <div class="proto-modal-subtitle">AIC-ADT Platform Architecture Preview</div>
+        </div>
+        <button class="proto-modal-close" onclick="closeAllModals()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="proto-modal-body">
+        <p style="color: var(--color-text-primary); margin-bottom: 16px;" id="modal-placeholder-desc">
+          This feature is scheduled for production implementation in Phase 3.
+        </p>
+        <div style="background: var(--color-brand-light); border: 1px solid var(--color-border-subtle); padding: 16px; border-radius: var(--radius-sm);">
+          <strong style="font-size: 0.8125rem; color: var(--color-brand-primary); display: block; margin-bottom: 6px;">Delivery Roadmap Notice:</strong>
+          <p style="font-size: 0.75rem; color: var(--color-text-secondary); line-height: 1.5;">
+            In accordance with the AIC-ADT Phase 1 & 2 architectural specifications, live data center API bindings (NestJS + PostgreSQL), real applicant authentication, and campus telemetry will be connected in Phase 3.
+          </p>
+        </div>
+      </div>
+      <div class="proto-modal-footer">
+        <button class="btn btn-primary" onclick="closeAllModals()">Return to Prototype</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. TOAST NOTIFICATION CONTAINER -->
+  <div class="proto-toast" id="proto-toast" role="status" aria-live="polite">
+    <span style="font-size: 1.25rem;">ℹ️</span>
+    <span id="proto-toast-text">Notification message</span>
+  </div>
 
   <script src="script.js"></script>
 </body>

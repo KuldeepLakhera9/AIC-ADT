@@ -43,6 +43,8 @@ AIC-ADT/
     │   ├── design-decisions.md               # Task 1: Approved, proposed & unresolved decisions
     │   ├── high-fidelity-design-specification.md # Task 4: Full visual design spec for all 18 pages
     │   ├── page-design-review.md             # Task 4: Comprehensive design audit, viewports & review
+    │   ├── interactive-prototype-specification.md # Task 5: Master interactive architecture, state machines & user journeys
+    │   ├── prototype-interaction-checklist.md     # Task 5: 38-point verification test matrix across all 7 user journeys
     │   ├── wireframes/                       # Task 3: Information Architecture & Wireframes
     │   │   ├── wireframe-specification.md    # IA principles, page coverage matrix & approval gates
     │   │   ├── homepage-wireframe.md         # Sections A through L wireframe with schematics
@@ -128,7 +130,7 @@ AIC-ADT/
 - **[Page Design Review & Quality Audit](docs/design/page-design-review.md)**: Comprehensive design audit verifying brand alignment, WCAG 2.1 AA compliance, mobile/tablet/desktop responsiveness, temporary placeholder inventory, and production boundaries.
 - **[Master High-Fidelity Prototype](prototype/index.html)**: Standalone, responsive interactive prototype presenting 10 distinct views (Homepage, About, Programs, Scheme Detail, Startups, Innovation, Impact, Events, Reports, Contact) with instant bilingual English/Marathi toggling and client-side directory filtering.
 
-
-
-
-
+### Phase 2, Task 5: Interactive UI Prototype & User Journey Demonstration
+- **[Interactive Prototype Specification](docs/design/interactive-prototype-specification.md)**: Master technical and interaction specification detailing 7 complete user journey state machines (Universal Navigation, Bilingual Parity, Startup Portfolio Discovery, Events RSVP, Incubation Application Wizard, Audited Impact Periods, Publications Distribution), modal dialog engines, form validation logic, and local test procedures.
+- **[Prototype Interaction Verification Checklist](docs/design/prototype-interaction-checklist.md)**: Comprehensive 38-point QA verification matrix covering keyboard focus, mobile drawer escape, zero dead links, bilingual view preservation, real-time directory filtering, RSVP form validation, 3-step application wizard, dynamic reporting periods, and reduced motion overrides.
+- **[Enhanced Interactive Prototype](prototype/index.html)**: High-fidelity interactive prototype featuring working desktop mega-menus, accessible mobile drawer, interactive breadcrumbs, 6 rich sample startups with detail modals, event RSVP registration with inline validation and loading states, 4-step eligibility self-assessment checker, 3-step incubation application wizard, interactive fiscal period switcher (FY25, FY24, FY23, FY22), bundled sample PDF downloads with toast notifications, and full English/Marathi bilingual parity.

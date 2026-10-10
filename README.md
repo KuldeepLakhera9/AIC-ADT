@@ -29,15 +29,25 @@ AIC-ADT/
     │   ├── user-flow-specification.md         # Step-by-step traversal & Mermaid interaction flows
     │   └── route-access-matrix.md             # Route security zones, allowed roles & rate limits
     │
-    └── architecture/                         # Phase 1, Task 4: Data-Center Readiness & RFI
-        ├── data-center-readiness-checklist.md # 47-point RFI assessment across 12 operational domains
-        ├── deployment-requirements.md         # Container topology, VM sizing, volumes & non-root security
-        ├── network-and-security-requirements.md# DMZ VLAN, firewall ingress, SSH & dataset isolation
-        ├── backup-and-recovery-requirements.md# Automated pg_dump, AES-256, RPO/RTO & DR execution
-        └── infrastructure-open-questions.md   # Prioritized RFI questions & mandatory deliverables
-├── docs/phase-1-summary.md                   # Phase 1, Task 5: Master Discovery Summary & Architecture Roadmap
-├── docs/phase-1-open-decisions.md             # Phase 1, Task 5: 11 Open Governance & Policy Decisions Register
-└── docs/phase-1-sign-off-checklist.md         # Phase 1, Task 5: Quality Checklist & Phase Gate Matrix (Needs Approval)
+    ├── architecture/                         # Phase 1, Task 4: Data-Center Readiness & RFI
+    │   ├── data-center-readiness-checklist.md # 47-point RFI assessment across 12 operational domains
+    │   ├── deployment-requirements.md         # Container topology, VM sizing, volumes & non-root security
+    │   ├── network-and-security-requirements.md# DMZ VLAN, firewall ingress, SSH & dataset isolation
+    │   ├── backup-and-recovery-requirements.md# Automated pg_dump, AES-256, RPO/RTO & DR execution
+    │   └── infrastructure-open-questions.md   # Prioritized RFI questions & mandatory deliverables
+    │
+    ├── design/                               # Phase 2, Task 1: Design Discovery & Creative Direction
+    │   ├── design-brief.md                   # Personas, measurable outcomes, brand personality & scope
+    │   ├── visual-direction.md               # Palette tokens, typography scales, layout, motion & components
+    │   ├── design-principles.md              # Usability rules, WCAG 2.1 AA, bilingual parity & reduced motion
+    │   ├── design-decisions.md               # Approved, proposed & unresolved decisions with placeholders
+    │   ├── wireframes/                       # Detailed UI wireframes (Desktop & Mobile)
+    │   ├── components/                       # Reusable UI component specifications
+    │   └── reviews/                          # Design review records & stakeholder sign-offs
+    │
+    ├── phase-1-summary.md                    # Phase 1, Task 5: Master Discovery Summary & Architecture Roadmap
+    ├── phase-1-open-decisions.md              # Phase 1, Task 5: 11 Open Governance & Policy Decisions Register
+    └── phase-1-sign-off-checklist.md          # Phase 1, Task 5: Quality Checklist & Phase Gate Matrix
 ```
 
 ---
@@ -70,4 +80,11 @@ AIC-ADT/
 - **[Phase 1 Discovery Summary](docs/phase-1-summary.md)**: Complete technical and architectural synthesis covering project vision, agreed v1 release scope, 7-pillar sitemap, Next.js/NestJS/PostgreSQL architecture, data center dependencies, risks/mitigations, and entry criteria.
 - **[Phase 1 Open Decisions Register](docs/phase-1-open-decisions.md)**: 11 high-priority policy and organizational decisions (branding, impact metrics audit, startup classification, mentor consent, data privacy, RFI sign-offs) cataloged for executive resolution.
 - **[Phase 1 Sign-Off Checklist & Gate Matrix](docs/phase-1-sign-off-checklist.md)**: Comprehensive quality verification across all 23 deliverables, evaluating the Phase Gate as **NEEDS APPROVAL** with formal signature blocks for stakeholder sign-off.
+
+### Phase 2, Task 1: Design Discovery & Creative Direction
+- **[Design Brief](docs/design/design-brief.md)**: Target user cohorts, experience priorities, brand personality pillars, measurable UX/Core Web Vitals outcomes, and scope boundaries.
+- **[Visual Direction](docs/design/visual-direction.md)**: Established AIC-ADT botanical color tokens, Inter + Noto Sans Devanagari typography scale, authentic agricultural photography mandates, card elevation, and motion principles.
+- **[Design Principles](docs/design/design-principles.md)**: 5 core tenets, Fitts's Law touch ergonomics, mobile-first responsive transforms, strict WCAG 2.1 AA accessibility rules, bilingual layout compensation, and `prefers-reduced-motion` specs.
+- **[Design Decisions Register](docs/design/design-decisions.md)**: Classification of approved, proposed, and unresolved design decisions with explicit placeholders (`[AUDITED METRIC PENDING]`, `[CONSENT PENDING]`, etc.).
+
 

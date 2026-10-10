@@ -35,6 +35,9 @@ AIC-ADT/
         ├── network-and-security-requirements.md# DMZ VLAN, firewall ingress, SSH & dataset isolation
         ├── backup-and-recovery-requirements.md# Automated pg_dump, AES-256, RPO/RTO & DR execution
         └── infrastructure-open-questions.md   # Prioritized RFI questions & mandatory deliverables
+├── docs/phase-1-summary.md                   # Phase 1, Task 5: Master Discovery Summary & Architecture Roadmap
+├── docs/phase-1-open-decisions.md             # Phase 1, Task 5: 11 Open Governance & Policy Decisions Register
+└── docs/phase-1-sign-off-checklist.md         # Phase 1, Task 5: Quality Checklist & Phase Gate Matrix (Needs Approval)
 ```
 
 ---
@@ -62,3 +65,9 @@ AIC-ADT/
 - **[Network & Security Requirements](docs/architecture/network-and-security-requirements.md)**: DMZ VLAN isolation (VLAN 30), 1:1 NAT mapping for ports 80/443, strict firewall barriers preventing lateral movement to internal agricultural IoT and KVK data lakes.
 - **[Backup & Recovery Requirements](docs/architecture/backup-and-recovery-requirements.md)**: Nightly automated `pg_dump` with AES-256 encryption, independent NAS replication, RPO ≤ 24h, RTO ≤ 4h, and quarterly dry-run simulation drills.
 - **[Infrastructure Open Questions](docs/architecture/infrastructure-open-questions.md)**: 21 prioritized technical questions and the definitive checklist of mandatory deliverables the organization must supply before deployment approval.
+
+### Phase 1, Task 5: Discovery Review & Governance Sign-Off Package
+- **[Phase 1 Discovery Summary](docs/phase-1-summary.md)**: Complete technical and architectural synthesis covering project vision, agreed v1 release scope, 7-pillar sitemap, Next.js/NestJS/PostgreSQL architecture, data center dependencies, risks/mitigations, and entry criteria.
+- **[Phase 1 Open Decisions Register](docs/phase-1-open-decisions.md)**: 11 high-priority policy and organizational decisions (branding, impact metrics audit, startup classification, mentor consent, data privacy, RFI sign-offs) cataloged for executive resolution.
+- **[Phase 1 Sign-Off Checklist & Gate Matrix](docs/phase-1-sign-off-checklist.md)**: Comprehensive quality verification across all 23 deliverables, evaluating the Phase Gate as **NEEDS APPROVAL** with formal signature blocks for stakeholder sign-off.
+

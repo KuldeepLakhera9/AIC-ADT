@@ -2,13 +2,14 @@
   "name": "@aic/web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"@aic/web: No unit tests specified yet\" && exit 0"
+    "test": "node --test \"src/components/ui/__tests__/*.test.ts\""
   },
   "dependencies": {
     "next": "16.4.0",

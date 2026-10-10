@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Inter } from "next/font/google";
+import { Outfit, Inter, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -15,7 +15,14 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  display: "swap",
+  variable: "--font-devanagari",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,11 +38,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-[#F7FAF7] text-[#17231D] antialiased">
+    <html
+      lang="en"
+      className={`${outfit.variable} ${inter.variable} ${notoSansDevanagari.variable} h-full`}
+    >
+      <body className="min-h-full flex flex-col bg-[#F8FAF7] text-[#17231D] antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#004B2A] focus:text-white focus:rounded focus:outline-none focus:ring-2 focus:ring-[#73992A]"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#004B2A] focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-[#73992A] focus:shadow-md"
         >
           Skip to main content
         </a>

@@ -29,12 +29,20 @@ AIC-ADT/
     │   ├── user-flow-specification.md         # Step-by-step traversal & Mermaid interaction flows
     │   └── route-access-matrix.md             # Route security zones, allowed roles & rate limits
     │
-    ├── architecture/                         # Phase 1, Task 4: Data-Center Readiness & RFI
-    │   ├── data-center-readiness-checklist.md # 47-point RFI assessment across 12 operational domains
-    │   ├── deployment-requirements.md         # Container topology, VM sizing, volumes & non-root security
-    │   ├── network-and-security-requirements.md# DMZ VLAN, firewall ingress, SSH & dataset isolation
-    │   ├── backup-and-recovery-requirements.md# Automated pg_dump, AES-256, RPO/RTO & DR execution
-    │   └── infrastructure-open-questions.md   # Prioritized RFI questions & mandatory deliverables
+    ├── architecture/                         # Architecture Specifications & Data-Center Readiness
+    │   ├── solution-architecture.md           # Phase 3, Task 1: C4 models, monorepo, storage abstraction
+    │   ├── architecture-decisions.md          # Phase 3, Task 1: 12 formal Architecture Decision Records
+    │   ├── phase-3-implementation-plan.md     # Phase 3, Task 1: 10-task sequential engineering execution plan
+    │   ├── monorepo-structure.md              # Phase 3, Task 2: Master pnpm workspace layout specification
+    │   ├── local-development-guide.md         # Phase 3, Task 2: Quickstart, CLI scripts & troubleshooting
+    │   ├── dependency-versions.md             # Phase 3, Task 2: Recorded inventory of production dependencies
+    │   ├── production-design-system.md        # Phase 3, Task 3: Tokens, palettes, fonts & Tailwind v4 theme
+    │   ├── shared-ui-components.md            # Phase 3, Task 3: Reusable UI component inventory & API spec
+    │   ├── data-center-readiness-checklist.md # Phase 1, Task 4: 47-point RFI assessment across 12 domains
+    │   ├── deployment-requirements.md         # Phase 1, Task 4: Container topology, VM sizing & volumes
+    │   ├── network-and-security-requirements.md# Phase 1, Task 4: DMZ VLAN, firewall ingress & SSH isolation
+    │   ├── backup-and-recovery-requirements.md# Phase 1, Task 4: Automated pg_dump, AES-256 & DR execution
+    │   └── infrastructure-open-questions.md   # Phase 1, Task 4: Prioritized RFI questions & deliverables
     │
     ├── design/                               # Phase 2: Design Discovery, Systems & High-Fidelity Prototype
     │   ├── design-brief.md                   # Task 1: Personas, outcomes, brand personality & scope
@@ -153,3 +161,10 @@ AIC-ADT/
 - **[Dependency Versions Specification](docs/architecture/dependency-versions.md)**: Exact recorded inventory of all installed production and development dependencies across the workspace.
 - **`apps/web` (Next.js 16 App Router)**: Minimal branded frontend with Tailwind CSS v4, Phase 2 design tokens, Outfit/Inter typography, layout primitives, custom error boundary, and branded 404 page.
 - **`apps/api` (NestJS 12 Modular Monolith)**: Minimal backend API engine with NodeNext ESM, versioned `/api/v1` prefix, `/api/v1/health` endpoint, global exception filter, validation pipe, and Vitest test suite.
+
+### Phase 3, Task 3: Production Design System and Shared UI Components
+- **[Production Design System Architecture](docs/architecture/production-design-system.md)**: Master architecture document detailing Tailwind CSS v4 theme integration, all 39 design tokens, brand and neutral palettes, semantic feedback colors, typography hierarchy, responsive container standards, accessible focus styles, and motion reduction.
+- **[Shared UI Components Specification](docs/architecture/shared-ui-components.md)**: Component inventory and technical documentation covering 26 reusable UI primitives in `apps/web/src/components/ui/` (Buttons, Typography, Cards, Badges, Status Indicators, Section Headers, Breadcrumbs, Form Controls, Alerts, Skeletons, Empty States, Grids, Sections, Tabs, Accordions, Media Containers).
+- **Internal Design System Showcase (`/design-system`)**: Private Next.js route in `apps/web/src/app/design-system/page.tsx` displaying interactive color swatches, typography scales, buttons, badges, form controls, alerts, cards, skeletons, tabs, accordions, and media containers for design verification.
+- **Automated Component Verification**: Node-native unit test suite (`apps/web/src/components/ui/__tests__/design-system.test.ts`) validating brand colors, typography tokens, touch targets, and component specifications with 100% pass rate.
+

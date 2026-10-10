@@ -140,3 +140,9 @@ AIC-ADT/
 - **[Responsive Test Results](docs/design/reviews/responsive-test-results.md)**: Strict multi-viewport testing log across 320px, 375px, 768px, 1024px, and 1440px viewports with zero horizontal overflow, touch target validation, and responsive table scrolling.
 - **[Accessibility Review](docs/design/reviews/accessibility-review.md)**: WCAG 2.2 Level AA compliance audit with automated contrast verification, keyboard navigation analysis, screen reader labeling, dialog focus trapping, and motion reduction.
 - **[Phase 2 Sign-Off & Exit Gate Review](docs/design/reviews/phase-2-sign-off.md)**: Formal review of all 8 exit criteria, RACI matrix for Phase 3 engineering decisions, deliverable inventory, and official baseline inputs for Phase 3 implementation (**GATE: READY FOR PHASE 3**).
+
+### Phase 3, Task 1: Existing Project Inspection & Architecture Decision Record
+- **[Phase 3 Current State Assessment](docs/architecture/phase-3-current-state-assessment.md)**: Technical inspection of workspace filesystem, Git state, package manifests, prototype assets, and resolution of architectural discrepancies.
+- **[Solution Architecture Specification](docs/architecture/solution-architecture.md)**: Comprehensive C4 models (System Context, Container Topology, Component Architecture), pnpm workspace monorepo layout, PostgreSQL data modeling, dual storage abstraction, and Nginx ingress rules.
+- **[Architecture Decision Records (ADRs)](docs/architecture/architecture-decisions.md)**: 12 formal architecture decisions covering monorepo layout, Next.js, Tailwind CSS, NestJS modular monolith, PostgreSQL/Prisma, lean infrastructure (omission of Redis/Kubernetes), storage abstraction, and non-root Docker Compose.
+- **[Phase 3 Implementation Plan](docs/architecture/phase-3-implementation-plan.md)**: 10-task sequential engineering execution plan spanning foundational monorepo setup to pre-deployment hardening, quality gates, and risk mitigations.

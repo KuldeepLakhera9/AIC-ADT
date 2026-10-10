@@ -38,6 +38,7 @@ AIC-ADT/
     │   ├── dependency-versions.md             # Phase 3, Task 2: Recorded inventory of production dependencies
     │   ├── production-design-system.md        # Phase 3, Task 3: Tokens, palettes, fonts & Tailwind v4 theme
     │   ├── shared-ui-components.md            # Phase 3, Task 3: Reusable UI component inventory & API spec
+    │   ├── backend-foundation.md              # Phase 3, Task 4: NestJS modular monolith, security, logging & probes
     │   ├── data-center-readiness-checklist.md # Phase 1, Task 4: 47-point RFI assessment across 12 domains
     │   ├── deployment-requirements.md         # Phase 1, Task 4: Container topology, VM sizing & volumes
     │   ├── network-and-security-requirements.md# Phase 1, Task 4: DMZ VLAN, firewall ingress & SSH isolation
@@ -167,4 +168,11 @@ AIC-ADT/
 - **[Shared UI Components Specification](docs/architecture/shared-ui-components.md)**: Component inventory and technical documentation covering 26 reusable UI primitives in `apps/web/src/components/ui/` (Buttons, Typography, Cards, Badges, Status Indicators, Section Headers, Breadcrumbs, Form Controls, Alerts, Skeletons, Empty States, Grids, Sections, Tabs, Accordions, Media Containers).
 - **Internal Design System Showcase (`/design-system`)**: Private Next.js route in `apps/web/src/app/design-system/page.tsx` displaying interactive color swatches, typography scales, buttons, badges, form controls, alerts, cards, skeletons, tabs, accordions, and media containers for design verification.
 - **Automated Component Verification**: Node-native unit test suite (`apps/web/src/components/ui/__tests__/design-system.test.ts`) validating brand colors, typography tokens, touch targets, and component specifications with 100% pass rate.
+
+### Phase 3, Task 4: NestJS Backend Foundation
+- **[Backend Foundation Architecture](docs/architecture/backend-foundation.md)**: Production architecture document detailing the modular monolith layout, `/api/v1` API conventions, fail-fast configuration schema, uniform response and error envelopes, structured JSON logging with redaction, container health probes, and security baseline.
+- **`apps/api` (NestJS Modular Monolith Engine)**: Complete production-ready foundational architecture with Helmet security headers, CORS allowlist, request body limits, Throttler rate limiting, and database abstraction service.
+- **Health Probes (`/api/v1/health`)**: Separate liveness (`/health/liveness`) and readiness (`/health/readiness`) checks for container orchestration and load balancing.
+- **Observability & Request Correlation**: Automated `x-correlation-id` lifecycle, structured single-line JSON logging, and automatic redaction of sensitive credentials, tokens, and database connection strings.
+- **Automated Backend Verification**: Vitest unit test suite (23 passing tests) and Supertest integration e2e test suite (5 passing tests) with 100% pass rate.
 

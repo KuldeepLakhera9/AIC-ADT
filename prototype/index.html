@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIC-ADT Baramati Foundation — Official Institutional Platform</title>
+  <!-- Google Fonts: Inter, Noto Sans Devanagari, Baloo 2 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- PROTOTYPE CONTROL BAR (Demonstration Wayfinding) -->
+  <aside class="proto-control-bar" aria-label="Prototype View Controller">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-weight: 700; color: #73992A;">AIC-ADT PROTOTYPE</span>
+      <span style="color: #8C9790;">• Phase 2, Task 4 High-Fidelity Review</span>
+    </div>
+    <div class="proto-pills" role="tablist">
+      <button class="proto-btn active" data-view="home">1. Homepage</button>
+      <button class="proto-btn" data-view="about">2. About</button>
+      <button class="proto-btn" data-view="programs">3. Programs</button>
+      <button class="proto-btn" data-view="program-detail">4. Scheme Detail</button>
+      <button class="proto-btn" data-view="startups">5. Startups</button>
+      <button class="proto-btn" data-view="innovation">6. Innovation</button>
+      <button class="proto-btn" data-view="impact">7. Impact</button>
+      <button class="proto-btn" data-view="events">8. Events</button>
+      <button class="proto-btn" data-view="reports">9. Reports</button>
+      <button class="proto-btn" data-view="contact">10. Contact</button>
+    </div>
+  </aside>
+
+  <!-- [A] INSTITUTIONAL UTILITY STRIP -->
+  <div class="utility-strip">
+    <div class="container">
+      <div class="utility-text">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <span>Supported by Atal Innovation Mission, NITI Aayog, Government of India</span>
+      </div>
+      <div class="utility-controls">
+        <span>Helpline: +91 2112 255500</span>
+        <div class="lang-switch" role="group" aria-label="Language selector">
+          <button class="lang-btn btn-lang-en active" data-lang="en">EN</button>
+          <button class="lang-btn btn-lang-mr" data-lang="mr">मराठी</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- [B] MAIN NAVIGATION HEADER -->
+  <header class="main-header" role="banner">
+    <div class="container">
+      <a href="#" class="logo-lockup" onclick="document.querySelector('[data-view=\'home\']').click(); return false;">
+        <div class="logo-symbol">🌱</div>
+        <div>
+          <div>AIC-ADT Baramati Foundation</div>
+          <div style="font-size: 0.6875rem; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Atal Incubation Centre</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'about\']').click(); return false;">About ▾</a>
+            <div class="mega-menu">
+              <div>
+                <div class="mega-title">Institutional Overview</div>
+                <ul class="mega-list">
+                  <li><a href="#" onclick="document.querySelector('[data-view=\'about\']').click(); return false;">About AIC-ADT & Heritage</a></li>
+                  <li><a href="#">Mission, Vision & SDGs</a></li>
+                  <li><a href="#">Governing Leadership & Team</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-title">Campus Facilities</div>
+                <ul class="mega-list">
+                  <li><a href="#">110-Acre Demonstration Farm</a></li>
+                  <li><a href="#">NABL Analytical Testing Lab</a></li>
+                  <li><a href="#">FabLab Prototyping Workshop</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Programs ▾</a>
+            <div class="mega-menu">
+              <div>
+                <div class="mega-title">Incubation Pathways</div>
+                <ul class="mega-list">
+                  <li><a href="#" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Pre-Incubation (Ideation)</a></li>
+                  <li><a href="#" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Incubation (Seed Stage - SISFS)</a></li>
+                  <li><a href="#">Acceleration (Scale)</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-title">Active Grant Schemes</div>
+                <ul class="mega-list">
+                  <li><a href="#" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Startup India Seed Fund (₹20L)</a></li>
+                  <li><a href="#">MeitY GENESIS (EiR & Pilot)</a></li>
+                  <li><a href="#">Application Instructions & FAQs</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'startups\']').click(); return false;">Startups</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'innovation\']').click(); return false;">Innovation</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'impact\']').click(); return false;">Impact</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'events\']').click(); return false;">Events</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'reports\']').click(); return false;">Resources</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" onclick="document.querySelector('[data-view=\'contact\']').click(); return false;">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#" class="btn btn-primary" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Apply for Incubation</a>
+        <button class="hamburger-btn" aria-label="Open mobile navigation menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="drawer-backdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 12px;">
+      <span style="font-weight: 700; color: var(--color-brand-primary);">AIC-ADT Menu</span>
+      <button class="drawer-close-btn" style="background: transparent; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+    </div>
+    <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+      <button class="btn btn-secondary btn-lang-en" style="flex: 1; min-height: 36px; font-size: 0.8125rem;">English</button>
+      <button class="btn btn-secondary btn-lang-mr" style="flex: 1; min-height: 36px; font-size: 0.8125rem;">मराठी</button>
+    </div>
+    <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'home\']').click(); document.querySelector('.drawer-close-btn').click();">Home</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'about\']').click(); document.querySelector('.drawer-close-btn').click();">About AIC-ADT</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'programs\']').click(); document.querySelector('.drawer-close-btn').click();">Programs & Grants</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'startups\']').click(); document.querySelector('.drawer-close-btn').click();">Startups Directory</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'innovation\']').click(); document.querySelector('.drawer-close-btn').click();">Innovation Labs</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'impact\']').click(); document.querySelector('.drawer-close-btn').click();">Audited Impact</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'events\']').click(); document.querySelector('.drawer-close-btn').click();">Events & Workshops</a></li>
+      <li><a href="#" style="text-decoration: none; color: var(--color-text-primary); font-weight: 600; font-size: 1.0rem;" onclick="document.querySelector('[data-view=\'contact\']').click(); document.querySelector('.drawer-close-btn').click();">Contact & Directions</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="document.querySelector('[data-view=\'program-detail\']').click(); document.querySelector('.drawer-close-btn').click();">Apply for Incubation</a>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 1: MASTER HOMEPAGE (SECTIONS A - L)                                   -->
+  <!-- ========================================================================= -->
+  <main id="view-home" class="prototype-view" style="display: block;">
+
+    <!-- [C] HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div>
+          <div id="hero-overline" class="hero-badge">SUPPORTED BY ATAL INNOVATION MISSION • NITI AAYOG</div>
+          <h1 id="hero-title" class="hero-title">Catalyzing the Next Agricultural Revolution Through Deep-Tech Innovation</h1>
+          <p id="hero-body" class="hero-body">AIC-ADT empowers agri-tech startups, progressive farmers, and scientists with seed capital, NABL-accredited analytical laboratories, and live field testing grounds in Baramati.</p>
+          <div class="hero-actions">
+            <a href="#" id="hero-apply-btn" class="btn btn-primary" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Explore Incubation Programs</a>
+            <a href="#" class="btn btn-outline" onclick="document.querySelector('[data-view=\'innovation\']').click(); return false;">Book Analytical Lab Testing</a>
+          </div>
+          <div class="hero-trust-bar">
+            <span>✓ DPIIT Recognized Incubator</span>
+            <span>✓ NABL Analytical Lab</span>
+            <span>✓ 110-Acre Live Demo Farm</span>
+          </div>
+        </div>
+
+        <div class="hero-media-card">
+          <div class="hero-media-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#73992A" stroke-width="1.5" style="margin-bottom: 12px;" aria-hidden="true">
+              <path d="M12 2a10 10 0 0 0-7.07 17.07C7.68 21.82 12 22 12 22s4.32-.18 7.07-2.93A10 10 0 0 0 12 2z"/>
+              <path d="M12 6v8m-4-4h8"/>
+            </svg>
+            <div style="font-weight: 700; font-size: 1.125rem;">Centre of Excellence & Tissue Culture Lab</div>
+            <div style="font-size: 0.8125rem; color: var(--color-brand-pale); margin-top: 4px;">Baramati Campus, Agricultural Development Trust</div>
+          </div>
+          <div class="hero-media-caption">
+            Real field trial grounds in Baramati: Hydroponics, automated fertigation & precision phenomics.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [D] INSTITUTIONAL INTRODUCTION & MISSION -->
+    <section class="section section-bg-white">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-overline">Institutional Genesis & Heritage</div>
+          <h2 class="section-heading">Grounded in Baramati, Scaling Globally</h2>
+          <p class="section-subheading">Combining the 50-year grassroots agricultural heritage of the Agricultural Development Trust with national venture building mandates under NITI Aayog.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-title">1. Lab-to-Land Science</div>
+            <p class="card-body">Direct validation on a 110-acre live demonstration farm and Krishi Vigyan Kendra (KVK) network across thousands of progressive farmers.</p>
+            <div class="card-footer">
+              <span class="badge badge-category">Field Trials</span>
+              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;">Learn More</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-title">2. Seed Capital Linkages</div>
+            <p class="card-body">Direct facilitation of Startup India Seed Fund Scheme (SISFS up to ₹20L grant / ₹50L debt), MeitY GENESIS, and active angel investor syndicates.</p>
+            <div class="card-footer">
+              <span class="badge badge-category">Grant Schemes</span>
+              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;">View Tranches</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-title">3. Specialized Facilities</div>
+            <p class="card-body">In-house FabLab (3D printing, CNC, PCB milling), NABL-accredited analytical laboratory for soil/water residue testing, and pilot food processing plant.</p>
+            <div class="card-footer">
+              <span class="badge badge-category">Infrastructure</span>
+              <a href="#" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;">Explore Labs</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- [E] PROGRAMS & INCUBATION OPPORTUNITIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-overline">Structured Pathways</div>
+          <h2 class="section-heading">Incubation Programs for Every Venture Stage</h2>
+          <p class="section-subheading">From laboratory proof-of-concept to venture commercialization and market scale.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span class="badge badge-category">Stage 1</span>
+              <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">6 Months</span>
+            </div>
+            <h3 class="card-title">Pre-Incubation</h3>
+            <p class="card-body">Designed for innovators with an idea or prototype. Focuses on customer discovery, FabLab prototyping, and validating market viability.</p>
+            <div class="card-footer">
+              <span style="font-weight: 700; color: var(--color-brand-primary);">Prototype Grant</span>
+              <a href="#" class="btn btn-secondary" style="padding: 6px 16px; min-height: 38px;" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Details</a>
+            </div>
+          </article>
+
+          <article class="card" style="border: 2px solid var(--color-brand-leaf);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span class="badge badge-success">Cohort 4 Active</span>
+              <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">12 Months</span>
+            </div>
+            <h3 class="card-title">Flagship Incubation (SISFS)</h3>
+            <p class="card-body">Comprehensive support for registered startups: seed capital up to ₹20L grant and ₹50L debt, legal IP filing, and dedicated corporate pilot access.</p>
+            <div class="card-footer">
+              <span style="font-weight: 700; color: var(--color-brand-primary);">Up to ₹20-50 Lakhs</span>
+              <a href="#" class="btn btn-primary" style="padding: 6px 16px; min-height: 38px;" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Apply Now</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span class="badge badge-category">Stage 3</span>
+              <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Ongoing</span>
+            </div>
+            <h3 class="card-title">Venture Acceleration</h3>
+            <p class="card-body">High-intensity scaling for revenue-generating ventures. Series-A institutional investment syndication, corporate supply chain integration, and export market access.</p>
+            <div class="card-footer">
+              <span style="font-weight: 700; color: var(--color-brand-primary);">Scale & Growth</span>
+              <a href="#" class="btn btn-secondary" style="padding: 6px 16px; min-height: 38px;" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Details</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- [F] AGRICULTURAL INNOVATION & TECHNOLOGY SHOWCASE -->
+    <section class="section section-bg-white">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-overline">Applied Research & Robotics</div>
+          <h2 class="section-heading">6 Thematic Innovation Focus Areas</h2>
+          <p class="section-subheading">Developing cutting-edge solutions for climate-resilient agriculture and rural economic empowerment.</p>
+        </div>
+
+        <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap;">
+          <span class="badge badge-category" style="background: var(--color-brand-primary); color: #FFF;">Agri-Tech & Robotics</span>
+          <span class="badge badge-category">Smart Farming & IoT</span>
+          <span class="badge badge-category">Biotechnology & Microbes</span>
+          <span class="badge badge-category">Food Processing & Packaging</span>
+          <span class="badge badge-category">Climate Tech & Biochar</span>
+          <span class="badge badge-category">Digital Agriculture & AI</span>
+        </div>
+
+        <div class="card" style="padding: var(--space-8); background: var(--color-brand-light); border-color: var(--color-brand-pale);">
+          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-8); align-items: center;">
+            <div>
+              <span class="badge badge-success" style="margin-bottom: 12px;">Featured Pilot Implementation</span>
+              <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">Automated Soil Moisture & Salinity Telemetry Network</h3>
+              <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                Designed to tackle secondary soil salinization in Maharashtra's irrigated canal tracts. Combines IoT multi-depth capacitance probes with LoRaWAN wireless telemetry, delivering real-time irrigation advisories to sugarcane cultivators.
+              </p>
+              <div style="display: flex; gap: 16px; font-size: 0.875rem; font-weight: 600; color: var(--color-brand-primary); margin-bottom: 20px;">
+                <span>• 2,400 Hectares Covered</span>
+                <span>• 28% Water Savings</span>
+                <span>• Tested in Baramati Belt</span>
+              </div>
+              <a href="#" class="btn btn-outline" onclick="document.querySelector('[data-view=\'innovation\']').click(); return false;">Read Case Study →</a>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: 24px; text-align: center;">
+              <div style="font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">Telemetry Sensor Specifications</div>
+              <p style="font-size: 0.8125rem; color: var(--color-text-secondary); margin-bottom: 16px;">Electrical Conductivity (EC), VWC (Volumetric Water Content), Temperature telemetry at 15cm, 30cm, 60cm depths.</p>
+              <span class="badge badge-category">NABL Certified Calibration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [G] FEATURED STARTUP STORIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-overline">Portfolio Track Record</div>
+          <h2 class="section-heading">Innovations Born in Baramati</h2>
+          <p class="section-subheading">Meet the founders transforming Indian agriculture through incubation at AIC-ADT.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span class="badge badge-category">Post-Harvest Agtech</span>
+              <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Incubated 2022</span>
+            </div>
+            <h3 class="card-title">GramHeet Solutions Pvt Ltd</h3>
+            <p class="card-body">Decentralized village-level storage and marketing platform. Enabled 35,000+ smallholder farmers to avoid distress selling and earn up to 30% higher commodity prices.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.8125rem; font-weight: 600; color: var(--color-brand-primary);">SISFS Supported</span>
+              <a href="#" class="btn btn-secondary" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;" onclick="document.querySelector('[data-view=\'startups\']').click(); return false;">View Profile →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span class="badge badge-category">Precision Phenomics</span>
+              <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Incubated 2023</span>
+            </div>
+            <h3 class="card-title">Innosapien Agro Technologies</h3>
+            <p class="card-body">Computer-vision field phenotyping and microclimate sensors. Delivers automated disease outbreak predictions 72 hours before visible foliar symptoms.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.8125rem; font-weight: 600; color: var(--color-brand-primary);">MeitY GENESIS</span>
+              <a href="#" class="btn btn-secondary" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;" onclick="document.querySelector('[data-view=\'startups\']').click(); return false;">View Profile →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span class="badge badge-category">Microbial Biotech</span>
+              <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Incubated 2024</span>
+            </div>
+            <h3 class="card-title">Baramati Agribiotics Pvt Ltd</h3>
+            <p class="card-body">Proprietary microbial consortium bio-stimulants for soil salinity reclamation. Boosts root development and sugar recovery rates in drought-stressed sugarcane.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.8125rem; font-weight: 600; color: var(--color-brand-primary);">Seed Grantee</span>
+              <a href="#" class="btn btn-secondary" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;" onclick="document.querySelector('[data-view=\'startups\']').click(); return false;">View Profile →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- [H] VERIFIED IMPACT METRICS (DARK INSTITUTIONAL ANCHOR) -->
+    <section class="section section-bg-dark">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-overline">Statutory Disclosures</div>
+          <h2 class="section-heading">Certified Institutional Ecosystem Impact</h2>
+          <p class="section-subheading">Formally audited and reported under annual filings with Atal Innovation Mission, NITI Aayog (Audited as of FY 2024-25).</p>
+        </div>
+
+        <div class="grid-4">
+          <div class="stat-card-dark">
+            <div class="stat-number-dark">50+</div>
+            <div class="stat-label-dark">Startups Incubated & Mentored</div>
+          </div>
+          <div class="stat-card-dark">
+            <div class="stat-number-dark">42+</div>
+            <div class="stat-label-dark">Patents & Intellectual Property Filed</div>
+          </div>
+          <div class="stat-card-dark">
+            <div class="stat-number-dark">₹5.2 Cr+</div>
+            <div class="stat-label-dark">Seed Grants & Venture Funds Mobilized</div>
+          </div>
+          <div class="stat-card-dark">
+            <div class="stat-number-dark">35,000+</div>
+            <div class="stat-label-dark">Smallholder Farmers Reached Directly</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 32px;">
+          <a href="#" class="btn btn-white" onclick="document.querySelector('[data-view=\'impact\']').click(); return false;">Explore Full Impact Dashboard & Filings →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- [I] UPCOMING EVENTS & ADMISSION DEADLINES -->
+    <section class="section section-bg-white">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-overline">Calendar & Admissions</div>
+          <h2 class="section-heading">Upcoming Cohorts & Technical Workshops</h2>
+          <p class="section-subheading">Engage with industry leaders, participate in hands-on agtech training, and track cohort admission deadlines.</p>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto;">
+          <div class="event-row">
+            <div style="display: flex; align-items: center; gap: 20px;">
+              <div class="event-date-box">
+                <div style="font-size: 1.25rem;">30</div>
+                <div style="font-size: 0.75rem;">NOV</div>
+              </div>
+              <div>
+                <span class="badge badge-success" style="margin-bottom: 4px;">Admissions Open</span>
+                <div style="font-weight: 700; font-size: 1.125rem;">Startup India Seed Fund (SISFS) Cohort 4 Deadline</div>
+                <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Grants up to ₹20 Lakhs • Online Application via Portal</div>
+              </div>
+            </div>
+            <a href="#" class="btn btn-primary" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Apply Now</a>
+          </div>
+
+          <div class="event-row">
+            <div style="display: flex; align-items: center; gap: 20px;">
+              <div class="event-date-box">
+                <div style="font-size: 1.25rem;">08</div>
+                <div style="font-size: 0.75rem;">DEC</div>
+              </div>
+              <div>
+                <span class="badge badge-category" style="margin-bottom: 4px;">Technical Workshop</span>
+                <div style="font-weight: 700; font-size: 1.125rem;">Millet Value-Addition & Advanced Food Processing</div>
+                <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Venue: Food Innovation Pilot Plant, Baramati Campus • Seats: 25</div>
+              </div>
+            </div>
+            <a href="#" class="btn btn-secondary" onclick="document.querySelector('[data-view=\'events\']').click(); return false;">Register</a>
+          </div>
+
+          <div class="event-row">
+            <div style="display: flex; align-items: center; gap: 20px;">
+              <div class="event-date-box">
+                <div style="font-size: 1.25rem;">15</div>
+                <div style="font-size: 0.75rem;">DEC</div>
+              </div>
+              <div>
+                <span class="badge badge-category" style="margin-bottom: 4px;">Field Demonstration</span>
+                <div style="font-weight: 700; font-size: 1.125rem;">Autonomous Agri-Robotics & Drone Spraying Demo Day</div>
+                <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Venue: 110-Acre Demonstration Farm, Sharadanagar</div>
+              </div>
+            </div>
+            <a href="#" class="btn btn-secondary" onclick="document.querySelector('[data-view=\'events\']').click(); return false;">View Agenda</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [J] REPORTS & PUBLICATIONS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-overline">Knowledge Base</div>
+          <h2 class="section-heading">Institutional Reports & Policy Publications</h2>
+          <p class="section-subheading">Access certified annual progress filings, policy monographs, and technical research documents.</p>
+        </div>
+
+        <div class="grid-3" style="max-width: 900px; margin: 0 auto;">
+          <div class="card">
+            <span class="badge badge-category" style="margin-bottom: 8px;">Annual Filing</span>
+            <div class="card-title">Annual Progress Report FY 2024-25</div>
+            <p class="card-body">Certified statutory filing submitted under NITI Aayog guidelines covering incubation tranches, incubatee milestones, and audit compliance.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 4.2 MB</span>
+              <a href="#" class="btn btn-outline" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;">Download PDF</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="badge badge-category" style="margin-bottom: 8px;">Whitepaper</span>
+            <div class="card-title">Agri-Tech Incubation in Maharashtra</div>
+            <p class="card-body">A comprehensive policy study analyzing grassroots venture formation, venture funding bottlenecks, and rural adoption models.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 2.8 MB</span>
+              <a href="#" class="btn btn-outline" style="padding: 4px 12px; min-height: 32px; font-size: 0.8125rem;">Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [K] COLLABORATION CALL TO ACTION BANNER -->
+    <section class="section" style="background: var(--color-brand-primary); color: #FFFFFF; text-align: center; padding: var(--space-16) 0;">
+      <div class="container">
+        <h2 style="font-size: 2.25rem; font-weight: 700; margin-bottom: var(--space-4); color: #FFFFFF;">Ready to Build the Future of Agriculture?</h2>
+        <p style="font-size: 1.125rem; color: var(--color-brand-pale); max-width: 680px; margin: 0 auto var(--space-8) auto; line-height: 1.6;">
+          Whether you are an early-stage founder seeking seed capital and lab access, or a corporation building an impactful CSR agriculture partnership, AIC-ADT provides the infrastructure to scale.
+        </p>
+        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn btn-white" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Apply for Incubation</a>
+          <a href="#" class="btn btn-outline" style="color: #FFFFFF; border-color: #FFFFFF;" onclick="document.querySelector('[data-view=\'contact\']').click(); return false;">Contact Partnerships Desk</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 2: ABOUT US OVERVIEW                                                 -->
+  <!-- ========================================================================= -->
+  <section id="view-about" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> About Us <span class="breadcrumbs-separator">/</span> Institutional Overview</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div class="section-header section-header-left">
+        <div class="section-overline">About AIC-ADT Baramati Foundation</div>
+        <h1 class="section-heading">Bridging 50 Years of Agricultural Heritage with Deep Science</h1>
+        <p class="section-subheading">Established in Baramati, Maharashtra, the Atal Incubation Centre - Agricultural Development Trust (AIC-ADT) serves as a flagship ecosystem catalyzing technology-driven venture incubation.</p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: var(--space-12);">
+        <div class="card">
+          <div class="card-title">National Mandate</div>
+          <p class="card-body">Supported by the Atal Innovation Mission (AIM), NITI Aayog, Government of India, to nurture startups in smart farming, biotechnology, food tech, and rural entrepreneurship.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">110-Acre Living Lab</div>
+          <p class="card-body">Startups gain immediate validation on live polyhouses, drone testing corridors, automated irrigation grids, and an active Krishi Vigyan Kendra network.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">NABL-Accredited Rigor</div>
+          <p class="card-body">State-of-the-art analytical testing facilities providing precision GC-MS, HPLC, and spectrophotometry for soil, water, pesticide, and food product formulation.</p>
+        </div>
+      </div>
+
+      <div style="background: var(--color-brand-light); border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: var(--space-8);">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 12px;">Campus Infrastructure & Prototyping Facilities</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 20px;">
+          Our campus houses five specialized technical facilities: the <strong>FabLab Prototyping Workshop</strong> (laser cutting, 3D printing, PCB milling), <strong>Food Innovation Pilot Plant</strong> (retort pouches, extrusion lines, drying), <strong>Agri-Media Studio</strong>, <strong>Analytical Testing Lab</strong>, and <strong>High-Speed Co-Working Suites</strong>.
+        </p>
+        <button class="btn btn-primary" onclick="document.querySelector('[data-view=\'contact\']').click();">Schedule a Campus Visit →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 3: PROGRAMS LISTING & COMPARISON                                     -->
+  <!-- ========================================================================= -->
+  <section id="view-programs" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Programs & Schemes <span class="breadcrumbs-separator">/</span> Incubation Pathways</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div class="section-header section-header-left">
+        <div class="section-overline">Incubation Pathways</div>
+        <h1 class="section-heading">Structured Funding & Mentorship Programs</h1>
+        <p class="section-subheading">Choose the right program designed for your current technology readiness level (TRL) and business maturity.</p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: var(--space-12);">
+        <div class="card">
+          <span class="badge badge-category" style="margin-bottom: 8px;">TRL 3 - 5</span>
+          <div class="card-title">Pre-Incubation</div>
+          <p class="card-body">For student founders and early researchers. 6-Month batch focusing on proof-of-concept building, FabLab prototyping, and business viability.</p>
+          <div class="card-footer">
+            <span style="font-weight: 700; color: var(--color-brand-primary);">Prototype Grant</span>
+            <a href="#" class="btn btn-secondary" style="padding: 6px 14px;">Learn More</a>
+          </div>
+        </div>
+
+        <div class="card" style="border: 2px solid var(--color-brand-leaf);">
+          <span class="badge badge-success" style="margin-bottom: 8px;">TRL 6 - 8 • Cohort 4 Open</span>
+          <div class="card-title">Flagship Incubation (SISFS)</div>
+          <p class="card-body">For registered DPIIT startups. Seed grants up to ₹20L for validation and ₹50L debt for commercialization. Lab access, IP filing, and mentorship.</p>
+          <div class="card-footer">
+            <span style="font-weight: 700; color: var(--color-brand-primary);">Up to ₹20-50 Lakhs</span>
+            <a href="#" class="btn btn-primary" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">View Details</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-category" style="margin-bottom: 8px;">TRL 8 - 9</span>
+          <div class="card-title">Venture Acceleration</div>
+          <p class="card-body">For revenue-generating ventures. Scale advisory, supply chain integration, institutional VC networks, and international market access.</p>
+          <div class="card-footer">
+            <span style="font-weight: 700; color: var(--color-brand-primary);">Series-A Linkages</span>
+            <a href="#" class="btn btn-secondary" style="padding: 6px 14px;">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 4: PROGRAM DETAIL — SISFS INCUBATION                                 -->
+  <!-- ========================================================================= -->
+  <section id="view-program-detail" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Programs <span class="breadcrumbs-separator">/</span> Startup India Seed Fund (SISFS)</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div style="background: var(--color-brand-institutional); color: #FFF; padding: var(--space-8); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <span class="badge badge-success" style="margin-bottom: 12px;">Applications Active for Cohort 4</span>
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: #FFF; margin-bottom: 8px;">Startup India Seed Fund Scheme (SISFS)</h1>
+        <p style="color: var(--color-brand-pale); font-size: 1.0rem; max-width: 800px; line-height: 1.6;">
+          Official incubation and seed capital facilitation under Department for Promotion of Industry and Internal Trade (DPIIT), Government of India.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-8);">
+        <div>
+          <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 12px;">Funding Tranches & Support Scope</h2>
+          <ul style="margin-left: 20px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 24px;">
+            <li><strong>Proof of Concept Grant:</strong> Up to ₹20,00,000 for prototype development, lab trials, and validation.</li>
+            <li><strong>Commercialization Debt:</strong> Up to ₹50,00,000 via convertible debentures for market launch and working capital.</li>
+            <li><strong>Analytical Lab Access:</strong> Free testing quotas in the NABL-accredited analytical laboratory in Baramati.</li>
+            <li><strong>Intellectual Property:</strong> Subsidized patent filing, trademark registration, and legal counsel.</li>
+          </ul>
+
+          <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 12px;">Eligibility Criteria Checklist</h2>
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 24px;">
+            <p style="font-size: 0.875rem; color: var(--color-text-primary); margin-bottom: 8px;">✓ Recognized startup by DPIIT (incorporated under 2 years at time of application).</p>
+            <p style="font-size: 0.875rem; color: var(--color-text-primary); margin-bottom: 8px;">✓ Must have a viable business concept backed by proprietary technology or agricultural innovation.</p>
+            <p style="font-size: 0.875rem; color: var(--color-text-primary); margin-bottom: 8px;">✓ Shareholding by Indian promoters in the startup must be at least 51%.</p>
+            <p style="font-size: 0.875rem; color: var(--color-text-primary);">✓ Must not have received more than ₹10 Lakhs of monetary support under any other Central/State Govt scheme.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="position: sticky; top: 120px;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700; margin-bottom: 4px;">Cohort 4 Deadline</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 16px;">November 30, 2026</div>
+            <p style="font-size: 0.8125rem; color: var(--color-text-secondary); margin-bottom: 20px;">
+              Submit your pitch deck and business dossier via the official application portal.
+            </p>
+            <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-bottom: 12px;">Launch Application Portal</a>
+            <a href="#" class="btn btn-outline" style="width: 100%; text-align: center; font-size: 0.8125rem;">Download Scheme PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 5: STARTUP DIRECTORY                                                 -->
+  <!-- ========================================================================= -->
+  <section id="view-startups" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Startups <span class="breadcrumbs-separator">/</span> Portfolio Directory</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div class="section-header section-header-left">
+        <div class="section-overline">Portfolio Directory</div>
+        <h1 class="section-heading">Explore 70+ Incubated Startups</h1>
+        <p class="section-subheading">Discover high-impact ventures creating breakthrough solutions in agritech, biotechnology, and rural empowerment.</p>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+        <input type="text" id="startup-search-input" class="form-input" placeholder="🔍 Search startups by name, innovation, or keyword..." style="max-width: 600px;">
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;">
+        <button class="badge startup-filter-pill active" data-sector="all" style="cursor: pointer; border: 1px solid var(--color-brand-primary);">All (71)</button>
+        <button class="badge startup-filter-pill" data-sector="agritech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Agri-Tech</button>
+        <button class="badge startup-filter-pill" data-sector="smart-farming" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Smart Farming</button>
+        <button class="badge startup-filter-pill" data-sector="biotech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Biotechnology</button>
+        <button class="badge startup-filter-pill" data-sector="food-tech" style="cursor: pointer; background: var(--color-brand-pale); border: none;">Food Processing</button>
+      </div>
+
+      <div class="grid-3" id="startup-cards-container">
+        <article class="card startup-directory-card" data-name="gramheet" data-sector="agritech">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span class="badge badge-category">Agribusiness</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">2022</span>
+          </div>
+          <h3 class="card-title">GramHeet Solutions Pvt Ltd</h3>
+          <p class="card-body">Village-level post-harvest storage and direct market linkage platform reaching 35,000+ smallholder farmers across Maharashtra.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">SISFS Supported</span>
+            <a href="#" class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;">View Profile</a>
+          </div>
+        </article>
+
+        <article class="card startup-directory-card" data-name="innosapien" data-sector="smart-farming">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span class="badge badge-category">Smart Farming</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">2023</span>
+          </div>
+          <h3 class="card-title">Innosapien Agro Technologies</h3>
+          <p class="card-body">Computer-vision crop phenotyping and automated disease forecast stations with field testing across sugarcane tracts.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">MeitY GENESIS</span>
+            <a href="#" class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;">View Profile</a>
+          </div>
+        </article>
+
+        <article class="card startup-directory-card" data-name="baramati agribiotics" data-sector="biotech">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span class="badge badge-category">Biotechnology</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">2024</span>
+          </div>
+          <h3 class="card-title">Baramati Agribiotics Pvt Ltd</h3>
+          <p class="card-body">Microbial bio-stimulant formulations tackling soil salinity, boosting nutrient uptake and root biomass in cash crops.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.8125rem; color: var(--color-brand-primary); font-weight: 600;">Seed Grantee</span>
+            <a href="#" class="btn btn-secondary" style="padding: 4px 10px; min-height: 32px; font-size: 0.75rem;">View Profile</a>
+          </div>
+        </article>
+      </div>
+
+      <div id="startup-empty-notice" style="display: none; text-align: center; padding: 48px; background: #FFFFFF; border: 1px dashed var(--color-border-default); border-radius: var(--radius-md);">
+        <p style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px;">No startups found matching your filter criteria.</p>
+        <p style="font-size: 0.875rem; color: var(--color-text-secondary);">Try resetting your search query or selecting "All" sectors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 6: INNOVATION DOMAINS                                                -->
+  <!-- ========================================================================= -->
+  <section id="view-innovation" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Innovation Focus Areas</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div class="section-header section-header-left">
+        <div class="section-overline">Technology Verticals</div>
+        <h1 class="section-heading">6 Thematic Innovation Focus Areas</h1>
+        <p class="section-subheading">Developing cutting-edge solutions for climate-resilient agriculture, precision agronomy, and rural value chains.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">1. Agri-Tech & Robotics</div>
+          <p class="card-body">Autonomous farm implements, drone spraying calibration, selective harvesting mechanisms, and smallholder mechanization.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Smart Farming & Precision</div>
+          <p class="card-body">IoT soil telemetry probes, micro-weather stations, variable-rate fertigation, and satellite crop health index monitoring.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3. Biotechnology & Biofertilizers</div>
+          <p class="card-body">Beneficial soil microbes, tissue culture propagation, saline soil bio-remediation, and bio-pesticide formulations.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">4. Food Processing & Packaging</div>
+          <p class="card-body">Millet-based extrusion lines, retort pouch thermal processing, solar cold storage, and non-destructive fruit grading.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">5. Climate Tech & Biochar</div>
+          <p class="card-body">Agricultural residue pyrolysis, carbon sequestration measurement, solar-powered farm machinery, and circular bioeconomy.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">6. Digital Agriculture & AI</div>
+          <p class="card-body">Edge-AI computer vision for pest detection, vernacular voice LLMs for agronomy advisories, and predictive yield analytics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 7: IMPACT DASHBOARD                                                  -->
+  <!-- ========================================================================= -->
+  <section id="view-impact" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Certified Impact Dashboard</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div style="background: var(--color-brand-institutional); color: #FFF; padding: var(--space-8); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <span class="badge badge-success" style="margin-bottom: 12px;">Audited under AIM NITI Aayog Filings • FY 2024-25</span>
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: #FFF; margin-bottom: 8px;">Certified Ecosystem Impact Metrics</h1>
+        <p style="color: var(--color-brand-pale); font-size: 1.0rem;">All data points are certified via independent financial audits and statutory NITI Aayog filings.</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom: var(--space-12);">
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">50+</div>
+          <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Startups Incubated</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">42+</div>
+          <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Patents / IP Filed</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">₹5.2 Cr+</div>
+          <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Capital Mobilized</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-brand-primary);">35,000+</div>
+          <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 4px;">Farmers Reached</div>
+        </div>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: 24px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 16px;">Historical Fiscal Year Breakdown (FY 2021-22 to FY 2024-25)</h3>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--color-border-default); color: var(--color-text-secondary);">
+              <th style="padding: 10px 0;">Fiscal Year</th>
+              <th style="padding: 10px 0;">Startups Graduated</th>
+              <th style="padding: 10px 0;">Grants Disbursed</th>
+              <th style="padding: 10px 0;">Patents Registered</th>
+              <th style="padding: 10px 0;">Audit Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--color-border-subtle);">
+              <td style="padding: 12px 0; font-weight: 600;">FY 2024-25</td>
+              <td style="padding: 12px 0;">18 Ventures</td>
+              <td style="padding: 12px 0;">₹1.85 Crores</td>
+              <td style="padding: 12px 0;">14 Filings</td>
+              <td style="padding: 12px 0;"><span class="badge badge-success">Certified</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-subtle);">
+              <td style="padding: 12px 0; font-weight: 600;">FY 2023-24</td>
+              <td style="padding: 12px 0;">15 Ventures</td>
+              <td style="padding: 12px 0;">₹1.50 Crores</td>
+              <td style="padding: 12px 0;">12 Filings</td>
+              <td style="padding: 12px 0;"><span class="badge badge-success">Certified</span></td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 0; font-weight: 600;">FY 2022-23</td>
+              <td style="padding: 12px 0;">12 Ventures</td>
+              <td style="padding: 12px 0;">₹1.10 Crores</td>
+              <td style="padding: 12px 0;">9 Filings</td>
+              <td style="padding: 12px 0;"><span class="badge badge-success">Certified</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 8: EVENTS LISTING                                                    -->
+  <!-- ========================================================================= -->
+  <section id="view-events" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Events Calendar</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div class="section-header section-header-left">
+        <div class="section-overline">Campus Calendar</div>
+        <h1 class="section-heading">Workshops, Seminars & Cohort Deadlines</h1>
+        <p class="section-subheading">Participate in capacity building programs, agtech masterclasses, and pitching demo days.</p>
+      </div>
+
+      <div style="max-width: 900px;">
+        <div class="event-row">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div class="event-date-box">
+              <div style="font-size: 1.25rem;">30</div>
+              <div style="font-size: 0.75rem;">NOV</div>
+            </div>
+            <div>
+              <span class="badge badge-success" style="margin-bottom: 4px;">Admissions Deadline</span>
+              <div style="font-weight: 700; font-size: 1.125rem;">Startup India Seed Fund (SISFS) Cohort 4 Applications Close</div>
+              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Grants up to ₹20L • Online Application via Portal</div>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="document.querySelector('[data-view=\'program-detail\']').click();">Apply Now</button>
+        </div>
+
+        <div class="event-row">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div class="event-date-box">
+              <div style="font-size: 1.25rem;">08</div>
+              <div style="font-size: 0.75rem;">DEC</div>
+            </div>
+            <div>
+              <span class="badge badge-category" style="margin-bottom: 4px;">Hands-On Training</span>
+              <div style="font-weight: 700; font-size: 1.125rem;">Millet Value-Addition & Advanced Thermal Processing</div>
+              <div style="font-size: 0.8125rem; color: var(--color-text-secondary);">Venue: Food Innovation Pilot Plant, Baramati Campus • Seats: 25</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary">RSVP</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 9: REPORTS & PUBLICATIONS                                            -->
+  <!-- ========================================================================= -->
+  <section id="view-reports" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Resources <span class="breadcrumbs-separator">/</span> Reports & Publications</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div class="section-header section-header-left">
+        <div class="section-overline">Public Disclosures</div>
+        <h1 class="section-heading">Annual Reports, Research & Policy Guidelines</h1>
+        <p class="section-subheading">Download statutory filings, NITI Aayog progress reports, and specialized agritech policy monographs.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="badge badge-category" style="margin-bottom: 8px;">Statutory Report</span>
+          <div class="card-title">Annual Progress Report FY 2024-25</div>
+          <p class="card-body">Audited progress filing detailing incubation cohort milestones, capital disbursements, and governance disclosures.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 4.2 MB</span>
+            <button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8125rem;">Download</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-category" style="margin-bottom: 8px;">Whitepaper</span>
+          <div class="card-title">Agri-Tech Incubation in Maharashtra</div>
+          <p class="card-body">Policy research examining regional startup development, venture bottlenecks, and farmer adoption pathways.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.75rem; color: var(--color-text-secondary);">PDF • 2.8 MB</span>
+            <button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8125rem;">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 10: CONTACT & CAMPUS DIRECTIONS                                      -->
+  <!-- ========================================================================= -->
+  <section id="view-contact" class="prototype-view" style="display: none;">
+    <div class="breadcrumbs-bar">
+      <div class="container">Home <span class="breadcrumbs-separator">/</span> Contact & Directions</div>
+    </div>
+    <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-16);">
+      <div class="section-header section-header-left">
+        <div class="section-overline">Get In Touch</div>
+        <h1 class="section-heading">Contact the Incubation Desk & Visit Us</h1>
+        <p class="section-subheading">Reach out for program inquiries, analytical testing bookings, or corporate CSR partnerships.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12);">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 16px;">Campus Location & Directory</h3>
+          <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 20px;">
+            <strong>AIC-ADT Baramati Foundation</strong><br>
+            Agricultural Development Trust Campus,<br>
+            Sharadanagar, Baramati, District Pune,<br>
+            Maharashtra — 413115, India.
+          </p>
+          <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 24px;">
+            <strong>General Inquiries:</strong> contact@aicadtbaramatifoundation.org<br>
+            <strong>Incubation Desk:</strong> incubation@aicadtbaramatifoundation.org<br>
+            <strong>Helpline:</strong> +91 2112 255500
+          </p>
+
+          <h3 style="font-size: 1.125rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 12px;">Travel Directions to Baramati Campus</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6;">
+            • <strong>From Pune Airport:</strong> 105 km via Pune-Solapur Highway / Hadapsar-Baramati Road (~2.5 hours by taxi).<br>
+            • <strong>From Daund Railway Junction:</strong> 42 km (~50 mins via connecting train or state bus).<br>
+            • <strong>From Baramati Bus Stand:</strong> 5 km to Sharadanagar campus (~10 mins by auto-rickshaw).
+          </p>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: 24px;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 16px;">Send an Institutional Inquiry</h3>
+          <form onsubmit="event.preventDefault(); alert('Inquiry submitted successfully (Prototype Simulation).');">
+            <div style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Full Name *</label>
+              <input type="text" class="form-input" required placeholder="Dr. / Mr. / Ms. Your Name">
+            </div>
+            <div style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Email Address *</label>
+              <input type="email" class="form-input" required placeholder="name@domain.com">
+            </div>
+            <div style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Inquiry Department *</label>
+              <select class="form-input">
+                <option>Incubation Programs (SISFS / MeitY)</option>
+                <option>Analytical Lab & Soil Testing Booking</option>
+                <option>Corporate CSR Agriculture Partnership</option>
+                <option>Media & Right to Information (RTI)</option>
+              </select>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px;">Message *</label>
+              <textarea class="form-input" rows="3" required placeholder="Describe your inquiry or venture profile..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [L] MASTER INSTITUTIONAL FOOTER -->
+  <footer class="master-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-weight: 700; font-size: 1.125rem; margin-bottom: 8px;">AIC-ADT Baramati Foundation</div>
+          <p style="color: var(--color-brand-pale); font-size: 0.875rem; line-height: 1.6; margin-bottom: 16px;">
+            Atal Incubation Centre supported by Atal Innovation Mission, NITI Aayog, Government of India. Hosted by Agricultural Development Trust, Baramati.
+          </p>
+          <div style="font-size: 0.8125rem; color: #FFFFFF;">
+            Sharadanagar, Baramati, Pune District, Maharashtra — 413115
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Programs & Grants</div>
+          <ul class="footer-links">
+            <li><a href="#" onclick="document.querySelector('[data-view=\'programs\']').click(); return false;">Pre-Incubation (Ideation)</a></li>
+            <li><a href="#" onclick="document.querySelector('[data-view=\'program-detail\']').click(); return false;">Startup India Seed Fund (SISFS)</a></li>
+            <li><a href="#">MeitY GENESIS Cohort</a></li>
+            <li><a href="#">Venture Acceleration</a></li>
+            <li><a href="#">How to Apply & Checklist</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Infrastructure & Labs</div>
+          <ul class="footer-links">
+            <li><a href="#">NABL Analytical Testing Lab</a></li>
+            <li><a href="#">FabLab Prototyping Workshop</a></li>
+            <li><a href="#">Food Innovation Pilot Plant</a></li>
+            <li><a href="#">110-Acre Demonstration Farm</a></li>
+            <li><a href="#">Agri-Media Studio & Co-Working</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Statutory & Governance</div>
+          <ul class="footer-links">
+            <li><a href="#" onclick="document.querySelector('[data-view=\'reports\']').click(); return false;">Annual Progress Reports</a></li>
+            <li><a href="#" onclick="document.querySelector('[data-view=\'impact\']').click(); return false;">Certified Impact Filings</a></li>
+            <li><a href="#">Right to Information (RTI)</a></li>
+            <li><a href="#">Whistleblower & Grievance Policy</a></li>
+            <li><a href="#">Privacy Policy & Terms</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-legal-bar">
+        <div>© 2026 AIC-ADT Baramati Foundation. All rights reserved. Supported by AIM, NITI Aayog.</div>
+        <div>Emergency Campus Line: +91 2112 255500</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

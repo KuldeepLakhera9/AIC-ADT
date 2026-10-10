@@ -36,11 +36,13 @@ AIC-ADT/
     │   ├── backup-and-recovery-requirements.md# Automated pg_dump, AES-256, RPO/RTO & DR execution
     │   └── infrastructure-open-questions.md   # Prioritized RFI questions & mandatory deliverables
     │
-    ├── design/                               # Phase 2: Design Discovery & System Architecture
+    ├── design/                               # Phase 2: Design Discovery, Systems & High-Fidelity Prototype
     │   ├── design-brief.md                   # Task 1: Personas, outcomes, brand personality & scope
     │   ├── visual-direction.md               # Task 1: Palette tokens, type scales, motion & layout
     │   ├── design-principles.md              # Task 1: Usability rules, WCAG 2.1 AA, bilingual parity
     │   ├── design-decisions.md               # Task 1: Approved, proposed & unresolved decisions
+    │   ├── high-fidelity-design-specification.md # Task 4: Full visual design spec for all 18 pages
+    │   ├── page-design-review.md             # Task 4: Comprehensive design audit, viewports & review
     │   ├── wireframes/                       # Task 3: Information Architecture & Wireframes
     │   │   ├── wireframe-specification.md    # IA principles, page coverage matrix & approval gates
     │   │   ├── homepage-wireframe.md         # Sections A through L wireframe with schematics
@@ -58,6 +60,9 @@ AIC-ADT/
     ├── phase-1-open-decisions.md              # Phase 1, Task 5: 11 Open Governance & Policy Decisions Register
     └── phase-1-sign-off-checklist.md          # Phase 1, Task 5: Quality Checklist & Phase Gate Matrix
 ├── prototype/                                # Interactive Design Prototypes
+│   ├── index.html                            # Task 4: Master High-Fidelity Interactive Prototype (10 Views)
+│   ├── styles.css                            # Task 4: Master High-Fidelity Design System Stylesheet
+│   ├── script.js                             # Task 4: Interactive view switching, language toggle & filters
 │   ├── components/                           # Task 2: Standalone Component Showcase
 │   │   ├── showcase.html                     # Interactive HTML5 component showcase
 │   │   └── styles.css                        # Pure CSS custom properties & component styles
@@ -117,6 +122,12 @@ AIC-ADT/
 - **[Navigation Wireframe](docs/design/wireframes/navigation-wireframe.md)**: 7 desktop mega-menus, mobile slide-in drawer, search overlay, context-preserving bilingual switching (`EN | मराठी`), and contextual cross-linking matrix.
 - **[Mobile Wireframes](docs/design/wireframes/mobile-wireframes.md)**: Dedicated mobile viewport layouts (320px-480px), touch ergonomics ($\ge 44\text{px}$), table-to-card transformations, and Marathi ligature overflow defenses.
 - **[Interactive Grayscale Wireframe Prototype](prototype/wireframes/index.html)**: Working grayscale wireframe prototype demonstrating the homepage reading flow, startup directory, and real-time English/Marathi text switching.
+
+### Phase 2, Task 4: High-Fidelity Institutional Website Design & Prototype
+- **[High-Fidelity Design Specification](docs/design/high-fidelity-design-specification.md)**: Full visual design specification detailing typography, Section A-L homepage composition, inner pages, verified contrast tokens, and responsive viewports.
+- **[Page Design Review & Quality Audit](docs/design/page-design-review.md)**: Comprehensive design audit verifying brand alignment, WCAG 2.1 AA compliance, mobile/tablet/desktop responsiveness, temporary placeholder inventory, and production boundaries.
+- **[Master High-Fidelity Prototype](prototype/index.html)**: Standalone, responsive interactive prototype presenting 10 distinct views (Homepage, About, Programs, Scheme Detail, Startups, Innovation, Impact, Events, Reports, Contact) with instant bilingual English/Marathi toggling and client-side directory filtering.
+
 
 
 

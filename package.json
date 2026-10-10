@@ -1,0 +1,28 @@
+{
+  "name": "aic-adt-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.16.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "dev:web": "pnpm --filter @aic/web dev",
+    "dev:api": "pnpm --filter @aic/api dev",
+    "build": "pnpm -r run build",
+    "build:web": "pnpm --filter @aic/web build",
+    "build:api": "pnpm --filter @aic/api build",
+    "typecheck": "pnpm -r run typecheck",
+    "typecheck:web": "pnpm --filter @aic/web typecheck",
+    "typecheck:api": "pnpm --filter @aic/api typecheck",
+    "lint": "pnpm -r run lint",
+    "lint:web": "pnpm --filter @aic/web lint",
+    "lint:api": "pnpm --filter @aic/api lint",
+    "test": "pnpm -r run test",
+    "test:web": "pnpm --filter @aic/web test",
+    "test:api": "pnpm --filter @aic/api test",
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,js,json,css}\"",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,json,css}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
+  }
+}

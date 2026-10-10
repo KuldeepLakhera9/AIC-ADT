@@ -146,3 +146,10 @@ AIC-ADT/
 - **[Solution Architecture Specification](docs/architecture/solution-architecture.md)**: Comprehensive C4 models (System Context, Container Topology, Component Architecture), pnpm workspace monorepo layout, PostgreSQL data modeling, dual storage abstraction, and Nginx ingress rules.
 - **[Architecture Decision Records (ADRs)](docs/architecture/architecture-decisions.md)**: 12 formal architecture decisions covering monorepo layout, Next.js, Tailwind CSS, NestJS modular monolith, PostgreSQL/Prisma, lean infrastructure (omission of Redis/Kubernetes), storage abstraction, and non-root Docker Compose.
 - **[Phase 3 Implementation Plan](docs/architecture/phase-3-implementation-plan.md)**: 10-task sequential engineering execution plan spanning foundational monorepo setup to pre-deployment hardening, quality gates, and risk mitigations.
+
+### Phase 3, Task 2: Initialize the Production Monorepo
+- **[Monorepo Structure](docs/architecture/monorepo-structure.md)**: Master specification of the pnpm workspace monorepo layout (`apps/web` and `apps/api`), package boundaries, and script orchestration.
+- **[Local Development Guide](docs/architecture/local-development-guide.md)**: Developer quickstart instructions, environment configuration, command reference, and common troubleshooting tips.
+- **[Dependency Versions Specification](docs/architecture/dependency-versions.md)**: Exact recorded inventory of all installed production and development dependencies across the workspace.
+- **`apps/web` (Next.js 16 App Router)**: Minimal branded frontend with Tailwind CSS v4, Phase 2 design tokens, Outfit/Inter typography, layout primitives, custom error boundary, and branded 404 page.
+- **`apps/api` (NestJS 12 Modular Monolith)**: Minimal backend API engine with NodeNext ESM, versioned `/api/v1` prefix, `/api/v1/health` endpoint, global exception filter, validation pipe, and Vitest test suite.

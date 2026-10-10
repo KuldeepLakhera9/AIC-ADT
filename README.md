@@ -16,31 +16,41 @@ AIC-ADT/
     │   ├── content-verification-register.md   # Baseline register of 20 public claims & approvals
     │   └── ux-and-accessibility-findings.md   # UX heuristic and WCAG 2.1 accessibility findings
     │
-    └── requirements/                         # Phase 1, Task 2: Product Requirements & Scope
+    └── requirements/                         # Phase 1, Tasks 2 & 3: Requirements & Architecture
         ├── product-requirements-document.md   # Executive vision, problem statement, architecture
         ├── functional-requirements.md         # Detailed functional specs (FR-PUB, FR-APP, etc.)
         ├── non-functional-requirements.md     # Performance, security, WCAG, and DC requirements
         ├── user-journeys.md                   # Workflows for all 9 platform user groups
         ├── roles-and-permissions.md           # Granular RBAC permissions matrix & SoD rules
         ├── acceptance-criteria.md             # Verifiable assertions and Given-When-Then criteria
-        └── out-of-scope.md                    # Explicit boundary exclusions & change controls
+        ├── out-of-scope.md                    # Explicit boundary exclusions & change controls
+        ├── sitemap.md                         # Phase 1, Task 3: Canonical sitemap & Marathi routes
+        ├── navigation-specification.md        # Header, mega-menu, drawer, footer & bilingual toggle
+        ├── user-flow-specification.md         # Step-by-step traversal & Mermaid interaction flows
+        └── route-access-matrix.md             # Route security zones, allowed roles & rate limits
 ```
 
 ---
 
-## Discovery & Requirements Highlights
+## Discovery & Architecture Highlights
 
 ### Phase 1, Task 1: Baseline Audit & Content Inventory
-- **[Existing Website Audit](docs/audit/existing-website-audit.md)**: Uncovers over 75 orphaned commercial theme demo pages, active dummy WooCommerce retail merchandise, broken navigation paths ("CSR" leading to `/careers/`, "Events" leading to `/demo/`), and severe brand misnomers ("AIC-DBT Baramati").
-- **[Page Inventory & Migration Matrix](docs/audit/page-inventory.md)**: Categorizes all 178 database objects and maps candidate migration actions (`Retain`, `Revise`, `Merge`, `Archive`).
-- **[Content Verification Register](docs/audit/content-verification-register.md)**: Flags conflicting metrics (e.g., claimed "69+ Mentors" vs. 23 unique public profiles, hardcoded `0` counters) requiring executive approval.
+- **[Existing Website Audit](docs/audit/existing-website-audit.md)**: Documents severe commercial theme pollution, active dummy WooCommerce retail store, broken routing (CSR to `/careers/`, Events to `/demo/`), and brand errors ("AIC-DBT Baramati").
+- **[Page Inventory & Migration Matrix](docs/audit/page-inventory.md)**: Catalogs all 178 database objects and maps candidate migration actions (`Retain`, `Revise`, `Merge`, `Archive`).
+- **[Content Verification Register](docs/audit/content-verification-register.md)**: Flags conflicting metrics requiring executive approval (69+ mentors vs. 23 listed, hardcoded `0` counters).
 - **[UX and Accessibility Findings](docs/audit/ux-and-accessibility-findings.md)**: Documents missing `<label for="...">` form bindings, absent top-level `<h1>` headings, and insecure mixed-content links (`http://test.aic-sku.com/...`).
 
 ### Phase 1, Task 2: Product Requirements & Scope Definition
-- **[Product Requirements Document (PRD)](docs/requirements/product-requirements-document.md)**: Establishes a four-zone architectural isolation model (Public, Confidential Applicant, Internal Ops, and External Farmer Datasets) tailored for on-premise data-center deployment.
-- **[Functional Requirements (FRS)](docs/requirements/functional-requirements.md)**: Specifies 12 core subsystems across 30+ structured requirements with unique IDs, user needs, acceptance criteria, and priority rankings (P0, P1, P2).
-- **[Non-Functional Requirements (NFRS)](docs/requirements/non-functional-requirements.md)**: Enforces sub-2.0s mobile LCP, strict TLS 1.3 / HSTS, WCAG 2.1 Level AA compliance, RTO ≤ 4h, RPO ≤ 24h, and a comprehensive on-premise data-center confirmation matrix.
-- **[User Journeys](docs/requirements/user-journeys.md)**: Maps end-to-end flows for all 9 stakeholder personas from public farmers toggling to Marathi to founders saving multi-step incubation application drafts and reviewers evaluating pitch decks behind mandatory NDA gates.
-- **[Roles & Permissions (RBAC)](docs/requirements/roles-and-permissions.md)**: Enforces Segregation of Duties (SoD), prohibiting staff self-approval of content and preventing unauthorized access to proprietary founder intellectual property.
-- **[Acceptance Criteria](docs/requirements/acceptance-criteria.md)**: Delivers testable, verifiable Gherkin criteria across all primary workflows and accessibility standards.
-- **[Out-of-Scope Specification](docs/requirements/out-of-scope.md)**: Excludes online payment checkouts, raw agricultural IoT telemetry, automated AI scoring, and multi-tenant sub-licensing to protect core institutional focus and security.
+- **[Product Requirements Document (PRD)](docs/requirements/product-requirements-document.md)**: 4-zone data segregation model tailored for on-premise data-center deployment.
+- **[Functional Requirements (FRS)](docs/requirements/functional-requirements.md)**: 12 core subsystems across 30+ structured requirements with unique IDs and priority ratings (P0, P1, P2).
+- **[Non-Functional Requirements (NFRS)](docs/requirements/non-functional-requirements.md)**: Mobile LCP ≤ 2.0s, TLS 1.3 / HSTS, WCAG 2.1 AA, RTO ≤ 4h / RPO ≤ 24h, and On-Premise Data-Center Confirmation Matrix.
+- **[User Journeys](docs/requirements/user-journeys.md)**: End-to-end flows for all 9 stakeholder personas.
+- **[Roles & Permissions (RBAC)](docs/requirements/roles-and-permissions.md)**: Granular permissions matrix enforcing Segregation of Duties (SoD).
+- **[Acceptance Criteria](docs/requirements/acceptance-criteria.md)**: Testable Gherkin acceptance criteria across all workflows.
+- **[Out-of-Scope Specification](docs/requirements/out-of-scope.md)**: Strict boundary exclusions (eCommerce, raw farmer datasets, LIMS databases, automated AI scoring).
+
+### Phase 1, Task 3: Sitemap, Navigation & User Journey Specification
+- **[Sitemap Specification](docs/requirements/sitemap.md)**: Canonical public sitemap with 1-to-1 Marathi (`/mr/`) mirroring, removal of 75+ demo templates, and clear segregation of private portal routes.
+- **[Navigation Specification](docs/requirements/navigation-specification.md)**: Desktop mega-menus, mobile slide-out drawer, context-preserving bilingual switching mechanics, breadcrumb JSON-LD schema, and institutional footer.
+- **[User Flow Specification](docs/requirements/user-flow-specification.md)**: 9 comprehensive interaction flows with Mermaid sequence diagrams, validation rules, decision gates, and failure recovery.
+- **[Route Access Matrix](docs/requirements/route-access-matrix.md)**: Complete endpoint mapping across Zone 1 (Public), Zone 2 (Applicant Portal), and Zone 3 (Admin Console) with HTTP methods, allowed roles, session timeouts, and rate limits.

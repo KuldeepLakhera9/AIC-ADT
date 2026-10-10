@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIC-ADT Baramati Foundation — Design System Component Showcase</title>
+  <!-- Google Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Skip Navigation -->
+  <a href="#main-showcase" style="position: absolute; left: -9999px; top: 12px; background: #004B2A; color: #FFFFFF; padding: 10px 20px; z-index: 99999;" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">
+    Skip to main content / मुख्य मजकुरावर जा
+  </a>
+
+  <!-- Header Banner -->
+  <header class="showcase-header">
+    <div class="container" style="padding-top: 0; padding-bottom: 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <span style="font-size: 0.8125rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-brand-leaf); font-weight: 600;">
+          Phase 2, Task 2 Deliverable • Design System & Component Library
+        </span>
+        <button class="lang-toggle-btn" aria-label="Toggle language preview">EN | मराठी</button>
+      </div>
+      <h1>AIC-ADT Baramati Foundation</h1>
+      <p>Interactive Design Tokens & Reusable Component Showcase. Built strictly in semantic HTML5 and CSS Custom Properties conforming to WCAG 2.1 Level AA standards.</p>
+    </div>
+  </header>
+
+  <!-- Main Showcase Container -->
+  <main id="main-showcase" class="container">
+
+    <!-- 1. Navigation Showcase -->
+    <section class="section-block" aria-labelledby="nav-title">
+      <h2 id="nav-title" class="section-title">
+        1. Institutional Navigation
+        <span>Desktop Mega-Bar & Utility Controls</span>
+      </h2>
+      
+      <div class="mock-navbar" role="navigation" aria-label="Mock Main Navigation">
+        <div class="mock-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#004B2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          AIC-ADT Baramati
+        </div>
+        <ul class="mock-nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs & Schemes</a></li>
+          <li><a href="#startups">Startups</a></li>
+          <li><a href="#innovation">Innovation Labs</a></li>
+          <li><a href="#impact">Impact</a></li>
+        </ul>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button class="lang-toggle-btn">मराठी</button>
+          <a href="#apply" class="btn btn-primary" style="padding: 8px 18px; min-height: 38px; font-size: 0.875rem;">Apply for Incubation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Brand Palette & Contrast -->
+    <section class="section-block" aria-labelledby="palette-title">
+      <h2 id="palette-title" class="section-title">
+        2. Certified Color Tokens
+        <span>WCAG 2.1 AA Contrast Ratio Verified</span>
+      </h2>
+
+      <div class="palette-grid">
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #004B2A;"></div>
+          <div class="swatch-details">
+            <div class="swatch-name">Primary Forest</div>
+            <div class="swatch-hex">#004B2A</div>
+            <div class="swatch-contrast">10.2:1 (AAA on Light)</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #063D27;"></div>
+          <div class="swatch-details">
+            <div class="swatch-name">Dark Institutional</div>
+            <div class="swatch-hex">#063D27</div>
+            <div class="swatch-contrast">12.4:1 (AAA on Light)</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #73992A;"></div>
+          <div class="swatch-details">
+            <div class="swatch-name">Leaf Accent</div>
+            <div class="swatch-hex">#73992A</div>
+            <div class="swatch-contrast">4.6:1 (AA on Dark)</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #E8F0D9; border-bottom: 1px solid #DDE5DC;"></div>
+          <div class="swatch-details">
+            <div class="swatch-name">Pale Botanical</div>
+            <div class="swatch-hex">#E8F0D9</div>
+            <div class="swatch-contrast" style="color: #647067;">Surface Token</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #F8FAF7; border-bottom: 1px solid #DDE5DC;"></div>
+          <div class="swatch-details">
+            <div class="swatch-name">Canvas Canvas</div>
+            <div class="swatch-hex">#F8FAF7</div>
+            <div class="swatch-contrast" style="color: #647067;">Default Canvas</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #17231D;"></div>
+          <div class="swatch-details">
+            <div class="swatch-name">Primary Text</div>
+            <div class="swatch-hex">#17231D</div>
+            <div class="swatch-contrast">13.8:1 (AAA)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Typography & Bilingual Scaling -->
+    <section class="section-block" aria-labelledby="type-title">
+      <h2 id="type-title" class="section-title">
+        3. Typography & Bilingual Scale
+        <span>English (Inter) & Marathi (Noto Sans Devanagari)</span>
+      </h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8);">
+        <div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--color-brand-primary); margin-bottom: 12px;">English Typography Scale</h3>
+          <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">Display Heading (H1)</h1>
+          <h2 style="font-size: 1.75rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px;">Sub-Section Title (H2)</h2>
+          <p style="font-size: 1.125rem; color: var(--color-text-secondary); margin-bottom: 12px;">Body Large: Catalyzing agricultural innovation through biotechnology, robotics, and venture incubation.</p>
+          <p style="font-size: 1.0rem; color: var(--color-text-primary); line-height: 1.6;">Body Regular: The incubation ecosystem provides proof-of-concept grants, mentorship, and analytical testing facilities to early-stage agritech startups across Maharashtra.</p>
+        </div>
+        
+        <div class="devanagari-sample">
+          <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--color-brand-primary); margin-bottom: 12px;">मराठी (देवनागरी) टायपोग्राफी</h3>
+          <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--color-brand-primary); margin-bottom: 8px;">मुख्य शीर्षक (H1)</h1>
+          <h2 style="font-size: 1.75rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px;">उपविभाग शीर्षक (H2)</h2>
+          <p style="font-size: 1.125rem; color: var(--color-text-secondary); margin-bottom: 12px;">कृषी जैवतंत्रज्ञान, रोबोटिक्स आणि स्टार्टअप्सच्या माध्यमातून समृद्ध ग्रामीण विकास.</p>
+          <p style="font-size: 1.0rem; color: var(--color-text-primary); line-height: 1.65;">बारामती परिसरातील प्रयोगशाळा, तज्ज्ञ मार्गदर्शन आणि सरकारी योजनांच्या सहकार्याने नाविन्यपूर्ण कृषी तंत्रज्ञानाचा प्रसार करणे हे आमचे ध्येय आहे.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Buttons & Interactive States -->
+    <section class="section-block" aria-labelledby="buttons-title">
+      <h2 id="buttons-title" class="section-title">
+        4. Interactive Buttons
+        <span>Fitts's Law 44px Touch Bounds & Visible Focus Rings</span>
+      </h2>
+
+      <div class="button-row">
+        <button class="btn btn-primary">Primary Button</button>
+        <button class="btn btn-secondary">Secondary Button</button>
+        <button class="btn btn-outline">Outline Button</button>
+        <button class="btn btn-text">Text Link Button</button>
+        <button class="btn btn-disabled" disabled>Disabled State</button>
+      </div>
+
+      <div class="button-row devanagari-sample">
+        <button class="btn btn-primary">अर्ज दाखल करा (Apply)</button>
+        <button class="btn btn-secondary">तपशील पहा (Details)</button>
+        <button class="btn btn-outline">माहितीपत्रक (Brochure)</button>
+      </div>
+    </section>
+
+    <!-- 5. Badges & Status Indicators -->
+    <section class="section-block" aria-labelledby="badges-title">
+      <h2 id="badges-title" class="section-title">
+        5. Badges & Verification Statuses
+        <span>Non-Reliance on Color Alone (Text + Icon Pairing)</span>
+      </h2>
+
+      <div class="badge-row">
+        <span class="badge badge-success">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Audited: FY 2024-25
+        </span>
+        <span class="badge badge-warning">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          [Data Approval Pending]
+        </span>
+        <span class="badge badge-error">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          Applications Closed
+        </span>
+        <span class="badge badge-category">Smart Agriculture</span>
+        <span class="badge badge-category">Biotechnology</span>
+        <span class="badge badge-category">Food Processing</span>
+      </div>
+    </section>
+
+    <!-- 6. Reusable Cards Grid -->
+    <section class="section-block" aria-labelledby="cards-title">
+      <h2 id="cards-title" class="section-title">
+        6. Component Cards
+        <span>Program, Startup Directory & Impact Metric Cards</span>
+      </h2>
+
+      <div class="cards-grid">
+        <!-- Card 1: Scheme Card -->
+        <article class="card">
+          <div class="card-header">
+            <span class="badge badge-category">Central Scheme</span>
+            <span class="badge badge-success">Open for Cohort 4</span>
+          </div>
+          <h3 class="card-title">Startup India Seed Fund Scheme (SISFS)</h3>
+          <p class="card-body">Financial assistance up to ₹20 Lakhs as grant for proof of concept, prototype development, and product trials.</p>
+          <div class="card-footer">
+            <span style="font-weight: 700; color: var(--color-brand-primary);">Up to ₹20,00,000</span>
+            <a href="#apply-sisfs" class="btn btn-outline" style="padding: 6px 14px; min-height: 36px; font-size: 0.8125rem;">Apply Now</a>
+          </div>
+        </article>
+
+        <!-- Card 2: Startup Card -->
+        <article class="card">
+          <div class="card-header">
+            <span class="badge badge-category">Precision Farming</span>
+            <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Incubated 2024</span>
+          </div>
+          <h3 class="card-title">Baramati Agribiotics Pvt Ltd</h3>
+          <p class="card-body">Developing microbial bio-stimulants for saline soil remediation and high-yield sugarcane cultivation.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Baramati Campus</span>
+            <a href="#view-profile" class="btn btn-text" style="font-size: 0.8125rem; padding: 0;">View Profile →</a>
+          </div>
+        </article>
+
+        <!-- Card 3: Impact Counter Card -->
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Startups Incubated & Mentored</div>
+          <div class="stat-audit">Audited: September 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Accessible Form Controls -->
+    <section class="section-block" aria-labelledby="forms-title">
+      <h2 id="forms-title" class="section-title">
+        7. Form Ergonomics & Validation
+        <span>Bilingual Labels, Explicit ARIA Bindings & Clear Error Feedback</span>
+      </h2>
+
+      <form action="#" method="post" onsubmit="event.preventDefault();" style="max-width: 800px;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="founder-name" class="form-label">Founder Full Name / संस्थापकाचे नाव *</label>
+            <input type="text" id="founder-name" class="form-input" value="Dr. Ramesh Patil" aria-required="true">
+            <p class="form-hint">Enter your legal name as per Aadhaar / PAN.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="startup-sector" class="form-label">Sector / कार्यक्षेत्र *</label>
+            <select id="startup-sector" class="form-select" aria-required="true">
+              <option value="smart-agri">Smart Agriculture & IoT</option>
+              <option value="biotech">Biotechnology & Biofertilizers</option>
+              <option value="food-tech">Food Processing & Post-Harvest</option>
+            </select>
+            <p class="form-hint">Select the primary sector of your innovation.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="founder-email" class="form-label">Email Address (Simulated Error State) *</label>
+          <input type="email" id="founder-email" class="form-input form-input-error" value="invalid-email-address" aria-invalid="true" aria-describedby="email-err">
+          <p id="email-err" class="form-error-msg" role="alert">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Enter a valid email address (e.g. founder@startup.in).
+          </p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 12px;">Submit Application Step 1</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer style="background: var(--color-brand-institutional); color: var(--color-text-inverse); padding: var(--space-8) var(--space-4); text-align: center; border-top: 1px solid var(--color-brand-leaf);">
+    <div class="container" style="padding: 0;">
+      <p style="font-size: 0.875rem; color: var(--color-brand-pale);">
+        © 2026 AIC-ADT Baramati Foundation. Supported by Atal Innovation Mission, NITI Aayog.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

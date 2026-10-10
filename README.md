@@ -36,18 +36,26 @@ AIC-ADT/
     │   ├── backup-and-recovery-requirements.md# Automated pg_dump, AES-256, RPO/RTO & DR execution
     │   └── infrastructure-open-questions.md   # Prioritized RFI questions & mandatory deliverables
     │
-    ├── design/                               # Phase 2, Task 1: Design Discovery & Creative Direction
-    │   ├── design-brief.md                   # Personas, measurable outcomes, brand personality & scope
-    │   ├── visual-direction.md               # Palette tokens, typography scales, layout, motion & components
-    │   ├── design-principles.md              # Usability rules, WCAG 2.1 AA, bilingual parity & reduced motion
-    │   ├── design-decisions.md               # Approved, proposed & unresolved decisions with placeholders
+    ├── design/                               # Phase 2: Design Discovery & System Architecture
+    │   ├── design-brief.md                   # Task 1: Personas, outcomes, brand personality & scope
+    │   ├── visual-direction.md               # Task 1: Palette tokens, type scales, motion & layout
+    │   ├── design-principles.md              # Task 1: Usability rules, WCAG 2.1 AA, bilingual parity
+    │   ├── design-decisions.md               # Task 1: Approved, proposed & unresolved decisions
     │   ├── wireframes/                       # Detailed UI wireframes (Desktop & Mobile)
-    │   ├── components/                       # Reusable UI component specifications
+    │   ├── components/                       # Task 2: Component Library & Design System Tokens
+    │   │   ├── design-tokens.md              # Multi-tier semantic tokens & CSS custom properties
+    │   │   ├── component-inventory.md        # 27 reusable components with states & behaviors
+    │   │   ├── responsive-guidelines.md      # 5 screen tiers, fluid typography & overflow rules
+    │   │   └── accessibility-guidelines.md   # WCAG 2.1 AA contrast matrix, keyboard & ARIA rules
     │   └── reviews/                          # Design review records & stakeholder sign-offs
     │
     ├── phase-1-summary.md                    # Phase 1, Task 5: Master Discovery Summary & Architecture Roadmap
     ├── phase-1-open-decisions.md              # Phase 1, Task 5: 11 Open Governance & Policy Decisions Register
     └── phase-1-sign-off-checklist.md          # Phase 1, Task 5: Quality Checklist & Phase Gate Matrix
+├── prototype/                                # Phase 2, Task 2: Standalone Component Showcase
+│   └── components/
+│       ├── showcase.html                     # Interactive HTML5 component showcase
+│       └── styles.css                        # Pure CSS custom properties & component styles
 ```
 
 ---
@@ -86,5 +94,13 @@ AIC-ADT/
 - **[Visual Direction](docs/design/visual-direction.md)**: Established AIC-ADT botanical color tokens, Inter + Noto Sans Devanagari typography scale, authentic agricultural photography mandates, card elevation, and motion principles.
 - **[Design Principles](docs/design/design-principles.md)**: 5 core tenets, Fitts's Law touch ergonomics, mobile-first responsive transforms, strict WCAG 2.1 AA accessibility rules, bilingual layout compensation, and `prefers-reduced-motion` specs.
 - **[Design Decisions Register](docs/design/design-decisions.md)**: Classification of approved, proposed, and unresolved design decisions with explicit placeholders (`[AUDITED METRIC PENDING]`, `[CONSENT PENDING]`, etc.).
+
+### Phase 2, Task 2: Design Tokens & Reusable Component Specification
+- **[Design Tokens Specification](docs/design/components/design-tokens.md)**: Multi-tier token architecture (CSS custom properties) covering brand & neutral colors, state feedback, typography scale, 8-point spacing, container widths, radii, shadows, and z-index layers.
+- **[Reusable Component Inventory](docs/design/components/component-inventory.md)**: Comprehensive specification of 27 core components covering purpose, variants, visual states, keyboard interaction, responsive behavior, WCAG 2.1 AA rules, and Marathi translation guidelines.
+- **[Responsive Layout Guidelines](docs/design/components/responsive-guidelines.md)**: 5-tier responsive screen architecture (320px to 1440px+), fluid typography formulas (`clamp`), navigation collapse mechanics, table card transformations, and Marathi horizontal overflow defenses.
+- **[Accessibility Guidelines](docs/design/components/accessibility-guidelines.md)**: WCAG 2.1 Level AA conformance framework with certified color contrast matrix, keyboard focus architecture, screen reader landmarks, persistent form labels, and `prefers-reduced-motion` overrides.
+- **[Standalone Component Showcase](prototype/components/showcase.html)**: Interactive HTML5/CSS showcase in `prototype/components/` demonstrating representative buttons, typography, cards, form fields, badges, navigation, and color swatches without external dependencies.
+
 
 

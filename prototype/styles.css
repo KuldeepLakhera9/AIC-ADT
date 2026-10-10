@@ -17,7 +17,7 @@
   --color-neutral-surface: #FFFFFF;
   --color-text-primary: #17231D;
   --color-text-secondary: #647067;
-  --color-text-muted: #8C9790;
+  --color-text-muted: #59665D;
   --color-text-inverse: #FFFFFF;
   --color-border-default: #DDE5DC;
   --color-border-subtle: #EAEFE8;
@@ -551,13 +551,13 @@ body {
 /* Cards & Grid Systems */
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: var(--space-6);
 }
 
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
   gap: var(--space-6);
 }
 
@@ -805,6 +805,13 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .responsive-split-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-6) !important;
+  }
+}
+
 @media (max-width: 640px) {
   .utility-strip .utility-text {
     display: none;
@@ -818,6 +825,34 @@ body {
   .hero-actions .btn {
     width: 100%;
   }
+  .modal-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .proto-pills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    width: 100%;
+  }
+  .hero-title {
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+}
+
+/* Responsive Table Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ==========================================================================

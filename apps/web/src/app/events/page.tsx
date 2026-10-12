@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { EVENTS_DATA } from "@/data/events";
+import { getPublicEvents } from "@/lib/api/public-content";
 import { EventFilterClient } from "@/components/events/EventFilterClient";
 
 export const metadata: Metadata = {
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     "Explore upcoming hands-on agritech workshops, cohort application deadlines, living-lab demonstrations, and concluded training archives at AIC-ADT Baramati Foundation.",
 };
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const events = await getPublicEvents('en');
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Events & Workshops", href: "/events" },
@@ -64,7 +65,7 @@ export default function EventsPage() {
 
         {/* Interactive Event Filter Component */}
         <section aria-label="Events Directory">
-          <EventFilterClient initialEvents={EVENTS_DATA} defaultStatus="All" />
+          <EventFilterClient initialEvents={events} defaultStatus="All" />
         </section>
 
         {/* Advisory / Policy Note */}

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { EVENTS_DATA } from "@/data/events";
+import { getPublicEventBySlug } from "@/lib/api/public-content";
 
 interface EventDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -20,7 +21,7 @@ export async function generateMetadata({
   params,
 }: EventDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const event = EVENTS_DATA.find((e) => e.slug === slug);
+  const event = await getPublicEventBySlug(slug, 'en');
 
   if (!event) {
     return {
@@ -38,7 +39,7 @@ export default async function EventDetailPage({
   params,
 }: EventDetailPageProps) {
   const { slug } = await params;
-  const event = EVENTS_DATA.find((e) => e.slug === slug);
+  const event = await getPublicEventBySlug(slug, 'en');
 
   if (!event) {
     notFound();

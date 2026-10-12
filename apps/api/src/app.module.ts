@@ -11,6 +11,7 @@ import { DashboardModule } from './dashboard/dashboard.module.js';
 import { ContentModule } from './content/content.module.js';
 import { MediaModule } from './media/media.module.js';
 import { WorkflowModule } from './workflow/workflow.module.js';
+import { PublicModule } from './public/public.module.js';
 import { validateEnvironment } from './config/env.validation.js';
 import { appConfig } from './config/configuration.js';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware.js';
@@ -40,6 +41,7 @@ import { CorrelationIdMiddleware } from './common/middleware/correlation-id.midd
     ContentModule,
     MediaModule,
     WorkflowModule,
+    PublicModule,
   ],
   controllers: [AppController],
   providers: [

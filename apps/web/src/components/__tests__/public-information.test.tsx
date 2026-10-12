@@ -43,8 +43,8 @@ describe("Phase 4 — Task 6: Public Information, Events, Reports & Contact QA S
   /* 1. Events Pillar Tests                                                     */
   /* -------------------------------------------------------------------------- */
   describe("Events & Masterclasses", () => {
-    it("renders events overview page with header, breadcrumbs, and filter client", () => {
-      const html = renderToStaticMarkup(<EventsPage />);
+    it("renders events overview page with header, breadcrumbs, and filter client", async () => {
+      const html = renderToStaticMarkup(await EventsPage());
       expect(html).toContain("Workshops, Demo Days &amp; Intake Deadlines");
       expect(html).toContain("Ecosystem Calendar");
       expect(html).toContain('href="/events/past"');
@@ -164,8 +164,8 @@ describe("Phase 4 — Task 6: Public Information, Events, Reports & Contact QA S
   /* 3. News & Announcements Tests                                              */
   /* -------------------------------------------------------------------------- */
   describe("News & Press Releases", () => {
-    it("renders NewsPage with releases listing and media inquiry protocol", () => {
-      const html = renderToStaticMarkup(<NewsPage />);
+    it("renders NewsPage with releases listing and media inquiry protocol", async () => {
+      const html = renderToStaticMarkup(await NewsPage());
       expect(html).toContain("News &amp; Official Announcements");
       expect(html).toContain("Official Communications Cell");
       expect(html).toContain("Media &amp; Press Inquiry Protocol");

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { NEWS_ARTICLES } from "@/data/news";
+import { getPublishedNewsBySlug } from "@/lib/api/public-content";
 
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -20,7 +21,7 @@ export async function generateMetadata({
   params,
 }: NewsDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = NEWS_ARTICLES.find((a) => a.slug === slug);
+  const article = await getPublishedNewsBySlug(slug, 'en');
 
   if (!article) {
     return {
@@ -36,7 +37,7 @@ export async function generateMetadata({
 
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { slug } = await params;
-  const article = NEWS_ARTICLES.find((a) => a.slug === slug);
+  const article = await getPublishedNewsBySlug(slug, 'en');
 
   if (!article) {
     notFound();

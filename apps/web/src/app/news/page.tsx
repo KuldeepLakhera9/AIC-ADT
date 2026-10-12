@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { NEWS_ARTICLES } from "@/data/news";
+import { getPublishedNews } from "@/lib/api/public-content";
 import { NewsFilterClient } from "@/components/news/NewsFilterClient";
 
 export const metadata: Metadata = {
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     "Official press releases, funding milestones, infrastructure commissioning, and ecosystem partnership announcements from AIC-ADT Baramati Foundation.",
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const articles = await getPublishedNews('en');
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "News & Announcements", href: "/news" },
@@ -61,7 +62,7 @@ export default function NewsPage() {
 
         {/* Interactive News Listing Filter */}
         <section aria-label="Official Releases Listing">
-          <NewsFilterClient initialArticles={NEWS_ARTICLES} />
+          <NewsFilterClient initialArticles={articles} />
         </section>
 
         {/* Media Inquiries Callout */}

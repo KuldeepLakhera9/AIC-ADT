@@ -315,6 +315,12 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
             href: "/resources/policies-downloads",
             description: "Governance policies, RTI contact, POSH & media kit",
           },
+          {
+            title: "News & Media Releases",
+            href: "/news",
+            description:
+              "Institutional announcements, funding calls & milestones",
+          },
         ],
       },
     ],

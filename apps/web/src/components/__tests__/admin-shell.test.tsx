@@ -75,8 +75,8 @@ describe("Administrative CMS Console Pages & Layout Verification", () => {
   it("renders Media Library page with asset upload control", () => {
     const html = renderToStaticMarkup(<AdminMediaPage />);
     expect(html).toContain("Media &amp; Asset Repository");
-    expect(html).toContain("Media Library Empty");
     expect(html).toContain("Upload Media File");
+    expect(html).toContain("Filter by media type");
   });
 
   it("renders Users and RBAC page with invitation trigger", () => {

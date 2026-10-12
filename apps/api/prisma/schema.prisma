@@ -58,6 +58,7 @@ model User {
   sessions       Session[]
   authoredNews   NewsArticle[] @relation("AuthoredNews")
   authoredEvents Event[]       @relation("AuthoredEvents")
+  uploadedMedia  MediaAsset[]  @relation("UploadedMedia")
 
   @@index([role], name: "idx_users_role")
   @@index([status], name: "idx_users_status")
@@ -261,3 +262,74 @@ model EventTranslation {
   @@index([locale, status], name: "idx_event_translations_locale_status")
   @@map("event_translations")
 }
+
+// ------------------------------------------------------------------------------
+// MEDIA MANAGEMENT & STORAGE ASSET MODELS
+// ------------------------------------------------------------------------------
+
+enum MediaVisibility {
+  PUBLIC
+  PRIVATE
+  ARCHIVED
+}
+
+enum MediaType {
+  IMAGE
+  DOCUMENT
+  VIDEO
+  OTHER
+}
+
+enum DocumentType {
+  ANNUAL_REPORT
+  FINANCIAL_AUDIT
+  POLICY_REGULATION
+  PITCH_DECK
+  EVENT_BROCHURE
+  OTHER
+}
+
+/// Managed Media Assets, Photographic Records, and Official PDFs
+model MediaAsset {
+  id              String          @id @default(uuid()) @db.Uuid
+  originalName    String          @map("original_name") @db.VarChar(255)
+  storageKey      String          @unique @map("storage_key") @db.VarChar(500)
+  storagePath     String          @map("storage_path") @db.VarChar(500)
+  publicUrl       String?         @map("public_url") @db.VarChar(500)
+  mimeType        String          @map("mime_type") @db.VarChar(100)
+  fileSizeBytes   Int             @map("file_size_bytes")
+  fileExtension   String          @map("file_extension") @db.VarChar(20)
+  checksumSha256  String          @map("checksum_sha256") @db.VarChar(64)
+  mediaType       MediaType       @default(IMAGE) @map("media_type")
+  visibility      MediaVisibility @default(PUBLIC)
+
+  // Image-specific metadata
+  width           Int?
+  height          Int?
+  altTextEn       String?         @map("alt_text_en") @db.VarChar(255)
+  altTextMr       String?         @map("alt_text_mr") @db.VarChar(255)
+  caption         String?         @db.VarChar(500)
+  attribution     String?         @db.VarChar(255)
+
+  // Document-specific metadata
+  documentType    DocumentType?   @map("document_type")
+  reportingPeriod String?         @map("reporting_period") @db.VarChar(50)
+  isStatutory     Boolean         @default(false) @map("is_statutory")
+
+  // Association and Governance
+  usageCount      Int             @default(0) @map("usage_count")
+  uploaderId      String?         @map("uploader_id") @db.Uuid
+  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relationships
+  uploader        User?           @relation("UploadedMedia", fields: [uploaderId], references: [id], onDelete: SetNull)
+
+  @@index([mediaType], name: "idx_media_assets_type")
+  @@index([visibility], name: "idx_media_assets_visibility")
+  @@index([documentType], name: "idx_media_assets_doc_type")
+  @@index([uploaderId], name: "idx_media_assets_uploader_id")
+  @@index([createdAt(sort: Desc)], name: "idx_media_assets_created_at")
+  @@map("media_assets")
+}
+

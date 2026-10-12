@@ -16,6 +16,7 @@ export enum Permission {
   CONTENT_ARCHIVE = 'content.archive',
   MEDIA_READ = 'media.read',
   MEDIA_UPLOAD = 'media.upload',
+  MEDIA_UPDATE = 'media.update',
   MEDIA_DELETE = 'media.delete',
   USERS_READ = 'users.read',
   USERS_MANAGE = 'users.manage',
@@ -39,6 +40,7 @@ export const ROLE_PERMISSIONS: Record<Role, readonly Permission[]> = {
     Permission.CONTENT_SUBMIT_REVIEW,
     Permission.MEDIA_READ,
     Permission.MEDIA_UPLOAD,
+    Permission.MEDIA_UPDATE,
     Permission.AUDIT_READ,
   ],
 
@@ -50,6 +52,7 @@ export const ROLE_PERMISSIONS: Record<Role, readonly Permission[]> = {
     Permission.CONTENT_PUBLISH,
     Permission.CONTENT_ARCHIVE,
     Permission.MEDIA_READ,
+    Permission.MEDIA_UPDATE,
     Permission.AUDIT_READ,
   ],
 
@@ -61,6 +64,7 @@ export const ROLE_PERMISSIONS: Record<Role, readonly Permission[]> = {
     Permission.CONTENT_SUBMIT_REVIEW,
     Permission.MEDIA_READ,
     Permission.MEDIA_UPLOAD,
+    Permission.MEDIA_UPDATE,
   ],
 
   [Role.IMPACT_MANAGER]: [

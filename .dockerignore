@@ -1,0 +1,54 @@
+# ==============================================================================
+# AIC-ADT Baramati Foundation — Root Dockerignore
+# Excludes development artifacts, version control, and secrets from Docker contexts
+# ==============================================================================
+
+# Version Control & IDE
+.git
+.gitignore
+.editorconfig
+.idea
+.vscode
+.DS_Store
+
+# Documentation & Prototype Mockups (Not required inside app container runtime)
+docs
+prototype
+README.md
+
+# Monorepo Build Artifacts & Caches
+node_modules
+**/node_modules
+.pnpm-store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Next.js Build Output & Caches
+apps/web/.next
+apps/web/out
+apps/web/tsconfig.tsbuildinfo
+
+# NestJS Build Output & Caches
+apps/api/dist
+apps/api/tsconfig.build.tsbuildinfo
+
+# Environment & Sensitive Files (Security Baseline: Never bake secrets into images)
+.env*
+!.env.example
+apps/api/.env*
+!apps/api/.env.example
+apps/web/.env*
+!apps/web/.env.example
+
+# Local Storage & Database Dumps
+storage
+*.sql
+*.dump
+*.tar.gz
+*.zip
+
+# Test & Coverage Reports
+coverage
+test-results

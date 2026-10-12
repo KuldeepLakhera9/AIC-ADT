@@ -29,7 +29,10 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
       return;
     }
 
-    this.logger.log('DatabaseService initialized with Prisma.', 'DatabaseService');
+    this.logger.log(
+      'DatabaseService initialized with Prisma.',
+      'DatabaseService',
+    );
   }
 
   async onModuleDestroy(): Promise<void> {
@@ -65,7 +68,10 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
       const errorMessage =
         err instanceof Error ? err.message : 'Unknown database ping error';
       // Sanitize potential connection string / credential leakage in error message
-      const sanitized = errorMessage.replace(/(:\/\/[^:]+:)[^@]+(@)/, '$1***$2');
+      const sanitized = errorMessage.replace(
+        /(:\/\/[^:]+:)[^@]+(@)/,
+        '$1***$2',
+      );
       this.logger.warn(
         `Database health ping failed (${latencyMs}ms): ${sanitized}`,
         'DatabaseService',

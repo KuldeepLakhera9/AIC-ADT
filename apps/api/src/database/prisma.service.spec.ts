@@ -28,7 +28,9 @@ describe('PrismaService', () => {
 
   describe('Lifecycle & Connection Management', () => {
     it('should connect successfully during onModuleInit', async () => {
-      const connectSpy = vi.spyOn(prismaService, '$connect').mockResolvedValue();
+      const connectSpy = vi
+        .spyOn(prismaService, '$connect')
+        .mockResolvedValue();
 
       await prismaService.onModuleInit();
       expect(prismaService.connected).toBe(true);
@@ -37,7 +39,9 @@ describe('PrismaService', () => {
 
     it('should handle connection failure gracefully and sanitize credentials in error log', async () => {
       vi.spyOn(prismaService, '$connect').mockRejectedValue(
-        new Error('FATAL: password authentication failed for user "aic_app" at postgresql://aic_app:supersecretpassword@127.0.0.1:5432/aic_adt_db'),
+        new Error(
+          'FATAL: password authentication failed for user "aic_app" at postgresql://aic_app:supersecretpassword@127.0.0.1:5432/aic_adt_db',
+        ),
       );
 
       await prismaService.onModuleInit();
@@ -45,8 +49,12 @@ describe('PrismaService', () => {
     });
 
     it('should handle absent DATABASE_URL gracefully during onModuleInit', async () => {
-      (mockConfigService.get as ReturnType<typeof vi.fn>).mockReturnValue(undefined);
-      const disconnectedService = new PrismaService(mockConfigService as ConfigService);
+      (mockConfigService.get as ReturnType<typeof vi.fn>).mockReturnValue(
+        undefined,
+      );
+      const disconnectedService = new PrismaService(
+        mockConfigService as ConfigService,
+      );
       const connectSpy = vi.spyOn(disconnectedService, '$connect');
 
       await disconnectedService.onModuleInit();
@@ -55,7 +63,9 @@ describe('PrismaService', () => {
     });
 
     it('should disconnect cleanly during onModuleDestroy', async () => {
-      const disconnectSpy = vi.spyOn(prismaService, '$disconnect').mockResolvedValue();
+      const disconnectSpy = vi
+        .spyOn(prismaService, '$disconnect')
+        .mockResolvedValue();
 
       await prismaService.onModuleDestroy();
       expect(prismaService.connected).toBe(false);
@@ -63,7 +73,9 @@ describe('PrismaService', () => {
     });
 
     it('should handle disconnect error gracefully during onModuleDestroy', async () => {
-      vi.spyOn(prismaService, '$disconnect').mockRejectedValue(new Error('Socket hung up'));
+      vi.spyOn(prismaService, '$disconnect').mockRejectedValue(
+        new Error('Socket hung up'),
+      );
 
       await expect(prismaService.onModuleDestroy()).resolves.toBeUndefined();
       expect(prismaService.connected).toBe(false);
@@ -75,10 +87,9 @@ describe('PrismaService', () => {
       const mockResult = { success: true };
       const transactionSpy = vi
         .spyOn(prismaService, '$transaction')
-        // @ts-expect-error mock callback
-        .mockImplementation(async (callback: (tx: unknown) => Promise<unknown>) => {
+        .mockImplementation((async (callback: any) => {
           return callback({});
-        });
+        }) as any);
 
       const result = await prismaService.withTransaction(
         async () => {

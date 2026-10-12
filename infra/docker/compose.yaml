@@ -1,0 +1,152 @@
+# ==============================================================================
+# AIC-ADT Baramati Foundation — Canonical Local Development Docker Compose
+# Phase 3: Reproducible Containerized Development Environment
+# 
+# Supported Execution Workflows:
+#   1. Hybrid Mode (Default/Recommended):
+#      Runs PostgreSQL in container, while Next.js & NestJS run on host for instant HMR.
+#      Command: docker compose -f infra/docker/compose.yaml up -d postgres
+#
+#   2. Full Containerized Mode:
+#      Runs PostgreSQL, NestJS API, and Next.js Web entirely in Docker.
+#      Command: docker compose -f infra/docker/compose.yaml --profile full up -d
+# ==============================================================================
+
+name: aic-adt
+
+services:
+  # ----------------------------------------------------------------------------
+  # PostgreSQL 16 Database
+  # ----------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: aic-adt-postgres
+    restart: unless-stopped
+    environment:
+      # Superuser credentials used solely during initial bootstrap and DB creation
+      POSTGRES_USER: ${POSTGRES_ADMIN_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-postgres_local_dev_password}
+      POSTGRES_DB: ${POSTGRES_ADMIN_DB:-postgres}
+      # Dedicated application database and non-superuser role (Least Privilege)
+      APP_DB_NAME: ${APP_DB_NAME:-aic_adt_db}
+      APP_DB_USER: ${APP_DB_USER:-aic_app}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:-aic_app_dev_password}
+      APP_DB_SHADOW_NAME: ${APP_DB_SHADOW_NAME:-aic_adt_shadow_db}
+    ports:
+      # CRITICAL: Bound strictly to 127.0.0.1 (loopback) to prevent WAN/LAN exposure
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init-user-db.sh:/docker-entrypoint-initdb.d/01-init-user-db.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_ADMIN_USER:-postgres} -d ${POSTGRES_ADMIN_DB:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - aic-network
+
+  # ----------------------------------------------------------------------------
+  # NestJS Modular Monolith API Engine
+  # Activated via profile: full or apps
+  # ----------------------------------------------------------------------------
+  api:
+    container_name: aic-adt-api
+    restart: unless-stopped
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile.api
+      target: dev
+    profiles:
+      - full
+      - apps
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      API_PREFIX: api/v1
+      CORS_ORIGIN: http://localhost:3000
+      # Container-to-container communication: Uses service hostname 'postgres', NOT 'localhost'
+      DATABASE_URL: postgresql://${APP_DB_USER:-aic_app}:${APP_DB_PASSWORD:-aic_app_dev_password}@postgres:5432/${APP_DB_NAME:-aic_adt_db}?schema=public
+      SHADOW_DATABASE_URL: postgresql://${APP_DB_USER:-aic_app}:${APP_DB_PASSWORD:-aic_app_dev_password}@postgres:5432/${APP_DB_SHADOW_NAME:-aic_adt_shadow_db}?schema=public
+      LOG_LEVEL: ${LOG_LEVEL:-log}
+      BODY_LIMIT: 1mb
+      THROTTLE_TTL: 60
+      THROTTLE_LIMIT: 100
+    ports:
+      # Bound strictly to loopback interface
+      - "127.0.0.1:4000:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      # Mount source files for instant watch mode reload
+      - ../../apps/api/src:/app/apps/api/src
+      - ../../apps/api/prisma:/app/apps/api/prisma
+      # Anonymous volume to protect container build artifacts from host override
+      - /app/apps/api/dist
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:4000/api/v1/health/liveness || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - aic-network
+
+  # ----------------------------------------------------------------------------
+  # Next.js App Router Web Frontend
+  # Activated via profile: full or apps
+  # ----------------------------------------------------------------------------
+  web:
+    container_name: aic-adt-web
+    restart: unless-stopped
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile.web
+      target: dev
+    profiles:
+      - full
+      - apps
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      HOSTNAME: "0.0.0.0"
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      NEXT_PUBLIC_API_URL: http://localhost:4000/api/v1
+      NEXT_PUBLIC_DEFAULT_LOCALE: en
+    ports:
+      # Bound strictly to loopback interface
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      # Mount source files and public assets for Turbopack HMR
+      - ../../apps/web/src:/app/apps/web/src
+      - ../../apps/web/public:/app/apps/web/public
+      # Anonymous volume to protect Next.js cache from host clobbering
+      - /app/apps/web/.next
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    networks:
+      - aic-network
+
+# ------------------------------------------------------------------------------
+# Dedicated Internal Bridge Network
+# ------------------------------------------------------------------------------
+networks:
+  aic-network:
+    name: aic-adt-dev-network
+    driver: bridge
+
+# ------------------------------------------------------------------------------
+# Persistent Volume Storage
+# ------------------------------------------------------------------------------
+volumes:
+  postgres_data:
+    name: aic-adt-postgres-data

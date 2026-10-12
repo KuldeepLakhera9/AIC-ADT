@@ -1,0 +1,64 @@
+name: Engineering Quality Gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    name: Lint, Test & Build Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.16.0
+          run_install: false
+
+      - name: Setup Node.js 22 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install workspace dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify code style & formatting
+        run: pnpm format:check
+
+      - name: Run static analysis & linting
+        run: pnpm lint
+
+      - name: Run TypeScript typecheck
+        run: pnpm typecheck
+
+      - name: Validate Prisma schema & generate client
+        run: |
+          pnpm --filter @aic/api prisma:validate
+          pnpm --filter @aic/api prisma:generate
+
+      - name: Validate Docker Compose configurations
+        run: |
+          docker compose -f infra/docker/compose.yaml config > /dev/null
+          docker compose -f infra/docker/compose.yaml --profile full config > /dev/null
+          docker compose config > /dev/null
+
+      - name: Execute unit test suites (Next.js & NestJS)
+        run: pnpm test
+
+      - name: Execute API e2e integration test suite
+        run: pnpm test:e2e
+
+      - name: Execute production application builds
+        run: pnpm build

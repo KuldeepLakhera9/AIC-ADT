@@ -1,0 +1,12 @@
+# ==============================================================================
+# AIC-ADT Baramati Foundation — Web .dockerignore
+# ==============================================================================
+
+node_modules
+.next
+out
+.env*
+!.env.example
+*.log
+coverage
+tsconfig.tsbuildinfo

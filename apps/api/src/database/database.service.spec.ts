@@ -39,7 +39,9 @@ describe('DatabaseService', () => {
     });
 
     it('should warn and handle missing DATABASE_URL gracefully during init', async () => {
-      (mockConfigService.get as ReturnType<typeof vi.fn>).mockReturnValue(undefined);
+      (mockConfigService.get as ReturnType<typeof vi.fn>).mockReturnValue(
+        undefined,
+      );
       await expect(databaseService.onModuleInit()).resolves.toBeUndefined();
     });
 
@@ -58,8 +60,12 @@ describe('DatabaseService', () => {
     });
 
     it('should handle database ping failure safely and sanitize credentials', async () => {
-      (mockPrismaService.$queryRaw as ReturnType<typeof vi.fn>).mockRejectedValue(
-        new Error('Connection terminated: postgresql://aic_app:supersecretpass@127.0.0.1:5432/aic_adt_db failed'),
+      (
+        mockPrismaService.$queryRaw as ReturnType<typeof vi.fn>
+      ).mockRejectedValue(
+        new Error(
+          'Connection terminated: postgresql://aic_app:supersecretpass@127.0.0.1:5432/aic_adt_db failed',
+        ),
       );
 
       const result = await databaseService.ping();
@@ -72,7 +78,9 @@ describe('DatabaseService', () => {
     });
 
     it('should return bypassed status if DATABASE_URL is not set', async () => {
-      (mockConfigService.get as ReturnType<typeof vi.fn>).mockReturnValue(undefined);
+      (mockConfigService.get as ReturnType<typeof vi.fn>).mockReturnValue(
+        undefined,
+      );
 
       const result = await databaseService.ping();
       expect(result.status).toBe('up');

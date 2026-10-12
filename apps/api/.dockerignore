@@ -1,0 +1,14 @@
+# ==============================================================================
+# AIC-ADT Baramati Foundation — API .dockerignore
+# ==============================================================================
+
+node_modules
+dist
+.env*
+!.env.example
+*.log
+coverage
+tsconfig.build.tsbuildinfo
+vitest.config.e2e.ts
+vitest.config.ts
+test

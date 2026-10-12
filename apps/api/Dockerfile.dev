@@ -1,0 +1,44 @@
+# ==============================================================================
+# AIC-ADT Baramati Foundation — NestJS API Development Dockerfile
+# Canonical definition located at: infra/docker/Dockerfile.api
+# ==============================================================================
+
+FROM node:22-alpine AS dev
+
+# Install OpenSSL, libc compatibility, and network utilities required by Prisma & health probes
+RUN apk add --no-cache libc6-compat openssl curl wget
+
+# Enable pnpm matching the repository lockfile (v11.16.0)
+RUN corepack enable && corepack prepare pnpm@11.16.0 --activate
+
+WORKDIR /app
+
+# Copy root workspace manifests and lockfile for reproducible dependency resolution
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY apps/api/package.json ./apps/api/
+COPY apps/web/package.json ./apps/web/
+
+# Install workspace dependencies deterministically
+RUN pnpm install --frozen-lockfile
+
+# Copy Prisma schema and generate type-safe Prisma client
+COPY apps/api/prisma ./apps/api/prisma
+RUN pnpm --filter @aic/api prisma:generate
+
+# Copy backend source code and configuration
+COPY apps/api ./apps/api
+
+WORKDIR /app/apps/api
+
+# Ensure node non-root user owns the application directory
+RUN chown -R node:node /app
+
+# Switch to non-root execution (security requirement DEP-CNT-03)
+USER node
+
+EXPOSE 4000
+
+ENV NODE_ENV=development
+ENV PORT=4000
+
+CMD ["pnpm", "dev"]

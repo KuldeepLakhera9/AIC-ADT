@@ -47,4 +47,4 @@ This document provides a transparent classification of identified findings, reme
 
 ## 4. Sign-Off Readiness
 
-All **CRITICAL** and **HIGH** severity findings have been remediated, verified via automated test suites (352 passing tests), and committed to the repository. The CMS core and public integration meet all institutional security and reliability requirements.
+All **CRITICAL** and **HIGH** severity findings have been remediated, verified via automated test suites (362 passing tests), and committed to the repository. The CMS core and public integration meet all institutional security and reliability requirements.

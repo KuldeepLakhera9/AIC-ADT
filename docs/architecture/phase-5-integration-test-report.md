@@ -6,9 +6,9 @@ This report documents the automated quality and integration test outcomes for th
 
 ## 1. Executive Summary
 
-- **Total Test Suites Executed**: 46 test files
-- **Total Tests Executed**: 352 tests
-- **Passed**: 352 (100%)
+- **Total Test Suites Executed**: 47 test files
+- **Total Tests Executed**: 362 tests
+- **Passed**: 362 (100%)
 - **Failed**: 0 (0%)
 - **Test Environments**: Vitest 4.1.11, React 19.3.0, NestJS 10, Node.js v20.x, TypeScript 5.8
 
@@ -16,10 +16,10 @@ This report documents the automated quality and integration test outcomes for th
 ┌───────────────────────────┬────────────┬─────────────┬──────────────┬────────┐
 │ Workspace Package         │ Test Files │ Total Tests │ Passed Tests │ Status │
 ├───────────────────────────┼────────────┼─────────────┼──────────────┼────────┤
-│ @aic/api (NestJS CMS API) │ 29         │ 154         │ 154 (100%)   │ PASS   │
+│ @aic/api (NestJS CMS API) │ 30         │ 164         │ 164 (100%)   │ PASS   │
 │ @aic/web (Next.js CMS/Web)│ 17         │ 198         │ 198 (100%)   │ PASS   │
 ├───────────────────────────┼────────────┼─────────────┼──────────────┼────────┤
-│ Total Monorepo Suite      │ 46         │ 352         │ 352 (100%)   │ PASS   │
+│ Total Monorepo Suite      │ 47         │ 362         │ 362 (100%)   │ PASS   │
 └───────────────────────────┴────────────┴─────────────┴──────────────┴────────┘
 ```
 
@@ -31,6 +31,7 @@ This report documents the automated quality and integration test outcomes for th
 
 | Test Suite File | Tests | Key Scenarios Verified | Status |
 | :--- | :---: | :--- | :---: |
+| `src/common/e2e-workflow-lifecycle.spec.ts` | 10 | Complete 11-step editorial lifecycle (draft->submit->dual-custody approval->publish->public API->version branching->republish->audit), Marathi localization lifecycle, protected document access controls | **PASS** |
 | `src/common/security-quality.spec.ts` | 13 | SessionAuthGuard, expired sessions, disabled users, PermissionsGuard, cross-user modification, anti-self-approval, slug uniqueness, public exclusion, traversal defenses, MIME spoofing, file size limits, reference guards | **PASS** |
 | `src/workflow/workflow.service.spec.ts` | 14 | Submission, change requests, approvals, publications, unpublishing, revisions, audit trails, and review queues | **PASS** |
 | `src/media/utils/file-validator.spec.ts` | 17 | Magic bytes verification, extension allowlists, SVG sanitization, filename sanitization, SHA-256 checksums | **PASS** |

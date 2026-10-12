@@ -43,6 +43,22 @@ AIC-ADT/
     │   ├── environment-configuration.md       # Phase 3, Task 6: Secure configuration & secret management
     │   ├── security-baseline.md               # Phase 3, Task 6: Defense-in-depth, CORS, Helmet & controls
     │   ├── dependency-maintenance.md          # Phase 3, Task 6: Supply-chain hygiene & vulnerability audit
+    │   ├── docker-development-guide.md        # Phase 3, Task 7: Reproducible Docker Compose dev environment
+    │   ├── testing-strategy.md                # Phase 3, Task 8: Multi-tier automated testing strategy
+    │   ├── quality-gates.md                   # Phase 3, Task 8: 10 mandatory engineering quality gates
+    │   ├── phase-3-test-results.md            # Phase 3, Task 8: Full verification register & test execution log
+    │   ├── phase-3-completion-report.md       # Phase 3, Task 9: Full foundation verification & phase sign-off
+    │   ├── phase-3-known-issues.md            # Phase 3, Task 9: Risk register & deferred capability inventory
+    │   ├── phase-4-entry-checklist.md         # Phase 3, Task 9: Phase 4 entry gates & readiness sign-off
+    │   ├── phase-4-readiness-audit.md         # Phase 4, Task 1: Production implementation readiness audit
+    │   ├── phase-4-page-implementation-plan.md# Phase 4, Task 1: Canonical task-by-task page implementation roadmap
+    │   ├── phase-4-content-dependencies.md    # Phase 4, Task 1: Institutional facts, claims & placeholder register
+    │   ├── phase-4-blockers.md                # Phase 4, Task 1: Risk register, constraints & mitigation strategies
+    │   ├── phase-4-global-layout.md           # Phase 4, Task 2: Production shared layout, mega-menus & footer
+    │   ├── phase-4-navigation-test-results.md # Phase 4, Task 2: Navigation test suite results & responsive verification
+    │   ├── phase-4-homepage-implementation.md # Phase 4, Task 3: Production homepage architecture & sections C–K
+    │   ├── phase-4-homepage-content-register.md # Phase 4, Task 3: Evidentiary baseline & statutory filing audit
+    │   ├── phase-4-homepage-qa.md             # Phase 4, Task 3: Multi-viewport QA, heading audit & test report
     │   ├── data-center-readiness-checklist.md # Phase 1, Task 4: 47-point RFI assessment across 12 domains
     │   ├── deployment-requirements.md         # Phase 1, Task 4: Container topology, VM sizing & volumes
     │   ├── network-and-security-requirements.md# Phase 1, Task 4: DMZ VLAN, firewall ingress & SSH isolation
@@ -197,3 +213,42 @@ AIC-ADT/
 - **Enhanced `.gitignore` Rules**: Comprehensive coverage for all `.env*` variants, cryptographic keys (`*.key`, `*.pem`, `*.crt`), database dumps (`*.dump`, `*.sql.gz`), and uploaded media storage.
 - **Automated Security Verification**: 100% pass rate across 36 NestJS unit tests, 8 e2e integration tests (including CORS allowlist/denial and Helmet header verification), and 11 Next.js unit tests.
 
+### Phase 3, Task 7: Reproducible Docker Development Environment
+- **[Docker Development Environment Guide](docs/architecture/docker-development-guide.md)**: Operational guide specifying container orchestration standards, two official developer workflows (Hybrid Mode with containerized PostgreSQL + host Next.js/NestJS vs Full Containerized Mode), service topologies, least-privilege PostgreSQL provisioning, and exact lifecycle commands.
+- **Canonical Compose Configuration (`infra/docker/compose.yaml`)**: Hardened Docker Compose specification declaring `postgres` (PostgreSQL 16+ on loopback `127.0.0.1:5432:5432`), `api` (NestJS on `127.0.0.1:4000:4000` connecting to internal `postgres:5432`), and `web` (Next.js on `127.0.0.1:3000:3000`), with dedicated internal bridge network `aic-adt-dev-network` and persistent volume `aic-adt-postgres-data`.
+- **Root & Legacy Compose Pointers**: Root [`docker-compose.yml`](docker-compose.yml) and legacy [`docker/docker-compose.dev.yml`](docker/docker-compose.dev.yml) updated to seamlessly include canonical `infra/docker/compose.yaml` without configuration drift or duplication.
+- **Multi-Stage Development Dockerfiles**: [`infra/docker/Dockerfile.api`](infra/docker/Dockerfile.api) and [`infra/docker/Dockerfile.web`](infra/docker/Dockerfile.web) (mirrored in `apps/api/Dockerfile.dev` and `apps/web/Dockerfile.dev`) utilizing `node:22-alpine`, pnpm 11.16.0 frozen lockfile installation, and non-root service execution (`USER node`).
+- **Comprehensive Dockerignore Rules**: Created root [`.dockerignore`](.dockerignore), [`apps/api/.dockerignore`](apps/api/.dockerignore), and [`apps/web/.dockerignore`](apps/web/.dockerignore) preventing build caches, `.next`, `dist`, and sensitive `.env*` files from entering image layers.
+- **Synchronized PostgreSQL Initialization (`infra/docker/postgres/init-user-db.sh`)**: Hardened database bootstrapping supporting both primary application database `aic_adt_db` and development migration shadow database `aic_adt_shadow_db` with least-privilege `aic_app` permissions.
+- **Monorepo Helper Scripts (`package.json`)**: Added `pnpm docker:db:up`, `docker:db:down`, `docker:db:logs`, `docker:full:up`, `docker:full:down`, and `docker:full:build` for rapid CLI invocation.
+
+### Phase 3, Task 8: Engineering Quality Gates & Automated Testing
+- **[Testing Strategy](docs/architecture/testing-strategy.md)**: Master testing strategy detailing the multi-tier test pyramid (Static hygiene, database contracts, frontend component rendering, backend modular domain, and HTTP integration), synthetic isolation, and visual regression boundaries.
+- **[Quality Gates Specification](docs/architecture/quality-gates.md)**: Specification of the 10 mandatory engineering quality gates required for release readiness, automated pipeline mapping, and failure remediation procedures.
+- **[Phase 3 Test Results & Verification Report](docs/architecture/phase-3-test-results.md)**: Granular verification report recording 100% pass rate across all 65 automated tests (21 frontend, 36 backend unit, 8 backend e2e), 0 TypeScript errors, 0 lint warnings, and clean production builds for both `@aic/api` and `@aic/web`.
+- **Frontend Test Suite (`apps/web/src/components/__tests__/components.test.tsx`)**: Vitest test suite validating container max-width constraints, institutional Header/Footer landmarks, 44px button touch targets, semantic badges/alerts, accessible form label associations (`htmlFor`, `aria-invalid`, `aria-describedby`), and branded 404/error boundary views.
+- **Continuous Integration Pipeline (`.github/workflows/ci.yml`)**: GitHub Actions workflow running identical quality gate sequence (`pnpm verify:phase3`) with zero deployment side-effects and zero secret requirements.
+- **Quality Gate CLI Orchestration (`package.json`)**: Added `pnpm verify:phase3`, `pnpm test:all`, `pnpm test:e2e`, and `pnpm prisma:validate` for one-command test execution.
+
+### Phase 3, Task 9: Full Foundation Verification & Phase Sign-Off
+- **[Phase 3 Completion Report](docs/architecture/phase-3-completion-report.md)**: Executive architectural verification and sign-off report documenting complete repository inspection, Phase 1 & 2 deliverable preservation, 100% test pass rate, and architectural separation of concerns.
+- **[Phase 3 Known Issues & Risk Register](docs/architecture/phase-3-known-issues.md)**: Transparent risk inventory documenting operational environments (Docker daemon host status), build-time supply chain monitoring (`deepmerge-ts`), mock testing patterns, and intentional deferral of Phase 4/5 business features.
+- **[Phase 4 Entry Gate Checklist](docs/architecture/phase-4-entry-checklist.md)**: 12-point gate audit certifying production compilation, static typing, security baseline, and formal release readiness (**GATE: READY FOR PHASE 4**).
+- **Formal Sign-Off**: The AIC-ADT foundation is robust, secure, and officially approved for full feature implementation in Phase 4.
+
+### Phase 4, Task 1: Production Implementation Readiness Audit
+- **[Phase 4 Readiness Audit](docs/architecture/phase-4-readiness-audit.md)**: Master engineering readiness audit inspecting monorepo workspace, Next.js/NestJS apps, design tokens, existing UI primitives, static asset gaps, and design-code discrepancies.
+- **[Phase 4 Page Implementation Plan](docs/architecture/phase-4-page-implementation-plan.md)**: Canonical task-by-task execution roadmap detailing page components, canonical routes, bilingual mirroring (`EN` ↔ `मराठी`), responsive viewports, and acceptance criteria.
+- **[Phase 4 Content Dependencies](docs/architecture/phase-4-content-dependencies.md)**: Governance register identifying verified facts, conflicting numbers, legal compliance rules, and placeholder badging strategies.
+- **[Phase 4 Blockers & Risk Mitigations](docs/architecture/phase-4-blockers.md)**: Comprehensive blocker inventory providing actionable, non-blocking mitigations for static media staging, i18n dictionaries, and navigation stubs.
+
+### Phase 4, Task 2: Production Global Layout and Navigation
+- **[Phase 4 Global Layout Architecture](docs/architecture/phase-4-global-layout.md)**: Master layout specification establishing the landmark architecture, centralized navigation configuration (`config/navigation.ts`), accessible desktop mega-menus, keyboard-navigable mobile drawer, and multi-column institutional footer.
+- **[Phase 4 Navigation Test Results](docs/architecture/phase-4-navigation-test-results.md)**: Comprehensive verification report documenting 100% test pass rate across all 71 unit tests (including 14 dedicated navigation tests), 8 backend integration tests, zero TypeScript errors, zero lint warnings, and clean Turbopack production compilation.
+- **Production Navigation Components**: Implemented production `Header.tsx` (utility strip, brand lockup, desktop mega-menus, mobile drawer with body scroll lock), `Footer.tsx` (verified campus address, helplines, directory columns, legal bar), and `Breadcrumbs.tsx`.
+
+### Phase 4, Task 3: Production Homepage Implementation
+- **[Phase 4 Homepage Implementation Specification](docs/architecture/phase-4-homepage-implementation.md)**: Master architectural specification of the production homepage (`apps/web/src/app/page.tsx`) implementing all 9 canonical sections (C through K) as a zero-JS-footprint Server Component with strongly typed data models in `apps/web/src/data/homepage.ts`.
+- **[Phase 4 Homepage Content Verification Register](docs/architecture/phase-4-homepage-content-register.md)**: Evidentiary baseline mapping every public claim, metric, startup story, pilot trial, and deadline to statutory NITI Aayog/AIM/DPIIT filings.
+- **[Phase 4 Homepage Quality Assurance Report](docs/architecture/phase-4-homepage-qa.md)**: Multi-viewport audit (320px to 1440px), WCAG 2.2 AA contrast matrix, semantic heading hierarchy inspection, and test log certifying 100% pass rate across 94 workspace tests.
+- **Production Homepage (`apps/web/src/app/page.tsx`)**: Live implementation featuring institutional hero with 5:4 campus facility frame, genesis mission, 3-stage incubation continuum, 6 innovation domains, 2,400 Ha field pilot banner, 3 incubatee profiles, audited dark canvas impact metrics (`#063D27`), event calendar with intake deadline warning, real downloadable annual reports (`/downloads/`), and dual collaboration CTAs.

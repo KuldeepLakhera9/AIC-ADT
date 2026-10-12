@@ -1,9 +1,19 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 import { FOOTER_SECTIONS, INSTITUTIONAL_INFO } from "@/config/navigation";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  // Suppress public footer inside administrative console
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   const currentYear = 2026;
 
   return (

@@ -9,6 +9,7 @@ import { MAIN_NAV_ITEMS, INSTITUTIONAL_INFO } from "@/config/navigation";
 
 export function Header() {
   const pathname = usePathname();
+
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [expandedMobileCategories, setExpandedMobileCategories] = useState<
@@ -88,6 +89,11 @@ export function Header() {
     }
     return false;
   };
+
+  // Suppress public navigation header inside administrative console
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <header className="relative w-full z-40" ref={navRef}>

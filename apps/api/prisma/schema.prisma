@@ -56,6 +56,7 @@ model User {
   // Relationships
   auditLogs    AuditLog[]
   sessions     Session[]
+  authoredNews NewsArticle[] @relation("AuthoredNews")
 
   @@index([role], name: "idx_users_role")
   @@index([status], name: "idx_users_status")
@@ -111,4 +112,71 @@ model SystemSetting {
   updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("system_settings")
+}
+
+// ------------------------------------------------------------------------------
+// CONTENT MANAGEMENT & EDITORIAL WORKFLOW MODELS
+// ------------------------------------------------------------------------------
+
+enum ContentStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum NewsCategory {
+  OFFICIAL_ANNOUNCEMENT
+  FUNDING_MILESTONE
+  INFRASTRUCTURE
+  ECOSYSTEM_PARTNERSHIP
+}
+
+/// Official Press Releases, Announcements, and Ecosystem Coverage
+model NewsArticle {
+  id                String            @id @default(uuid()) @db.Uuid
+  slug              String            @unique @db.VarChar(100)
+  category          NewsCategory      @default(OFFICIAL_ANNOUNCEMENT)
+  publishDate       DateTime          @default(now()) @map("publish_date") @db.Timestamptz(6)
+  sourceAttribution String            @map("source_attribution") @db.VarChar(200)
+  externalPressLink String?           @map("external_press_link") @db.VarChar(255)
+  thumbnailAssetId  String?           @map("thumbnail_asset_id") @db.Uuid
+  currentVersion    Int               @default(1) @map("current_version")
+  authorId          String?           @map("author_id") @db.Uuid
+  createdAt         DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime          @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relationships
+  author            User?             @relation("AuthoredNews", fields: [authorId], references: [id], onDelete: SetNull)
+  translations      NewsTranslation[]
+
+  @@index([category], name: "idx_news_articles_category")
+  @@index([publishDate], name: "idx_news_articles_publish_date")
+  @@index([authorId], name: "idx_news_articles_author_id")
+  @@map("news_articles")
+}
+
+/// Localized Content and Editorial Lifecycle for News Articles
+model NewsTranslation {
+  id          String        @id @default(uuid()) @db.Uuid
+  articleId   String        @map("article_id") @db.Uuid
+  locale      String        @db.VarChar(5)
+  headline    String        @db.VarChar(255)
+  summary     String        @db.VarChar(500)
+  content     Json          @db.JsonB
+  tags        Json          @default("[]") @db.JsonB
+  keyFacts    Json?         @map("key_facts") @db.JsonB
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?     @map("published_at") @db.Timestamptz(6)
+  archivedAt  DateTime?     @map("archived_at") @db.Timestamptz(6)
+  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relationships
+  article     NewsArticle   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, locale], name: "uq_news_translations_locale")
+  @@index([locale, status], name: "idx_news_translations_locale_status")
+  @@map("news_translations")
 }

@@ -58,20 +58,92 @@ export class DashboardService {
       }
     }
 
-    // Authentic content summary; 0 is returned where zero records exist.
-    // In Phase 5 Task 4, foundational identity & audit are active; content tables return 0.
+    // Authentic content summary queried from PostgreSQL
+    let draftCount = 0;
+    let inReviewCount = 0;
+    let approvedCount = 0;
+    let publishedCount = 0;
+    let archivedCount = 0;
+    let recentlyUpdated: DashboardOverviewResponse['recentlyUpdated'] = [];
+    let recentlyPublished: DashboardOverviewResponse['recentlyPublished'] = [];
+
+    if (this.prisma.connected) {
+      try {
+        const [drafts, inReview, approved, published, archived] = await Promise.all([
+          this.prisma.newsTranslation.count({ where: { status: 'DRAFT' } }),
+          this.prisma.newsTranslation.count({ where: { status: 'IN_REVIEW' } }),
+          this.prisma.newsTranslation.count({ where: { status: 'APPROVED' } }),
+          this.prisma.newsTranslation.count({ where: { status: 'PUBLISHED' } }),
+          this.prisma.newsTranslation.count({ where: { status: 'ARCHIVED' } }),
+        ]);
+        draftCount = drafts;
+        inReviewCount = inReview;
+        approvedCount = approved;
+        publishedCount = published;
+        archivedCount = archived;
+
+        const recentArticles = await this.prisma.newsArticle.findMany({
+          take: 5,
+          orderBy: { updatedAt: 'desc' },
+          include: {
+            translations: true,
+            author: { select: { fullName: true } },
+          },
+        });
+
+        recentlyUpdated = recentArticles.map((a) => {
+          const tr = a.translations[0];
+          return {
+            id: a.id,
+            title: tr ? tr.headline : a.slug,
+            contentType: 'NEWS',
+            status: tr ? tr.status : 'DRAFT',
+            updatedAt: a.updatedAt.toISOString(),
+            updatedBy: a.author?.fullName,
+          };
+        });
+
+        const recentPubs = await this.prisma.newsArticle.findMany({
+          where: {
+            translations: { some: { status: 'PUBLISHED' } },
+          },
+          take: 5,
+          orderBy: { publishDate: 'desc' },
+          include: { translations: true },
+        });
+
+        recentlyPublished = recentPubs.map((a) => {
+          const tr = a.translations.find((t) => t.status === 'PUBLISHED') || a.translations[0];
+          return {
+            id: a.id,
+            title: tr ? tr.headline : a.slug,
+            contentType: 'NEWS',
+            publishedAt: (tr?.publishedAt || a.publishDate).toISOString(),
+            slug: a.slug,
+          };
+        });
+      } catch (err) {
+        this.logger.warn(
+          `Unable to query content records for dashboard metrics: ${err instanceof Error ? err.message : 'Unknown'}`,
+          'DashboardService',
+        );
+      }
+    }
+
+    const totalCount = draftCount + inReviewCount + approvedCount + publishedCount + archivedCount;
+
     return {
       contentStatus: {
-        draft: 0,
-        inReview: 0,
-        approved: 0,
-        published: 0,
-        archived: 0,
-        total: 0,
+        draft: draftCount,
+        inReview: inReviewCount,
+        approved: approvedCount,
+        published: publishedCount,
+        archived: archivedCount,
+        total: totalCount,
       },
-      pendingReviewCount: 0,
-      recentlyUpdated: [],
-      recentlyPublished: [],
+      pendingReviewCount: inReviewCount,
+      recentlyUpdated,
+      recentlyPublished,
       attentionItems: [],
       recentActivity,
     };

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Outfit, Inter, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -112,11 +113,15 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Header />
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );

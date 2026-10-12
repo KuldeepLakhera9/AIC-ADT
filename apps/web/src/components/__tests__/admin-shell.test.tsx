@@ -54,7 +54,7 @@ describe("Administrative CMS Console Pages & Layout Verification", () => {
   it("renders News & Notices page with drafting trigger", () => {
     const html = renderToStaticMarkup(<AdminNewsPage />);
     expect(html).toContain("News &amp; Announcements Management");
-    expect(html).toContain("No News Drafts or Articles Found");
+    expect(html).toContain("Search headline or slug...");
     expect(html).toContain("Draft News Article");
   });
 

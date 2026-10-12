@@ -19,8 +19,18 @@
     "test": "pnpm -r run test",
     "test:web": "pnpm --filter @aic/web test",
     "test:api": "pnpm --filter @aic/api test",
+    "test:e2e": "pnpm --filter @aic/api test:e2e",
+    "test:all": "pnpm test && pnpm test:e2e",
+    "prisma:validate": "pnpm --filter @aic/api prisma:validate",
     "format:check": "prettier --check \"apps/**/*.{ts,tsx,js,json,css}\"",
-    "format": "prettier --write \"apps/**/*.{ts,tsx,js,json,css}\""
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,json,css}\"",
+    "verify:phase3": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm prisma:validate && pnpm test && pnpm test:e2e && pnpm build",
+    "docker:db:up": "docker compose -f infra/docker/compose.yaml up -d postgres",
+    "docker:db:down": "docker compose -f infra/docker/compose.yaml down",
+    "docker:db:logs": "docker compose -f infra/docker/compose.yaml logs -f postgres",
+    "docker:full:up": "docker compose -f infra/docker/compose.yaml --profile full up -d",
+    "docker:full:down": "docker compose -f infra/docker/compose.yaml --profile full down",
+    "docker:full:build": "docker compose -f infra/docker/compose.yaml --profile full build --no-cache"
   },
   "devDependencies": {
     "prettier": "^3.4.2"

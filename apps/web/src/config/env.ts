@@ -10,7 +10,7 @@
 export interface FrontendConfig {
   appUrl: string;
   apiUrl: string;
-  defaultLocale: 'en' | 'mr';
+  defaultLocale: "en" | "mr";
   isProduction: boolean;
   isDevelopment: boolean;
   isTest: boolean;
@@ -20,21 +20,23 @@ export interface FrontendConfig {
  * Validates and retrieves application frontend environment configuration.
  */
 export function getFrontendConfig(): FrontendConfig {
-  const nodeEnv = process.env.NODE_ENV ?? 'development';
-  const isProduction = nodeEnv === 'production';
-  const isDevelopment = nodeEnv === 'development';
-  const isTest = nodeEnv === 'test';
+  const nodeEnv = process.env.NODE_ENV ?? "development";
+  const isProduction = nodeEnv === "production";
+  const isDevelopment = nodeEnv === "development";
+  const isTest = nodeEnv === "test";
 
   const appUrl =
     process.env.NEXT_PUBLIC_APP_URL ||
-    (isProduction ? 'https://aic-adt.org' : 'http://localhost:3000');
+    (isProduction ? "https://aic-adt.org" : "http://localhost:3000");
 
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL ||
-    (isProduction ? 'https://api.aic-adt.org/api/v1' : 'http://localhost:4000/api/v1');
+    (isProduction
+      ? "https://api.aic-adt.org/api/v1"
+      : "http://localhost:4000/api/v1");
 
-  const defaultLocaleRaw = process.env.NEXT_PUBLIC_DEFAULT_LOCALE ?? 'en';
-  const defaultLocale = defaultLocaleRaw === 'mr' ? 'mr' : 'en';
+  const defaultLocaleRaw = process.env.NEXT_PUBLIC_DEFAULT_LOCALE ?? "en";
+  const defaultLocale = defaultLocaleRaw === "mr" ? "mr" : "en";
 
   return {
     appUrl,
@@ -61,7 +63,7 @@ export function validatePublicEnvironmentSafety(): void {
   ];
 
   for (const [key, value] of Object.entries(process.env)) {
-    if (key.startsWith('NEXT_PUBLIC_') && typeof value === 'string') {
+    if (key.startsWith("NEXT_PUBLIC_") && typeof value === "string") {
       for (const pattern of forbiddenPatterns) {
         if (pattern.test(key)) {
           throw new Error(
@@ -74,6 +76,6 @@ export function validatePublicEnvironmentSafety(): void {
 }
 
 // Run public environment security validation upon module loading
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== "test") {
   validatePublicEnvironmentSafety();
 }

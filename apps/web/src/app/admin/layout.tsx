@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AdminShell from '@/components/admin/AdminShell';
 
 export const metadata: Metadata = {
   title: 'Institutional Administration Console | AIC-ADT Baramati',
@@ -13,9 +14,5 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="admin-console-wrapper min-h-screen bg-slate-900">
-      {children}
-    </div>
-  );
+  return <AdminShell>{children}</AdminShell>;
 }

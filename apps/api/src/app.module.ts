@@ -7,6 +7,7 @@ import { AppService } from './app.service.js';
 import { HealthModule } from './health/health.module.js';
 import { DatabaseModule } from './database/database.module.js';
 import { AuthModule } from './auth/auth.module.js';
+import { DashboardModule } from './dashboard/dashboard.module.js';
 import { validateEnvironment } from './config/env.validation.js';
 import { appConfig } from './config/configuration.js';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware.js';
@@ -32,6 +33,7 @@ import { CorrelationIdMiddleware } from './common/middleware/correlation-id.midd
     DatabaseModule,
     HealthModule,
     AuthModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [

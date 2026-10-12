@@ -1,4 +1,5 @@
 import { Role } from '@prisma/client';
+export { Role, UserStatus } from '@prisma/client';
 
 /**
  * AIC-ADT Baramati Foundation — Granular Permissions

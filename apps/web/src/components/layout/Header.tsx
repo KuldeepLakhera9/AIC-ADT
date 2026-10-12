@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "./Container";
+import { LanguageSelector } from "./LanguageSelector";
 import { MAIN_NAV_ITEMS, INSTITUTIONAL_INFO } from "@/config/navigation";
 
 export function Header() {
@@ -117,22 +118,7 @@ export function Header() {
             <span className="hidden md:inline text-white/30" aria-hidden="true">
               |
             </span>
-            <div
-              className="flex items-center gap-1.5 text-[11px] font-medium"
-              role="group"
-              aria-label="Language options"
-            >
-              <span className="px-1.5 py-0.5 rounded bg-[#004B2A] text-white font-semibold">
-                EN
-              </span>
-              <span className="text-white/40">/</span>
-              <span
-                className="text-white/70 hover:text-white cursor-not-allowed"
-                title="मराठी भाषांतर लवकरच उपलब्ध होईल"
-              >
-                मराठी
-              </span>
-            </div>
+            <LanguageSelector variant="topbar" />
             <span className="text-white/30" aria-hidden="true">
               |
             </span>
@@ -496,6 +482,7 @@ export function Header() {
 
             {/* Drawer Bottom Actions */}
             <div className="p-4 border-t border-[#DDE5DC] bg-[#F8FAF7] space-y-3">
+              <LanguageSelector variant="drawer" />
               <Link
                 href="/programs/apply-instructions"
                 onClick={() => setIsMobileMenuOpen(false)}

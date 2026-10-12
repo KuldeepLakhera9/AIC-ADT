@@ -1,0 +1,125 @@
+import { TranslationDictionary } from "../types";
+
+export const enDictionary: TranslationDictionary = {
+  locale: "en",
+  nav: {
+    about: "About",
+    programs: "Programs",
+    startups: "Startups",
+    innovation: "Innovation & Labs",
+    impact: "Impact",
+    events: "Events",
+    resources: "Resources",
+    contact: "Contact",
+    applyButton: "Apply for Incubation",
+    helplineLabel: "Helpline",
+    governingApex:
+      "Supported by Atal Innovation Mission (NITI Aayog) | Hosted by ADT Baramati",
+  },
+  common: {
+    applyNow: "Apply for Incubation",
+    explorePrograms: "Explore Incubation Programs",
+    bookLabTesting: "Book Analytical Lab Testing",
+    learnMore: "Learn More",
+    viewDetails: "View Details",
+    downloadDocument: "Download Official Document",
+    requestDocument: "Request Document via Desk",
+    all: "All",
+    upcoming: "Upcoming",
+    concluded: "Concluded",
+    active: "Active",
+    search: "Search",
+    searchPlaceholder: "Search by keyword, topic, or department...",
+    clearFilters: "Clear all filters",
+    resetFilters: "Reset Filters",
+    back: "Back",
+    close: "Close",
+    loading: "Loading...",
+    readMore: "Read More",
+    share: "Share",
+    category: "Category",
+    venue: "Venue",
+    date: "Date",
+    organizer: "Organizer",
+  },
+  footer: {
+    tagline:
+      "Catalyzing deep-tech agriculture, food processing, biotechnology, and rural enterprise innovation. Hosted within the 110-acre demonstration campus of the Agricultural Development Trust, Baramati.",
+    campusHeadquarters: "Campus Headquarters",
+    officialLandline: "Official Landline",
+    incubationHelpline: "Incubation Helpline",
+    primaryEmail: "Primary Institutional Email",
+    incubationHours: "Incubation Hours",
+    copyright: "All rights reserved.",
+    mandateNotice:
+      "Supported by Atal Innovation Mission, NITI Aayog, Government of India | Hosted by Agricultural Development Trust, Baramati.",
+    privacyPolicy: "Privacy Policy",
+    termsOfUse: "Terms of Use",
+    rtiDisclosures: "RTI Disclosures",
+    transitGuide: "View Transit Guide & Directions",
+  },
+  breadcrumbs: {
+    home: "Home",
+    about: "About",
+    programs: "Programs",
+    startups: "Startups",
+    innovation: "Innovation",
+    events: "Events & Workshops",
+    resources: "Resources & Documents",
+    contact: "Contact Us",
+    news: "News & Announcements",
+  },
+  a11y: {
+    skipToMain: "Skip to main content",
+    languageOptions: "Language options",
+    switchToEnglish: "Switch to English",
+    switchToMarathi: "मराठी भाषेत पहा (Switch to Marathi)",
+    openMenu: "Open main navigation menu",
+    closeMenu: "Close main navigation menu",
+    breadcrumbsNav: "Breadcrumb navigation",
+    searchResultsStatus: "Search results updated",
+  },
+  errors: {
+    notFoundTitle: "Page Not Found",
+    notFoundMessage:
+      "The requested page could not be located on the official AIC-ADT Baramati Foundation portal. It may have been moved, renamed, or is temporarily unavailable.",
+    returnHome: "Return to Overview",
+    contactSupport: "Contact Support Desk",
+    popularSections: "Popular Institutional Sections",
+  },
+  emptyState: {
+    noResultsTitle: "No Matching Records Found",
+    noResultsMessage:
+      "No verified entries match your search criteria. Please adjust your filters or search terms.",
+    resetAction: "Reset Filters",
+  },
+  advisory: {
+    marathiReviewNotice: "Official English Portal",
+    marathiReviewDetail:
+      "English is the canonical source of record for statutory filings.",
+    authoritativeNotice: "Authoritative English Language Record",
+  },
+  home: {
+    overline: "Supported by Atal Innovation Mission • NITI Aayog",
+    headline:
+      "Catalyzing the Next Agricultural Revolution Through Deep-Tech Innovation",
+    body: "AIC-ADT empowers agri-tech startups, progressive farmers, and researchers with seed capital, NABL-accredited analytical laboratories, and field testing grounds across 110 acres in Baramati.",
+    credentials: [
+      "DPIIT Recognized Incubator",
+      "NABL Analytical Testing Scope",
+      "110-Acre Live Demonstration Farm",
+    ],
+    pillarScience: {
+      title: "Lab-to-Land Science",
+      desc: "Direct validation of biotech formulations, IoT telemetry, and farm robotics on real farmland in the Baramati agricultural belt.",
+    },
+    pillarFunding: {
+      title: "Government Seed Grants",
+      desc: "Structured funding linkages facilitating DPIIT Startup India Seed Fund (SISFS) and MeitY GENESIS EiR tranches up to ₹50 Lakhs.",
+    },
+    pillarMentors: {
+      title: "69+ Empaneled Mentors",
+      desc: "One-on-one advisory from agronomists, patent attorneys, supply chain leaders, and venture capitalists across India.",
+    },
+  },
+};

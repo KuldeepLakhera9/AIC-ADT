@@ -26,8 +26,8 @@ describe("Administrative CMS Console Pages & Layout Verification", () => {
   it("renders Review Queue page with empty queue state and governance notice", () => {
     const html = renderToStaticMarkup(<AdminReviewQueuePage />);
     expect(html).toContain("Editorial Review Queue");
-    expect(html).toContain("Review Queue is Clear");
-    expect(html).toContain("Back to Dashboard");
+    expect(html).toContain("Dual-Custody Governed");
+    expect(html).toContain("All Pending");
   });
 
   it("renders Pages management page with section action and empty state", () => {
@@ -88,8 +88,8 @@ describe("Administrative CMS Console Pages & Layout Verification", () => {
 
   it("renders Audit Trail page with immutable storage notice", () => {
     const html = renderToStaticMarkup(<AdminAuditPage />);
-    expect(html).toContain("Security &amp; Governance Audit Trail");
-    expect(html).toContain("Audit Trail Initialized");
-    expect(html).toContain("PostgreSQL Append-Only");
+    expect(html).toContain("Security &amp; Editorial Audit Trail");
+    expect(html).toContain("Append-Only • WORM Verified");
+    expect(html).toContain("Institutional Retention &amp; Non-Repudiation Policy");
   });
 });

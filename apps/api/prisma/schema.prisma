@@ -56,9 +56,11 @@ model User {
   // Relationships
   auditLogs      AuditLog[]
   sessions       Session[]
-  authoredNews   NewsArticle[] @relation("AuthoredNews")
-  authoredEvents Event[]       @relation("AuthoredEvents")
-  uploadedMedia  MediaAsset[]  @relation("UploadedMedia")
+  authoredNews      NewsArticle[]     @relation("AuthoredNews")
+  authoredEvents    Event[]           @relation("AuthoredEvents")
+  uploadedMedia     MediaAsset[]      @relation("UploadedMedia")
+  authoredRevisions ContentRevision[] @relation("RevisionAuthor")
+  reviewedRevisions ContentRevision[] @relation("RevisionReviewer")
 
   @@index([role], name: "idx_users_role")
   @@index([status], name: "idx_users_status")
@@ -123,9 +125,18 @@ model SystemSetting {
 enum ContentStatus {
   DRAFT
   IN_REVIEW
+  CHANGES_REQUESTED
   APPROVED
   PUBLISHED
   ARCHIVED
+}
+
+enum ContentEntityType {
+  NEWS
+  EVENT
+  STARTUP
+  PROGRAM
+  INSTITUTIONAL_PAGE
 }
 
 enum NewsCategory {
@@ -331,5 +342,33 @@ model MediaAsset {
   @@index([uploaderId], name: "idx_media_assets_uploader_id")
   @@index([createdAt(sort: Desc)], name: "idx_media_assets_created_at")
   @@map("media_assets")
+}
+
+/// Immutable Historical Revisions and Draft Staging for Published Content
+model ContentRevision {
+  id            String            @id @default(uuid()) @db.Uuid
+  entityType    ContentEntityType @map("entity_type")
+  entityId      String            @map("entity_id") @db.Uuid
+  versionNumber Int               @map("version_number")
+  locale        String            @db.VarChar(5)
+  status        ContentStatus     @default(DRAFT)
+  dataSnapshot  Json              @map("data_snapshot") @db.JsonB
+  authorId      String?           @map("author_id") @db.Uuid
+  reviewerId    String?           @map("reviewer_id") @db.Uuid
+  reviewNotes   String?           @map("review_notes") @db.Text
+  changelog     String?           @db.VarChar(500)
+  createdAt     DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  // Relationships
+  author        User?             @relation("RevisionAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  reviewer      User?             @relation("RevisionReviewer", fields: [reviewerId], references: [id], onDelete: SetNull)
+
+  @@unique([entityType, entityId, versionNumber, locale], name: "uq_revisions_entity_version_locale")
+  @@index([entityType, entityId], name: "idx_revisions_entity")
+  @@index([status], name: "idx_revisions_status")
+  @@index([authorId], name: "idx_revisions_author")
+  @@index([reviewerId], name: "idx_revisions_reviewer")
+  @@index([createdAt(sort: Desc)], name: "idx_revisions_created_at")
+  @@map("content_revisions")
 }
 

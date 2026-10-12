@@ -11,7 +11,7 @@ export interface RecentlyUpdatedItem {
   id: string;
   title: string;
   contentType: 'PAGE' | 'PROGRAM' | 'STARTUP' | 'NEWS' | 'EVENT' | 'PUBLICATION';
-  status: 'DRAFT' | 'IN_REVIEW' | 'APPROVED' | 'PUBLISHED' | 'ARCHIVED';
+  status: 'DRAFT' | 'IN_REVIEW' | 'CHANGES_REQUESTED' | 'APPROVED' | 'PUBLISHED' | 'ARCHIVED';
   updatedAt: string;
   updatedBy?: string;
 }

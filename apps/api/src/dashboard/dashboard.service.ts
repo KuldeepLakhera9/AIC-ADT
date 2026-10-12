@@ -69,18 +69,34 @@ export class DashboardService {
 
     if (this.prisma.connected) {
       try {
-        const [drafts, inReview, approved, published, archived] = await Promise.all([
+        const [
+          newsDrafts,
+          eventDrafts,
+          newsInReview,
+          eventInReview,
+          newsApproved,
+          eventApproved,
+          newsPublished,
+          eventPublished,
+          newsArchived,
+          eventArchived,
+        ] = await Promise.all([
           this.prisma.newsTranslation.count({ where: { status: 'DRAFT' } }),
+          this.prisma.eventTranslation.count({ where: { status: 'DRAFT' } }),
           this.prisma.newsTranslation.count({ where: { status: 'IN_REVIEW' } }),
+          this.prisma.eventTranslation.count({ where: { status: 'IN_REVIEW' } }),
           this.prisma.newsTranslation.count({ where: { status: 'APPROVED' } }),
+          this.prisma.eventTranslation.count({ where: { status: 'APPROVED' } }),
           this.prisma.newsTranslation.count({ where: { status: 'PUBLISHED' } }),
+          this.prisma.eventTranslation.count({ where: { status: 'PUBLISHED' } }),
           this.prisma.newsTranslation.count({ where: { status: 'ARCHIVED' } }),
+          this.prisma.eventTranslation.count({ where: { status: 'ARCHIVED' } }),
         ]);
-        draftCount = drafts;
-        inReviewCount = inReview;
-        approvedCount = approved;
-        publishedCount = published;
-        archivedCount = archived;
+        draftCount = newsDrafts + eventDrafts;
+        inReviewCount = newsInReview + eventInReview;
+        approvedCount = newsApproved + eventApproved;
+        publishedCount = newsPublished + eventPublished;
+        archivedCount = newsArchived + eventArchived;
 
         const recentArticles = await this.prisma.newsArticle.findMany({
           take: 5,

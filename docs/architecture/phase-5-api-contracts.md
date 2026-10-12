@@ -224,6 +224,110 @@ export class CreateStartupDto {
 
 ---
 
+### 4.2 Admin News Articles Management Endpoints (`/api/v1/content/news`)
+
+| Method | Path | Required Permissions | Purpose |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/content/news` | `CONTENT_READ` | Paginated listing with search, category, status, sort. |
+| `POST` | `/api/v1/content/news` | `CONTENT_CREATE` | Create news draft with optional Marathi translation. |
+| `GET` | `/api/v1/content/news/:id` | `CONTENT_READ` | Get complete internal news record with all translations. |
+| `PUT` | `/api/v1/content/news/:id` | `CONTENT_UPDATE` | Update news draft (enforces author record ownership). |
+| `POST` | `/api/v1/content/news/:id/submit-review` | `CONTENT_SUBMIT_REVIEW` | Transition status from `DRAFT` to `IN_REVIEW`. |
+| `POST` | `/api/v1/content/news/:id/archive` | `CONTENT_UPDATE` | Soft-archive news article. |
+| `POST` | `/api/v1/content/news/:id/restore` | `CONTENT_UPDATE` | Restore archived article to `DRAFT`. |
+
+---
+
+### 4.3 Admin Events & Calendar Management Endpoints (`/api/v1/content/events`)
+
+Administrative event management endpoints guarded by `SessionAuthGuard` and `PermissionsGuard`.
+
+| Method | Path | Required Permissions | Purpose |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/content/events` | `CONTENT_READ` | Paginated listing with search, category, schedule status, workflow status, sorting. |
+| `POST` | `/api/v1/content/events` | `CONTENT_CREATE` | Create new event draft with scheduling, venue, registration, and localized content. |
+| `GET` | `/api/v1/content/events/:id` | `CONTENT_READ` | Get full event record with bilingual translations and preview metadata. |
+| `PUT` | `/api/v1/content/events/:id` | `CONTENT_UPDATE` | Update event record. Enforces author record-level ownership or publisher override. Excludes `ContentStatus`. |
+| `POST` | `/api/v1/content/events/:id/submit-review` | `CONTENT_SUBMIT_REVIEW` | Submit draft or revision for editorial review (`DRAFT`/`CHANGES_REQUESTED` $\to$ `IN_REVIEW`). |
+| `POST` | `/api/v1/content/events/:id/archive` | `CONTENT_UPDATE` | Archive event record (`ARCHIVED`). |
+| `POST` | `/api/v1/content/events/:id/restore` | `CONTENT_UPDATE` | Restore archived event back to `DRAFT`. |
+
+#### Create Event Request DTO (`CreateEventDto`):
+```typescript
+export class CreateEventDto {
+  @IsString()
+  @Matches(/^[a-z0-9-]+$/)
+  slug: string;
+
+  @IsEnum(EventCategory)
+  category: EventCategory;
+
+  @IsEnum(VenueType)
+  venueType: VenueType;
+
+  @IsDateString()
+  startDate: string;
+
+  @IsDateString()
+  endDate: string;
+
+  @IsOptional()
+  @IsDateString()
+  registrationDeadline?: string;
+
+  @IsOptional()
+  @IsUrl()
+  registrationUrl?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  capacity?: number;
+
+  @IsOptional()
+  @IsString()
+  contactEmail?: string;
+
+  @IsOptional()
+  @IsString()
+  contactPhone?: string;
+
+  @IsOptional()
+  @IsString()
+  featuredImageUrl?: string;
+
+  @IsBoolean()
+  isFeatured: boolean;
+
+  @ValidateNested()
+  @Type(() => CreateEventTranslationDto)
+  en: CreateEventTranslationDto;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => CreateEventTranslationDto)
+  mr?: CreateEventTranslationDto;
+}
+```
+
+#### Event Query DTO (`QueryEventDto`):
+- `page`: positive integer (default: 1)
+- `limit`: integer 1..100 (default: 10)
+- `search`: string filter across title, slug, venue, organizer
+- `category`: `WORKSHOP` | `SEMINAR` | `HACKATHON` | `EXHIBITION` | `INVESTOR_MEET` | `TRAINING` | `OTHER`
+- `status`: `UPCOMING` | `ONGOING` | `COMPLETED` | `CANCELLED` | `POSTPONED` (schedule state)
+- `workflowStatus`: `DRAFT` | `IN_REVIEW` | `CHANGES_REQUESTED` | `APPROVED` | `PUBLISHED` | `ARCHIVED`
+- `sortBy`: `startDate` | `endDate` | `createdAt` | `updatedAt` | `slug` (strict whitelist)
+- `sortOrder`: `asc` | `desc` (default: `desc`)
+
+#### Schedule State Computation:
+The API computes real-time `computedScheduleStatus` without relying solely on manual state:
+- If `status === 'CANCELLED'` or `'POSTPONED'` $\to$ retains flagged status.
+- If current time `< startDate` $\to$ `'UPCOMING'`.
+- If current time between `startDate` and `endDate` $\to$ `'ONGOING'`.
+- If current time `> endDate` $\to$ `'COMPLETED'`.
+
+
 ## 5. Editorial Workflow & Review Endpoints
 
 Endpoints implementing the state transitions defined in [phase-5-content-workflow.md](file:///Users/kuldeeplakhera/ADT/Projects/AIC-ADT/docs/architecture/phase-5-content-workflow.md).
